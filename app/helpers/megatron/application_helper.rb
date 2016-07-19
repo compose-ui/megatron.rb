@@ -57,6 +57,14 @@ module Megatron
       %Q{<link rel="mask-icon" mask href="#{path}" color="black">}.html_safe
     end
 
+    def favicon_link_tag(source='favicon.ico', options={})
+      tag('link', {
+        :rel  => 'shortcut icon',
+        :type => 'image/x-icon',
+        :href => source
+      }.merge!(options.symbolize_keys))
+    end
+
     def megatron_error_asset_tag
       version = Megatron::VERSION
       ext_suffix = Rails.env.production? ? '.gz' : ''
