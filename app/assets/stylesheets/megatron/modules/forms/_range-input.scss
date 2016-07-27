@@ -233,6 +233,7 @@ input::-moz-focus-inner {
     white-space: nowrap;
     text-align: left;
     position: absolute;
+    left: 100%;
     top: 50%;
     transform: translateY(-50%);
     transform-style: preserve-3d;
