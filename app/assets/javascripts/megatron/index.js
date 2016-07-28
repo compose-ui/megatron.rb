@@ -15,7 +15,7 @@ require('codemirror/mode/sql/sql')
 require('codemirror/addon/runmode/runmode.js')
 require('codemirror/addon/edit/matchbrackets.js')
 
-var Form = require('compose-remote-form') // Our UJS implementation
+var form = require('compose-remote-form') // Our UJS implementation
 require('compose-time-toggle') // Switch time elements between local and UTC
 require('compose-slider')      // Our slider (range input) component
 var rangeTouch = require('rangetouch')          // mobile accessiblity on sliders
