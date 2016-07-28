@@ -29,7 +29,7 @@ module Megatron
     def slider_input_tag(name, options={})
       options = options.stringify_keys
       data = options['data'] || {}
-      name ||= data["input"]
+      data['input'] ||= name
       
       # Set values (and max based on values size)
       if values = options['values']
@@ -98,7 +98,7 @@ module Megatron
 
       options['value'] ||= options['min'] || 0
 
-      html_options = { "name" => name, "type" => "range", "min" => options['min'], "max" => options['max'], "value" => options['value'] }.update('data' => data)
+      html_options = { "type" => "range", "min" => options['min'], "max" => options['max'], "value" => options['value'] }.update('data' => data)
       tag :input, html_options
     end
     alias :range_input_tag :slider_input_tag

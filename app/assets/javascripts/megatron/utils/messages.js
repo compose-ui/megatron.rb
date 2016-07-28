@@ -90,9 +90,9 @@ var Messages = {
     if(window.location.hostname.match(/app\.compose/)){
       var message = window.Megatron.accountMessage
       if(!message) {
-        this.fetch()
+        Messages.fetch()
       } else {
-        this.showMessage(message)
+        Messages.showMessage(message)
       }
     }
   }

@@ -29,13 +29,7 @@ module Megatron
     end
 
     def megatron_assets_tags
-      version = if dev?
-        ''
-      elsif params[:__megatron_version]
-        "-#{params[:__megatron_version]}"
-      else
-        "-#{Megatron::VERSION}"
-      end
+      version = "-#{Megatron::VERSION}"
 
       ext_suffix = Rails.env.production? ? '.gz' : ''
 
