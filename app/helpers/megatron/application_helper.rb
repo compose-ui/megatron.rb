@@ -29,13 +29,7 @@ module Megatron
     end
 
     def megatron_assets_tags
-      version = if dev?
-        ''
-      elsif params[:__megatron_version]
-        "-#{params[:__megatron_version]}"
-      else
-        "-#{Megatron::VERSION}"
-      end
+      version = "-#{Megatron::VERSION}"
 
       ext_suffix = Rails.env.production? ? '.gz' : ''
 
@@ -55,6 +49,14 @@ module Megatron
 
     def pin_tab_icon(path)
       %Q{<link rel="mask-icon" mask href="#{path}" color="black">}.html_safe
+    end
+
+    def favicon_link_tag(source='favicon.ico', options={})
+      tag('link', {
+        :rel  => 'shortcut icon',
+        :type => 'image/x-icon',
+        :href => source
+      }.merge!(options.symbolize_keys))
     end
 
     def megatron_error_asset_tag

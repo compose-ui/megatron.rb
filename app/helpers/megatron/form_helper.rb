@@ -26,10 +26,10 @@ module Megatron
       end
     end
 
-    def range_input_tag(name, options={})
+    def slider_input_tag(name, options={})
       options = options.stringify_keys
       data = options['data'] || {}
-      data["input"] ||= name
+      data['input'] ||= name
       
       # Set values (and max based on values size)
       if values = options['values']
@@ -69,7 +69,7 @@ module Megatron
           data['before-label'] = before
         else
           before.each do |key, value|
-            data["#{key}-before-label"] = value
+            data["before-label-#{key}"] = value
           end
         end
       end
@@ -83,7 +83,7 @@ module Megatron
           data['after-label'] = after
         else
           after.each do |key, value|
-            data["#{key}-after-label"] = value
+            data["after-label-#{key}"] = value
           end
         end
       end
@@ -101,5 +101,7 @@ module Megatron
       html_options = { "type" => "range", "min" => options['min'], "max" => options['max'], "value" => options['value'] }.update('data' => data)
       tag :input, html_options
     end
+    alias :range_input_tag :slider_input_tag
+
   end
 end

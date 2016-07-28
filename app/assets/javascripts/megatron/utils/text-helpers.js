@@ -1,20 +1,22 @@
-var bean = require('bean')
-var Clipboard = require('./clipboard')
+var Event = require('compose-event')
+
+// Minor text behaviors
 
 var TextHelpers = {
   listen: function(){
-    bean.on(document, "click", ".click-select, [data-click-select]", TextHelpers.selectOnClick)
+    Event.on(document, "click", ".click-select, [data-click-select]", TextHelpers.selectOnClick)
   },
 
   setup: function() {
     TextHelpers.linkHeadings()
     TextHelpers.autoSizeTextarea()
     TextHelpers.autofocus()
-    Clipboard.setup()
   },
 
+  // Make it easy to set a range selection
+  //
   selectOnClick(event) {
-    var select = event.currentTarget.dataset['click-select']
+    var select = event.currentTarget.dataset.clickSelect
     var target = [event.target]
 
     if (select) {
@@ -31,6 +33,9 @@ var TextHelpers = {
     })
   },
 
+  // Use heading ids to create an on-page anchor
+  // link to make it easy to link to headings on a page
+  //
   linkHeadings: function linkHeadings(){
     var headings = document.querySelectorAll('h2[id], h3[id], h4[id], h5[id]')
     Array.prototype.forEach.call(headings, function(heading) {
@@ -39,6 +44,8 @@ var TextHelpers = {
     })
   },
 
+  // Resize textareas to fit the contents as a user types
+  //
   autoSizeTextarea: function autoSizeTextarea() {
 
     var wrapTextarea = function(node) {
@@ -68,11 +75,13 @@ var TextHelpers = {
     Array.prototype.forEach.call(document.querySelectorAll('textarea'), wrapTextarea)
     Array.prototype.forEach.call(document.querySelectorAll('.textarea-size-wrapper textarea'), autoHeight)
 
-    bean.on(document.querySelector('body'), 'keyup toggler:show', 'textarea', function(event){
+    Event.on(document.querySelector('body'), 'keyup toggler:show', 'textarea', function(event){
       autoHeight(event.currentTarget)
     })
   },
 
+  // Focus on the first element with the class .autofocus, when the page loads
+  //
   autofocus: function autofocus() {
     var focus_el = document.querySelector('.autofocus')
     if (focus_el) {
@@ -81,4 +90,5 @@ var TextHelpers = {
   }
 }
 
-module.exports = TextHelpers
+Event.ready(TextHelpers.listen)
+Event.change(TextHelpers.setup)

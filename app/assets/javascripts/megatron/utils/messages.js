@@ -1,5 +1,9 @@
 var request = require('superagent')
-var bean = require('bean')
+var Event = require('compose-event')
+
+// Look for messages at /messages.json
+// (an internal json document which we use to publish site-wide messages)
+// Then pin the topmost message to the top of the page.
 
 var Messages = {
   el: function messagesEl(){
@@ -36,7 +40,7 @@ var Messages = {
         var html = this.messageHTML(options)
         this.saveMessage(html)
         this.showMessage(html)
-        bean.on(this.el(), 'click', '.dismiss', this.dismiss.bind(this))
+        Event.on(this.el(), 'click', '.dismiss', this.dismiss.bind(this))
       }
     }
   },
@@ -83,15 +87,15 @@ var Messages = {
   },
 
   load: function messagesLoad(){
-    if(window.location.hostname.match(/app\.compose\.(io|dev)/)){
+    if(window.location.hostname.match(/app\.compose/)){
       var message = window.Megatron.accountMessage
       if(!message) {
-        this.fetch()
+        Messages.fetch()
       } else {
-        this.showMessage(message)
+        Messages.showMessage(message)
       }
     }
   }
 }
 
-module.exports = Messages
+Event.ready(Messages.load)
