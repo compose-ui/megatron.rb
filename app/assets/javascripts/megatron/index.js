@@ -1,8 +1,8 @@
-var Event = require('compose-event')
-var Notify = require('notify')
+var event = require('compose-event')
+var notify = require('notify')
 var request = require('superagent')
-var Dialog = require('compose-dialog')
-var Toggler = require('compose-toggler')
+var dialog = require('compose-dialog')
+var toggler = require('compose-toggler')
 var esvg = require('./esvg')
 
 // CodeMirror Settings
@@ -15,7 +15,7 @@ require('codemirror/mode/sql/sql')
 require('codemirror/addon/runmode/runmode.js')
 require('codemirror/addon/edit/matchbrackets.js')
 
-require('compose-remote-form') // Our UJS implementation
+var Form = require('compose-remote-form') // Our UJS implementation
 require('compose-time-toggle') // Switch time elements between local and UTC
 require('compose-slider')      // Our slider (range input) component
 var rangeTouch = require('rangetouch')          // mobile accessiblity on sliders
@@ -34,14 +34,13 @@ require('./utils/progress-bar')
 require('./shims/classlist')
 
 window.Megatron = module.exports = {
-  Dialog: Dialog,
-  notify: Notify,
-  Event: Event,
+  dialog: dialog,
+  notify: notify,
+  event: event,
+  form: form,
   request: request,
   esvg: esvg,
-  utils: {
-    CodeMirror: CodeMirror,
-    Toggler: Toggler
-  }
+  code: CodeMirror,
+  toggler: toggler
 }
 
