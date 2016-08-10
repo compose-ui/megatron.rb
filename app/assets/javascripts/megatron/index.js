@@ -28,7 +28,7 @@ require('./utils/activate-nav-items')
 require('./utils/auto-navigate')
 require('./utils/clipboard')
 require('./utils/form-flash')
-require('./utils/form-notify')
+var formNotify = require('./utils/form-notify')
 require('./utils/highlight-code')
 require('./utils/messages')
 require('./utils/text-helpers')
@@ -41,6 +41,7 @@ window.Megatron = module.exports = {
   notify: notify,
   event: event,
   form: form,
+  formNotify: formNotify,
   request: request,
   esvg: esvg,
   code: CodeMirror,
