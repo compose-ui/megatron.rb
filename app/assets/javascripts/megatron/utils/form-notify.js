@@ -45,7 +45,7 @@ var notifyForm = function(form, type, xhr) {
     message = message || defaultMessages[type]
   }
 
-  if (event.type == 'beforeSend')
+  if (type == 'beforeSend')
     Notify.progress(message)
   else
     Notify[type](message)
