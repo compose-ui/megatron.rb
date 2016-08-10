@@ -72,4 +72,6 @@ Form.on(document, {
   success: NotifyForm.trigger,
 })
 
-module.exports = self = NotifyForm
+var self = NotifyForm
+
+module.exports = NotifyForm
