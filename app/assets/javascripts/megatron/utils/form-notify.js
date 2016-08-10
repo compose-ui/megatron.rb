@@ -1,5 +1,6 @@
 var Form = require('remote-form')
 var Notify = require('notify')
+var Dialog = require('compose-dialog')
 
 // Notify user of actions on ajax forms.
 // Default messages are:
@@ -27,9 +28,10 @@ var defaultMessages = {
 var extractMessage = function(xhr) {
   try {
     return JSON.parse(xhr.responseText).messages
-  } catch {
-    if(xhr.statusText && xhr.statusText.length > 0)
+  } catch (e) {
+    if (xhr.statusText && xhr.statusText.length > 0) {
       return xhr.statusText
+    }
   }
 }
 
@@ -64,3 +66,5 @@ Form.on(document, {
   error: notifyForm,
   success: notifyForm,
 })
+
+Form.confirm = Dialog
