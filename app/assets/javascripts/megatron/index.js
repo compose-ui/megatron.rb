@@ -1,9 +1,13 @@
 var event = require('compose-event')
-var notify = require('notify')
+var notify = require('compose-notification')
 var request = require('superagent')
 var dialog = require('compose-dialog')
 var toggler = require('compose-toggler')
+var form = require('compose-remote-form') // Our UJS implementation
 var esvg = require('./esvg')
+
+// Use Dialog for remote-form confirmation dialogs
+form.confirm = dialog
 
 // CodeMirror Settings
 var CodeMirror = require('codemirror')
@@ -15,7 +19,6 @@ require('codemirror/mode/sql/sql')
 require('codemirror/addon/runmode/runmode.js')
 require('codemirror/addon/edit/matchbrackets.js')
 
-var form = require('compose-remote-form') // Our UJS implementation
 require('compose-time-toggle') // Switch time elements between local and UTC
 require('compose-slider')      // Our slider (range input) component
 var rangeTouch = require('rangetouch')          // mobile accessiblity on sliders

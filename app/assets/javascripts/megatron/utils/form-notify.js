@@ -1,5 +1,5 @@
-var Form = require('remote-form')
-var Notify = require('notify')
+var Form = require('compose-remote-form')
+var Notify = require('compose-notification')
 var Dialog = require('compose-dialog')
 
 // Notify user of actions on ajax forms.
@@ -19,52 +19,57 @@ var Dialog = require('compose-dialog')
 //    <script class='error'>Try again</script>
 //
 
-var defaultMessages = {
-  beforeSend: 'Submitting...',
-  success: 'Success!',
-  error: 'Something went wrong.'
-}
+var NotifyForm = {
+  defaultMessages: {
+    beforeSend: 'Submitting...',
+    success: 'Success!',
+    error: 'Sorry, something went wrong.'
+  },
 
-var extractMessage = function(xhr) {
-  try {
-    return JSON.parse(xhr.responseText).messages
-  } catch (e) {
-    if (xhr.statusText && xhr.statusText.length > 0) {
-      return xhr.statusText
+  trigger: function(form, type, xhr) {
+    var message = self.getMessage(form, type)
+
+    if (!message) {
+      if (xhr) {
+        message = self.extractMessage(xhr)
+      }
+      message = message || self.defaultMessages[type]
+    }
+
+    if (type == 'beforeSend') {
+      Notify.progress(message)
+    } else {
+      Notify[type](message)
+    }
+  },
+
+  extractMessage: function(xhr) {
+    try {
+      return JSON.parse(xhr.responseText).messages
+    } catch (e) {
+      if (xhr.statusText && xhr.statusText.length > 0) {
+        return xhr.statusText
+      }
+    }
+  },
+
+  getMessage: function(form, type) {
+    if (form.dataset[type]) {
+      return form.dataset[type]
+    }
+
+    var el = form.querySelector('[data-ajax-event='+type+'], script.'+type)
+
+    if (el) {
+      return el.innerHTML
     }
   }
-}
-
-var notifyForm = function(form, type, xhr) {
-  var message = getMessage(form, type)
-
-  if (!message) {
-    if (xhr) {
-      message = extractMessage(xhr)
-    }
-    message = message || defaultMessages[type]
-  }
-
-  if (type == 'beforeSend')
-    Notify.progress(message)
-  else
-    Notify[type](message)
-}
-
-var getMessage = function(form, type) {
-  if (form.dataset[type])
-    return form.dataset[type]
-
-  var el = form.querySelector('[data-ajax-event='+type+'], script.'+type)
-
-  if (el)
-    return el.innerHTML
 }
 
 Form.on(document, {
-  beforeSend: notifyForm,
-  error: notifyForm,
-  success: notifyForm,
+  beforeSend: NotifyForm.trigger,
+  error: NotifyForm.trigger,
+  success: NotifyForm.trigger,
 })
 
-Form.confirm = Dialog
+module.exports = self = NotifyForm

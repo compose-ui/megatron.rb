@@ -19,7 +19,7 @@
     "codemirror": "^5.5.0",
     "compose-dialog": "^2.0.0",
     "compose-notification": "^3.0.0",
-    "compose-remote-form": "^3.0.0",
+    "compose-remote-form": "^3.0.1",
     "compose-slider": "^1.0.1",
     "compose-time-toggle": "^1.0.0",
     "compose-toggler": "^1.0.0",
