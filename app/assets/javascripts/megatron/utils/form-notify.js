@@ -26,6 +26,14 @@ var NotifyForm = {
     error: 'Sorry, something went wrong.'
   },
 
+  setup: function {
+    Form.on(document, {
+      beforeSend: self.trigger,
+      error: self.trigger,
+      success: self.trigger,
+    })
+  },
+
   trigger: function(form, type, xhr) {
     var message = self.getMessage(form, type)
 
@@ -66,12 +74,8 @@ var NotifyForm = {
   }
 }
 
-Form.on(document, {
-  beforeSend: NotifyForm.trigger,
-  error: NotifyForm.trigger,
-  success: NotifyForm.trigger,
-})
-
 var self = NotifyForm
+
+Event.ready(NotifyForm.setup)
 
 module.exports = NotifyForm
