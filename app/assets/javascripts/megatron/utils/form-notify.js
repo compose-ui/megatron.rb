@@ -1,6 +1,5 @@
-var Event = require('compose-event')
+var Form = require('remote-form')
 var Notify = require('notify')
-
 
 // Notify user of actions on ajax forms.
 // Default messages are:
@@ -25,8 +24,24 @@ var defaultMessages = {
   error: 'Something went wrong.'
 }
 
-var notifyForm = function(event) {
-  var message = getMessage(event.target, event.type)
+var extractMessage = function(xhr) {
+  try {
+    return JSON.parse(xhr.responseText).messages
+  } catch {
+    if(xhr.statusText && xhr.statusText.length > 0)
+      return xhr.statusText
+  }
+}
+
+var notifyForm = function(form, type, xhr) {
+  var message = getMessage(form, type)
+
+  if (!message) {
+    if (xhr) {
+      message = extractMessage(xhr)
+    }
+    message = message || defaultMessages[type]
+  }
 
   if (event.type == 'beforeSend')
     Notify.progress(message)
@@ -42,10 +57,10 @@ var getMessage = function(form, type) {
 
   if (el)
     return el.innerHTML
-  else
-    return defaultMessages[type]
 }
 
-Event.ready(function() {
-  Event.on(document, 'beforeSend success error', 'form[data-remote]', notifyForm)
+Form.on(document, {
+  beforeSend: notifyForm,
+  error: notifyForm,
+  success: notifyForm,
 })
