@@ -1,6 +1,7 @@
 var Form = require('compose-remote-form')
 var Notify = require('compose-notification')
 var Dialog = require('compose-dialog')
+var Event = require('compose-event')
 
 // Notify user of actions on ajax forms.
 // Default messages are:
@@ -19,14 +20,14 @@ var Dialog = require('compose-dialog')
 //    <script class='error'>Try again</script>
 //
 
-var NotifyForm = {
-  defaultMessages: {
+var FormMessage = {
+  defaultFormMessages: {
     beforeSend: 'Submitting...',
     success: 'Success!',
     error: 'Sorry, something went wrong.'
   },
 
-  setup: function {
+  setup: function() {
     Form.on(document, {
       beforeSend: self.trigger,
       error: self.trigger,
@@ -35,13 +36,13 @@ var NotifyForm = {
   },
 
   trigger: function(form, type, xhr) {
-    var message = self.getMessage(form, type)
+    var message = self.getFormMessage(form, type)
 
     if (!message) {
       if (xhr) {
-        message = self.extractMessage(xhr)
+        message = self.extractFormMessage(xhr)
       }
-      message = message || self.defaultMessages[type]
+      message = message || self.defaultFormMessages[type]
     }
 
     if (type == 'beforeSend') {
@@ -51,7 +52,7 @@ var NotifyForm = {
     }
   },
 
-  extractMessage: function(xhr) {
+  extractFormMessage: function(xhr) {
     try {
       return JSON.parse(xhr.responseText).messages
     } catch (e) {
@@ -61,7 +62,7 @@ var NotifyForm = {
     }
   },
 
-  getMessage: function(form, type) {
+  getFormMessage: function(form, type) {
     if (form.dataset[type]) {
       return form.dataset[type]
     }
@@ -74,8 +75,9 @@ var NotifyForm = {
   }
 }
 
-var self = NotifyForm
 
-Event.ready(NotifyForm.setup)
+Event.ready(FormMessage.setup)
 
-module.exports = NotifyForm
+var self = FormMessage
+
+module.exports = FormMessage

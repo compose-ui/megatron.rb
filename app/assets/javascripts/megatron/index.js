@@ -7,7 +7,7 @@ var form = require('compose-remote-form') // Our UJS implementation
 var esvg = require('./esvg')
 
 // Use Dialog for remote-form confirmation dialogs
-form.confirm = dialog
+form.confirm = dialog.show
 
 // CodeMirror Settings
 var CodeMirror = require('codemirror')
@@ -25,10 +25,10 @@ var rangeTouch = require('rangetouch')          // mobile accessiblity on slider
 rangeTouch.set("thumbWidth", 19); 
 
 require('./utils/activate-nav-items')
+require('./utils/form-message')
 require('./utils/auto-navigate')
 require('./utils/clipboard')
 require('./utils/form-flash')
-var formNotify = require('./utils/form-notify')
 require('./utils/highlight-code')
 require('./utils/messages')
 require('./utils/text-helpers')
@@ -41,10 +41,8 @@ window.Megatron = module.exports = {
   notify: notify,
   event: event,
   form: form,
-  formNotify: formNotify,
   request: request,
   esvg: esvg,
   code: CodeMirror,
   toggler: toggler
 }
-
