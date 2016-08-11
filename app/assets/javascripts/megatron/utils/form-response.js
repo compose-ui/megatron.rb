@@ -40,7 +40,7 @@ var FormMessage = {
 
     if (!message) {
       if (xhr) {
-        message = self.extractFormMessage(xhr)
+        message = self.getResponseMessage(xhr)
       }
       message = message || self.defaultFormMessages[type]
     }
@@ -50,16 +50,35 @@ var FormMessage = {
     } else {
       Notify[type](message)
     }
+
+    var url = self.parseResponse(xhr, 'redirect_to')
+
+    if (url) {
+      setTimeout(function() {
+        if (Turbolinks) {
+          Turbolinks.visit(url)
+        } else {
+          window.location = url
+        }
+      }, 500)
+    }
   },
 
-  extractFormMessage: function(xhr) {
+  parseResponse: function(xhr, key) {
     try {
-      return JSON.parse(xhr.responseText).messages
+      return JSON.parse(xhr.responseText)[key]
     } catch (e) {
-      if (xhr.statusText && xhr.statusText.length > 0) {
-        return xhr.statusText
-      }
+      return
     }
+  },
+
+  getResponseMessage: function(xhr) {
+    var message = self.parseResponse(xhr, 'messages')
+    if (!message && xhr.statusText && xhr.statusText.length > 0) {
+      message = xhr.statusText
+    }
+
+    return message
   },
 
   getFormMessage: function(form, type) {

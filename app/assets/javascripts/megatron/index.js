@@ -25,10 +25,10 @@ var rangeTouch = require('rangetouch')          // mobile accessiblity on slider
 rangeTouch.set("thumbWidth", 19); 
 
 require('./utils/activate-nav-items')
-require('./utils/form-message')
 require('./utils/auto-navigate')
 require('./utils/clipboard')
 require('./utils/form-flash')
+require('./utils/form-response')
 require('./utils/highlight-code')
 require('./utils/messages')
 require('./utils/text-helpers')
