@@ -74,9 +74,6 @@ var FormMessage = {
 
   getResponseMessage: function(xhr) {
     var message = self.parseResponse(xhr, 'messages')
-    if (!message && xhr.statusText && xhr.statusText.length > 0) {
-      message = xhr.statusText
-    }
 
     return message
   },
