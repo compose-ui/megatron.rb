@@ -21,8 +21,6 @@ require('codemirror/addon/edit/matchbrackets.js')
 
 require('compose-time-toggle') // Switch time elements between local and UTC
 require('compose-slider')      // Our slider (range input) component
-var rangeTouch = require('rangetouch')          // mobile accessiblity on sliders
-rangeTouch.set("thumbWidth", 19); 
 
 require('./utils/activate-nav-items')
 require('./utils/auto-navigate')
@@ -35,6 +33,11 @@ require('./utils/text-helpers')
 require('./utils/progress-bar')
 
 require('./shims/classlist')
+
+event.ready(function() {
+  var rangeTouch = require('rangetouch')          // mobile accessiblity on sliders
+  rangeTouch.set("thumbWidth", 19); 
+})
 
 window.Megatron = module.exports = {
   dialog: dialog,
