@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    megatron (0.2.10)
+    megatron (0.2.12)
       block_helpers (~> 0.3.3)
       esvg (~> 2.8)
       gaffe (~> 1)
@@ -64,7 +64,7 @@ GEM
       thor (>= 0.14.6)
     diff-lcs (1.2.5)
     erubis (2.7.0)
-    esvg (2.9.1)
+    esvg (2.9.2)
     execjs (2.6.0)
     ffi (1.9.10)
     foreman (0.78.0)

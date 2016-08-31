@@ -10,7 +10,7 @@ module Megatron
     end
 
     def icon(name, options={}, &block)
-      i = iconset.svg_icon(name, options).html_safe
+      i = iconset.use(name, options).html_safe
 
       if options[:wrapper]
         i = content_tag(:span, class: options[:wrapper].strip) do
