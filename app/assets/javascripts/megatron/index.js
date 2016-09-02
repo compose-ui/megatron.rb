@@ -19,7 +19,7 @@ require('codemirror/mode/sql/sql')
 require('codemirror/addon/runmode/runmode.js')
 require('codemirror/addon/edit/matchbrackets.js')
 
-require('compose-time-toggle') // Switch time elements between local and UTC
+var timeToggle = require('compose-time-toggle') // Switch time elements between local and UTC
 require('compose-slider')      // Our slider (range input) component
 
 require('./utils/activate-nav-items')
@@ -47,5 +47,6 @@ window.Megatron = module.exports = {
   request: request,
   esvg: esvg,
   code: CodeMirror,
-  toggler: toggler
+  toggler: toggler,
+  timeToggle: timeToggle
 }
