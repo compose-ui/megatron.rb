@@ -57,7 +57,7 @@ textarea {
   }
 }
 
-[type=text], [type=password] {
+[type=text], [type=password], [type=number], [type=tel], [type=email] {
   @extend %text-input;
   vertical-align: middle;
   margin-right: .5em;
@@ -67,6 +67,12 @@ textarea {
     padding: { top: 10px; bottom: 10px; }
     margin-right: .8em;
   }
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .input-label {
