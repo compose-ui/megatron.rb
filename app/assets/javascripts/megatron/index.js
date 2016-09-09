@@ -5,6 +5,7 @@ var dialog = require('compose-dialog')
 var toggler = require('compose-toggler')
 var form = require('compose-remote-form') // Our UJS implementation
 var esvg = require('./esvg')
+var highlighter = require('compose-code-highlighter')
 
 // Use Dialog for remote-form confirmation dialogs
 form.confirm = dialog.show
@@ -27,8 +28,8 @@ require('./utils/auto-navigate')
 require('./utils/clipboard')
 require('./utils/form-flash')
 require('./utils/form-response')
-CodeMirror.highlighter = require('./utils/highlight-code')
-CodeMirror.highlight = CodeMirror.highlighter.highlight
+CodeMirror.highlighter = highlighter
+CodeMirror.highlight = highlighter.highlight
 require('./utils/messages')
 require('./utils/text-helpers')
 require('./utils/progress-bar')
