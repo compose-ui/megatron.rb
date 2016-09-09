@@ -32,6 +32,10 @@ module Megatron
 
       data = options['data'] || {}
       data['input'] ||= name
+
+      if options['position_label']
+        data['position_label'] = options['position_label']
+      end
       
       # Set values (and max based on values size)
       if values = options['values']

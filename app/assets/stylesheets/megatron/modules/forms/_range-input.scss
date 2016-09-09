@@ -303,13 +303,10 @@ input::-moz-focus-inner {
 
   @include at-least($x-small){
     white-space: nowrap;
-    text-align: left;
     position: absolute;
-    left: 100%;
     top: 50%;
     transform: translatey(-50%);
     transform-style: preserve-3d;
-    margin-left: 10px;
     &:after, &:before {
       content: "";
     }
@@ -322,14 +319,8 @@ input::-moz-focus-inner {
     top: 50%;
     transform: translatey(-50%);
     transform-style: preserve-3d;
-    left: -7px;
     border-top: 7px solid transparent;
-    border-right: 7px solid $slider-track-line;
     border-bottom: 7px solid transparent;
-  }
-  &:after {
-    border-right-color: $slider-mark;
-    left: -6px;
   }
 
   > * + * {
@@ -355,9 +346,42 @@ input::-moz-focus-inner {
   &:before { content: attr(data-before); }
 }
 
+.slider-label.align-right {
+  @include at-least($x-small) {
+    margin-left: 10px;
+  }
+  text-align: left;
+  left: 100%;
+  &:before, &:after {
+    left: -7px;
+    border-right: 7px solid $slider-track-line;
+  }
+  &:after {
+    border-right-color: $slider-mark;
+    left: -6px;
+  }
+}
+
+.slider-label.align-left {
+  @include at-least($x-small) {
+    margin-right: 10px;
+  }
+  text-align: right;
+  right: 100%;
+  &:before, &:after {
+    right: -7px;
+    border-top: 7px solid transparent;
+    border-left: 7px solid $slider-track-line;
+    border-bottom: 7px solid transparent;
+  }
+  &:after {
+    border-left-color: $slider-mark;
+    right: -6px;
+  }
+}
+
 
 @include slider-fill-theme($boyblue);
-
 
 $slider-red:    hsl(0, 70, 65) !default;
 $slider-orange: hsl(30, 90, 68) !default;
