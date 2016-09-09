@@ -349,9 +349,9 @@ input::-moz-focus-inner {
 .slider-label.align-right {
   @include at-least($x-small) {
     margin-left: 10px;
+    left: 100%;
+    text-align: left;
   }
-  text-align: left;
-  left: 100%;
   &:before, &:after {
     left: -7px;
     border-right: 7px solid $slider-track-line;
@@ -365,9 +365,9 @@ input::-moz-focus-inner {
 .slider-label.align-left {
   @include at-least($x-small) {
     margin-right: 10px;
+    right: 100%;
+    text-align: right;
   }
-  text-align: right;
-  right: 100%;
   &:before, &:after {
     right: -7px;
     border-top: 7px solid transparent;
