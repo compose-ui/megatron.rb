@@ -56,7 +56,7 @@
     = slider_input_tag 'number'
 
   = demo_box "Slider with after label and markings"
-    = slider_input_tag 'percent', after: '%', mark: [1, 50, 100]
+    = slider_input_tag 'percent', after: '%', mark: [1, 51, 101]
 
   p Each of the demos below is using the following data.
 
@@ -78,3 +78,6 @@
     = slider_input_tag 'deployment3[units]', labels: { size: disk }, external_labels: { disk: disk, price: price }, values: [1, 2, 5, 15, 50], mark: [1,3,5]
     p With <strong data-slider-label='disk'></strong> your price will be <strong data-slider-label='price'></strong>.
     p.help-text Use the web inspector and you'll see a hidden input being updated as the slider changes.
+
+  = demo_box "Slider with custom style and labels"
+    = slider_input_tag 'notifications', class: 'stop-light', label: ['no alerts', 'critical', 'warning', 'notice']

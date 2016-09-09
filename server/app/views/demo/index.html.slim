@@ -20,3 +20,6 @@
     = slider_input_tag 'range1', after: '%'
     = slider_input_tag 'range2', values: [1, 2, 3], label: [10, 20, 30], before: 'Disk: ', after: ' GB'
     = slider_input_tag 'range35', values: [1, 2, 3], mark: [1, 2, 3], value: 0, labels: { disk: [10, 20, 30], price: ['10.50', '25.50', '30.50'] }, before: { price: '$' }, after: { disk: ' GB Disk' }
+
+    p
+      =slider_input_tag "alert-threshold-id", label: %w(Off Critical Warning Notice), value: 1
