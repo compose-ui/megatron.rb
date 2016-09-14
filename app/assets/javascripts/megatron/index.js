@@ -30,7 +30,7 @@ require('./utils/form-flash')
 require('./utils/form-response')
 CodeMirror.highlighter = highlighter
 CodeMirror.highlight = highlighter.highlight
-require('./utils/messages')
+var popMessage = require('./utils/messages')
 require('./utils/text-helpers')
 require('./utils/progress-bar')
 
@@ -50,5 +50,6 @@ window.Megatron = module.exports = {
   esvg: esvg,
   code: CodeMirror,
   toggler: toggler,
-  timeToggle: timeToggle
+  timeToggle: timeToggle,
+  popMessage: popMessage
 }

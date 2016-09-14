@@ -1,0 +1,21 @@
+.hidden_label {
+  position: absolute !important;
+  height: 1px; width: 1px; 
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+$font-sizes: (
+  'xx-small'  : 10px,
+  'x-small'   : 12px,
+  'small'     : 14px,
+  'medium'    : 16px,
+  'large'     : 18px,
+  'x-large'   : 22px,
+  'xx-large'  : 26px,
+  'xxx-large' : 32px
+);
+
+@each $name, $size in $font-sizes {
+  .#{$name}-text { font-size: $size; }
+}

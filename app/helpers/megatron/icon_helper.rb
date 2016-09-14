@@ -29,11 +29,6 @@ module Megatron
       i
     end
 
-    def font_icon(name, options={})
-      options[:class] = default_class(options[:class], "#{name}_icon")
-      content_tag(:span, class: options[:class], 'aria-hidden' => true) {  }
-    end
-
     def text_icon(name, options={}, &block)
       options = set_icon_classes(options, class: 'text-icon', wrapper: 'icon-wrapper')
       icon(name.to_s, options, &block)

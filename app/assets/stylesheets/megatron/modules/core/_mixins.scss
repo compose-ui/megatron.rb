@@ -124,16 +124,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-@function icon-selector() {
-  @return "[class*='_icon']:before";
-}
-
-@mixin icon {
-  #{icon-selector()} {
-    @content;
-  }
-}
-
 // Returns true if the color is brighter than 50% lightness
 @function is-bright($color) {
   @return (lightness($color) > 50%);

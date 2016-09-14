@@ -63,16 +63,6 @@ a label {
 
 .light-text { color: $darkgray; }
 
-.thin-chevron:after {
-  @extend .chevron_thin_icon:before;
-  @extend %icon-font;
-}
-
-.plus-circle:after {
-  @extend .plus_circle_icon:before;
-  @extend %icon-font;
-}
-
 .help-text {
   font-size: 13px;
   color: #888;

@@ -57,7 +57,7 @@ var Messages = {
 
     var html = "<div class='"+classnames+"'>"
     if (options.dismissable)
-      html += "<a href='/messages/"+options.id+"/dismiss' class='dismiss' data-no-turbolink><span class='dismiss-icon x_circle_icon'></span><span class='hidden_label'>dismiss message</span></a>"
+      html += "<a href='/messages/"+options.id+"/dismiss' class='dismiss' data-no-turbolink><span class='dismiss-icon'></span><span class='hidden_label'>dismiss message</span></a>"
 
     html += "<p>"
     if (options.url)
@@ -98,4 +98,5 @@ var Messages = {
   }
 }
 
+module.exports = Messages
 Event.ready(Messages.load)

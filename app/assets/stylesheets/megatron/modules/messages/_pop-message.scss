@@ -1,21 +1,20 @@
-@mixin pop-message-style($bg, $icon, $color, $link-hover: false) {
+@mixin pop-message-style($bg, $color, $link-hover: false) {
   color: $color;
-  &:before {
-    @extend .#{$icon}_icon:before;
-  }
   .icon, &:before {
-    background: lighten($bg, 6);
+    background-color: lighten($bg, 6);
   }
   .dismiss {
-    background: darken($bg, 6);
+    color: lighten($bg, 20);
+    background-color: darken($bg, 6);
     &:hover {
-      background: darken($bg, 3);
+      background-color: darken($bg, 3);
+      color: lighten($bg, 40);
     }
   }
   p { 
-    background: $bg;
+    background-color: $bg;
     &:hover {
-      background: lighten($bg, 4);
+      background-color: lighten($bg, 4);
     }
   }
   @if ($link-hover) {
@@ -24,10 +23,10 @@
 
   &.with-url:not(.dismissable):hover {
     &:before {
-      background: lighten($bg, 10);
+      background-color: lighten($bg, 10);
     }
     p:hover {
-      background: lighten($bg, 4);
+      background-color: lighten($bg, 4);
     }
   }
 }
@@ -57,7 +56,8 @@
     position: relative;
     @include smooth-text;
     &:before {
-      font-family: 'roboticons';
+      @include icon-bg(bubble, 60%);
+      content: "";
       transition: all .2s ease;
       display: table-cell;
       vertical-align: middle;
@@ -88,30 +88,37 @@
   .dismiss {
     padding-left: 0;
     width: 2em;
-    color: rgba(#fff, .3);
-
-    &:hover {
-      color: rgba(#fff, .5);
-    }
-
-    &:before {
-      color: inherit;
-      display: table-cell;
-      vertical-align: middle;
-      font-size: 1.1em;
-      vertical-align: middle;
-      display: inline-block;
-      position: relative; top: -.1em;
-    }
+    text-align: center;
   }
 
   .dismiss-icon {
-    vertical-align: middle;
-    font-size: 1.2em;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    display: inline-block;
+    height: 1.1em;
+    vertical-align: top;
+    width: 1.1em;
+    position: relative;
+    &:before, &:after {
+      content: "";
+      position: absolute;
+      width: 11px;
+      height: 1px;
+      top: 7px;
+      left: 2px;
+      background: currentColor;
+    }
+    &:before {
+      transform: rotate(-45deg);
+    }
+    &:after { 
+      transform: rotate(45deg);
+    }
   }
 
   p {
     padding: .4em .6em;
+    line-height: 1.5em;
   }
 
   p a {
@@ -124,12 +131,13 @@
       top: 0; bottom: 0; left: 0; right: 0;
     }
     &:after {
-      @extend .chevron_icon:before;
-      position: relative; top: 1px;
-      font-family: 'roboticons';
+      position: relative;
+      top: 2px;
       padding-left: .4em;
+      font-size: 1.2em;
       display: inline-block;
       text-decoration: none;
+      content: "⇢";
     }
   }
   
@@ -141,16 +149,16 @@
 
     // Standard style
     &.normal {
-      @include pop-message-style(lighten($night, 7), star, $lightgray, $overcast);
+      @include pop-message-style(lighten($night, 7), $lightgray, $overcast);
     }
 
     // Error style
     &.negative, &.error {
-      @include pop-message-style(darken($red, 14), warning, #fff);
+      @include pop-message-style(darken($red, 14), #fff);
     }
 
     &.positive {
-      @include pop-message-style(darken($green, 14), warning, #fff);
+      @include pop-message-style(darken($green, 14), #fff);
     }
   }
 }
