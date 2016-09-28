@@ -41,6 +41,10 @@ event.ready(function() {
   rangeTouch.set("thumbWidth", 19); 
 })
 
+event.change(function(){
+  CodeMirror.highlight()
+})
+
 window.Megatron = module.exports = {
   dialog: dialog,
   notify: notify,
