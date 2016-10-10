@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    megatron (0.2.22)
+    megatron (0.2.23)
       block_helpers (~> 0.3.3)
       esvg (~> 2.8)
       gaffe (~> 1)
@@ -166,7 +166,7 @@ GEM
     slim (3.0.7)
       temple (~> 0.7.6)
       tilt (>= 1.3.3, < 2.1)
-    slim-rails (3.1.0)
+    slim-rails (3.1.1)
       actionpack (>= 3.1)
       railties (>= 3.1)
       slim (~> 3.0)
