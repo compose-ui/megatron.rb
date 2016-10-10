@@ -1,0 +1,5 @@
+app:
+  image: registry.dblayer.com/ruby-test
+  volumes:
+    - ./:/app
+    - /var/lib/buildkite-agent/gems_cache:/gems_cache
