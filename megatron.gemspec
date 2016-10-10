@@ -7,11 +7,11 @@ require "megatron/version"
 Gem::Specification.new do |spec|
   spec.name        = "megatron"
   spec.version     = Megatron::VERSION
-  spec.authors     = ["Jerome Gravel-Niquet", "Brandon Mathis"]
-  spec.email       = ["jeromegn@gmail.com", "brandon@imathis.com"]
+  spec.authors     = ["Brandon Mathis", "Kyle Foster"]
+  spec.email       = ["brandon@imathis.com", "hkylefoster@gmail.com"]
   spec.homepage    = "https://www.compose.io"
-  spec.summary     = "Megatron view helpers"
-  spec.description = "Hotness."
+  spec.summary     = "Megatron design framework"
+  spec.description = "Megatron is a design framework for Rails."
   spec.license     = "MIT"
 
   spec.files = Dir["{app,public,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
