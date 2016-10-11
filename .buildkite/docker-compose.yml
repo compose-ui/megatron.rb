@@ -1,0 +1,9 @@
+app:
+  image: registry.dblayer.com/ruby-test
+  volumes:
+    - ./:/app
+    - /var/lib/buildkite-agent/gems_cache:/gems_cache
+  environment:
+    - RUBYGEMS_API_KEY
+    - AWS_SECRET
+    - AWS_KEY

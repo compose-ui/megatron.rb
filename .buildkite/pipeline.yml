@@ -1,0 +1,11 @@
+steps:
+  - name: ":gem: Build"
+    command: .buildkite/build.sh
+    env:
+      BUILDKITE_DOCKER_COMPOSE_FILE: .buildkite/docker-compose.yml
+  - wait
+  - name: ":rubygems: Publish"
+    branches: master
+    command: .buildkite/publish.sh
+    env:
+      BUILDKITE_DOCKER_COMPOSE_FILE: .buildkite/docker-compose.yml
