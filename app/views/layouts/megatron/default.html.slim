@@ -1,0 +1,73 @@
+doctype html
+
+html lang="en"
+  = render "megatron/shared/head"
+
+  - stylesheets do
+    = stylesheet_tag "megatron"
+  - javascripts do
+    = javascript_tag "megatron"
+
+  body
+    - if content_for?(:blank)
+      
+      = yield :blank
+
+    - else
+
+      = render "megatron/shared/flash_messages"
+
+      .site
+
+        header.site-header role="banner" data-no-turbolink=true
+          button.nav_toggle data-toggle-class="active-nav; body"
+            span.icon
+            span.hidden_label View Navigation
+          a.header_logo.logo_icon href="/"
+            span.hidden_label Compose
+
+        .site-content
+
+          - if !@custom_nav
+
+            = render partial: 'megatron/shared/primary_nav'
+
+          - if content_for?(:primary_nav)
+            nav.primary_nav role="navigation" data-no-turbolink=true
+              = yield :primary_nav
+
+          .page
+            = yield
+
+            / Render wrapper divs if main content
+
+            - if content_for?(:main)
+
+              header.page-header
+                = yield :page_header
+
+              .page-content
+
+                / Secondary Navigation
+
+                - if content_for?(:secondary_nav)
+                  nav.secondary_nav
+                    = yield :secondary_nav
+
+                / Main with Sidebar
+
+                - if content_for?(:sidebar)
+
+                  .main.with-sidebar
+                    .main-content
+                      = render 'megatron/shared/main_content'
+
+                    .main-sidebar
+                      = yield :sidebar
+
+                / Main without Sidebar
+
+                - else
+
+                  .main
+                    = render 'megatron/shared/main_content'

@@ -4,9 +4,9 @@ module Megatron
   def megatron_layout(options={}, &block)
       @custom_nav = options[:custom_nav]
       @primary_nav_here = options[:primary_nav]
-      layout = options.delete(:layout) || 'application'
+      layout = options.delete(:layout) || 'default'
       yield
-      render template: "layouts/megatron/#{layout}"
+      render_layout "megatron/#{layout}"
     end
 
     def page_header(title = nil, &block)
@@ -32,14 +32,6 @@ module Megatron
 
     def sidebar(&block)
       content_for :sidebar, &block
-    end
-
-    def javascripts(&block)
-      content_for :javascripts, &block
-    end
-
-    def stylesheets(&block)
-      content_for :stylesheets, &block
     end
 
     def size(*args, &block)

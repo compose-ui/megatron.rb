@@ -1,78 +1,11 @@
 module Megatron
   module ApplicationHelper
-    
-    # Mounted from dev-kit
-    def dev?
-      __dir__.start_with?("/megatron") || ENV['DEVKIT']
-    end
-
-    def megatron_asset_path(asset)
-
-      if ENV['LOCAL_DEV']
-        alt_host = "http://localhost:5000"
-      elsif dev?
-        alt_host = "https://megatron.compose.devkit"
-      end 
-
-      alt_host ||= ENV['MEGATRON_ASSET_HOST'] 
-      return "#{alt_host}/assets/megatron/#{asset}" if alt_host
-      return "https://d11f55tj5eo9e5.cloudfront.net/assets/megatron/#{asset}" if Rails.env.production?
-      return "/assets/megatron/#{asset}"
-    end
-
     def link_up(href = nil, options = {}, html_options = nil, &block)
       here_if = options.delete(:here_if) || {}
       here_if[:path] = href if here_if.blank?
       options[:class] = add_class(options[:class], "here") if test_current_page(here_if)
 
       link_to(href, options, &block)
-    end
-
-    def megatron_assets_tags
-      version = "-#{Megatron::VERSION}"
-
-      ext_suffix = Rails.env.production? ? '.gz' : ''
-
-      pin_tab_icon(
-        megatron_asset_path('logo.svg')
-      ) +
-      favicon_link_tag(
-        megatron_asset_path('favicon.ico'), sizes: "32x32"
-      ) +
-      stylesheet_link_tag(
-        megatron_asset_path("megatron#{version}.css#{ext_suffix}")
-      ) +
-      javascript_include_tag(
-        megatron_asset_path("megatron#{version}.js#{ext_suffix}")
-      )
-    end
-
-    def pin_tab_icon(path)
-      %Q{<link rel="mask-icon" mask href="#{path}" color="black">}.html_safe
-    end
-
-    def favicon_link_tag(source='favicon.ico', options={})
-      tag('link', {
-        :rel  => 'shortcut icon',
-        :type => 'image/x-icon',
-        :href => source
-      }.merge!(options.symbolize_keys))
-    end
-
-    def megatron_error_asset_tag
-      version = Megatron::VERSION
-      ext_suffix = Rails.env.production? ? '.gz' : ''
-
-      # Embed styles directly for these error codes since they are served from haproxy
-      # and are likely to be served when the stylesheet server cannot be reached
-      #
-      if [408, 502, 503, 504].include?(@status_code)
-        style== File.read("../public/assets/megatron/megatron-error-pages-#{version}.css")
-      else
-        stylesheet_link_tag(
-          megatron_asset_path("megatron-error-pages-#{version}.css#{ext_suffix}")
-        )
-      end
     end
 
     def options_from_args(args)
@@ -85,7 +18,7 @@ module Megatron
 
     def embed_svg(filename, options = {})
       group = 0
-      file = File.read(Engine.root.join('app', 'assets', 'images', filename))
+      file = File.read(Engine.root.join('app', 'assets', 'images', 'megatron', filename))
         .gsub(/<!--.+-->/, '')
         .gsub(/^\t{2,}\s*<\/?g>/, '')
         .gsub(/width=".+?"/, 'width="312"')

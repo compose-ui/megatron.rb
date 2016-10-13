@@ -1,16 +1,11 @@
 module Megatron
   module IconHelper
-    ICON_OPTIONS = {
-      config_file: File.expand_path('../../../config/esvg.yml', File.dirname(__FILE__)),
-      path: File.expand_path('../../assets/esvg/megatron', File.dirname(__FILE__))
-    }
-
     def iconset
-      svg_icons(ICON_OPTIONS)
+      Esvg.svgs
     end
 
     def icon(name, options={}, &block)
-      i = iconset.use(name, options).html_safe
+      i = iconset.svg_icon(name, options).html_safe
 
       if options[:wrapper]
         i = content_tag(:span, class: options[:wrapper].strip) do
@@ -27,6 +22,15 @@ module Megatron
       end
 
       i
+    end
+
+    def pin_tab_icon(path, color='black')
+      %Q{<link rel="mask-icon" mask href="#{path}" color="#{color}">}.html_safe
+    end
+
+    def font_icon(name, options={})
+      options[:class] = default_class(options[:class], "#{name}_icon")
+      content_tag(:span, class: options[:class], 'aria-hidden' => true) {  }
     end
 
     def text_icon(name, options={}, &block)
