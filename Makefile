@@ -35,7 +35,7 @@ bundle:
 	bundle install
 
 publish: clean build
-	rake release
+	bundle exec rake release
 	bundle exec rake megatron:upload
 
 check-env:
