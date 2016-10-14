@@ -152,5 +152,9 @@ module Megatron
     def dasherize(input)
       input.gsub(/[\W,_]/, '-').gsub(/-{2,}/, '-')
     end
+
+    def get_root_url
+      ENV["ROOT_URL"] || '/'
+    end
   end
 end
