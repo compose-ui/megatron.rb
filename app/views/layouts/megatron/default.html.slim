@@ -1,12 +1,13 @@
 doctype html
 
 html lang="en"
-  = render "megatron/shared/head"
 
   - stylesheets do
     = stylesheet_tag "megatron"
   - javascripts do
     = javascript_tag "megatron"
+
+  = render "megatron/shared/head"
 
   body
     - if content_for?(:blank)

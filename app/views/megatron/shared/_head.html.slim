@@ -17,8 +17,8 @@ head
   - else
     title Compose
 
-  link rel="shortcut icon" type="image/x-icon" href="/assets/megatron/favicon.ico"
-  = pin_tab_icon "/assets/megatron/logo.svg"
+  = favicon_tag 'favicon.ico'
+  = pin_tab_icon_tag "logo.svg"
 
   = yield :stylesheets
   = yield :javascripts
