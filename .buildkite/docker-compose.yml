@@ -1,7 +1,7 @@
 app:
   image: registry.dblayer.com/ruby-test
   volumes:
-    - ./:/app
+    - ../:/app
     - /var/lib/buildkite-agent/gems_cache:/gems_cache
   environment:
     - RUBYGEMS_API_KEY
