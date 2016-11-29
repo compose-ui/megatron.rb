@@ -11,6 +11,9 @@ module Megatron
         options[:label] = "#{percentage}%"
       end
 
+      # Just in case something exceends 100%
+      percentage = 100 if percentage > 100
+
       width = if options[:width]
         "width: #{options.delete(:width)};"
       else
