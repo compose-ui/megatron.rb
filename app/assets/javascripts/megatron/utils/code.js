@@ -1,17 +1,16 @@
-var highlighter = require('compose-code-highlighter')
+var highlighter = require( 'compose-code-highlighter' )
 
-CodeMirror.highlighter = highlighter
-CodeMirror.highlight = highlighter.highlight
 // CodeMirror Settings
 var CodeMirror = require('codemirror')
-require('codemirror/mode/htmlmixed/htmlmixed')
-require('codemirror/mode/slim/slim') require('codemirror/mode/javascript/javascript')
-require('codemirror/mode/css/css')
-require('codemirror/mode/sql/sql')
-require('codemirror/addon/runmode/runmode.js')
-require('codemirror/addon/edit/matchbrackets.js')
+require( 'codemirror/mode/htmlmixed/htmlmixed' )
+require( 'codemirror/mode/slim/slim' )
+require( 'codemirror/mode/javascript/javascript' )
+require( 'codemirror/mode/css/css' )
+require( 'codemirror/mode/sql/sql' )
+require( 'codemirror/addon/runmode/runmode.js' )
+require( 'codemirror/addon/edit/matchbrackets.js' )
 
-highlighter.addAlias({ pgsql: 'text/x-pgsql' })
+highlighter.addAlias( { pgsql: 'text/x-pgsql' } )
 
 var editorDefaults = {
   indent: 2,
@@ -20,7 +19,7 @@ var editorDefaults = {
 }
 
 function getOptions ( el ) {
-  var lang = highlighter.aliasLang( el.dataset.lang || 'plain' ),
+  var lang = highlighter.aliasLang( el.dataset.lang || 'plain' )
 
   return {
     mode: lang,
@@ -30,8 +29,9 @@ function getOptions ( el ) {
   }
 }
 
-function newEditor ( el ) {
-  var options = Object.assign( {}, editorDefaults, getOptions( el ))
+function newEditor ( el, options ) {
+  options = options || {}
+  options = Object.assign( {}, editorDefaults, getOptions( el ))
 
   CodeMirror.fromTextArea( el, options )
 }
@@ -40,7 +40,7 @@ function setup (){
 
   highlighter.highlight()
 
-  var inputs = document.querySelector('textarea[data-lang]')
+  var inputs = document.querySelectorAll('textarea[data-lang]')
   Array.prototype.forEach.call( inputs, newEditor )
 }
 
@@ -49,7 +49,8 @@ var code = CodeMirror
 code.highlighter = highlighter
 code.highlight = highlighter.highlight
 code.addAlias = highlighter.addAlias
-code.getMode = highlighter.aliasLang
+code.aliasLang = highlighter.aliasLang
+code.newEditor = newEditor
 code.setup = setup
 
 module.exports = code

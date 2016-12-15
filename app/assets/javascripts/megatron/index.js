@@ -2,10 +2,10 @@ var event = require('compose-event')
 var notify = require('compose-notification')
 var request = require('superagent')
 var dialog = require('compose-dialog')
+var code = require('./utils/code')
 var toggler = require('compose-toggler')
 var form = require('compose-remote-form') // Our UJS implementation
 var esvg = require('./esvg')
-var code = require('./code')
 
 // Use Dialog for remote-form confirmation dialogs
 form.confirm = dialog.show
@@ -40,7 +40,7 @@ window.Megatron = module.exports = {
   form: form,
   request: request,
   esvg: esvg,
-  code: CodeMirror,
+  code: code,
   toggler: toggler,
   timeToggle: timeToggle,
   popMessage: popMessage
