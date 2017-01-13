@@ -7,6 +7,17 @@ class Megatron::Unauthorized < StandardError
 end
 
 describe Megatron::ErrorsController do
+  before do
+    module ActionDispatch
+      class ExceptionWrapper
+        @@rescue_responses.merge!(
+            'Megatron::Unauthorized' => :unauthorized,
+            'Megatron::Forbidden' => :forbidden
+        )
+      end
+    end
+  end
+
   describe '#show' do
     let(:request) { test_request }
     let(:env) do
