@@ -29,6 +29,7 @@ module Megatron
         format.json {
           render json: { errors: JSON_RESPONSES[@rescue_response] }, status: @status_code
         }
+      end
     end
   end
 end
