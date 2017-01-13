@@ -22,12 +22,12 @@ module Megatron
     # Eg. For a 404 error, the `errors/not_found` template will be rendered.
     def show
       respond_to do |format|
+        format.json {
+          render json: { errors: JSON_RESPONSES[@rescue_response] }, status: @status_code
+        }
         format.html {
           # Here, the `@exception` variable contains the original raised error
           render "megatron/errors/#{@rescue_response}", status: @status_code
-        }
-        format.json {
-          render json: { errors: JSON_RESPONSES[@rescue_response] }, status: @status_code
         }
       end
     end
