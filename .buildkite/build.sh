@@ -8,6 +8,9 @@ make clean
 echo '+++ Build'
 make build
 
+echo '+++ Test'
+bundle exec rspec
+
 echo '+++ Upload'
 bundle exec rake megatron:upload
 

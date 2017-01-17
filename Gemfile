@@ -34,8 +34,9 @@ group :development, :test do
 end
 
 group :test do
-  gem 'combustion', '~> 0.5.3'
+  gem 'rspec-core', '~> 3.3.2'
   gem 'rspec-rails', '~> 3.3.0'
+  gem 'combustion', '~> 0.5.3'
 end
 
 group :production do
