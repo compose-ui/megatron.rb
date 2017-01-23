@@ -29,8 +29,11 @@ window.Bugsnag = require('bugsnag')
 event.ready(function() {
   var rangeTouch = require('rangetouch')          // mobile accessiblity on sliders
   rangeTouch.set("thumbWidth", 19); 
+
+  // Simplify bugsnag integration
   var bugsnagTag = document.querySelector('meta[name=bugsnag]')
-  if ( bugsnagTag && bugsnagTag.dataset.key ) {
+
+  if ( bugsnagTag && bugsnagTag.dataset.apiKey ) {
     window.Bugsnag.apiKey = bugsnagTag.dataset.apiKey;
     window.Bugsnag.releaseStage = bugsnagTag.dataset.releaseStage;
   }
