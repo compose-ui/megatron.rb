@@ -8,7 +8,11 @@ html lang="en"
     meta name="viewport" content="width=device-width,initial-scale=1"
     meta charset="utf-8"
     meta http-equiv="X-UA-Compatible" content="IE=edge"
-    meta name="bugsnag" data-api-key="#{ENV['BUGSNAG_API_KEY']}" data-release-stage="#{Rails.env}"
+
+    # front end bugsnag integration
+    - if ENV['BUGSNAG_JS_API_KEY']
+      meta name="bugsnag" data-api-key="#{ENV['BUGSNAG_JS_API_KEY']}"
+
     = csrf_meta_tags
     = megatron_assets_tags
     = yield :stylesheets

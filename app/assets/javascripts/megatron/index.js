@@ -31,12 +31,9 @@ event.ready(function() {
   rangeTouch.set("thumbWidth", 19); 
 
   // Simplify bugsnag integration
-  var bugsnagTag = document.querySelector('meta[name=bugsnag]')
+  var bugsnagTag = document.querySelector('meta[data-api-key]')
+  if ( bugsnagTag ) Bugsnag.apiKey = bugsnagTag.dataset.apiKey;
 
-  if ( bugsnagTag && bugsnagTag.dataset.apiKey ) {
-    window.Bugsnag.apiKey = bugsnagTag.dataset.apiKey;
-    window.Bugsnag.releaseStage = bugsnagTag.dataset.releaseStage;
-  }
 })
 
 event.change(function(){
