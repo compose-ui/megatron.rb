@@ -15,7 +15,7 @@
     "remote-form": "compose-remote-form"
   },
   "dependencies": {
-    "compose-event": "^1.0.0",
+    "compose-event": "^1.7.2",
     "codemirror": "^5.5.0",
     "compose-dialog": "^2.0.4",
     "compose-notification": "^3.0.5",
@@ -27,7 +27,8 @@
     "nprogress": "^0.2.0",
     "superagent": "^1.2.0",
     "rangetouch": "^0.0.9",
-    "clipboard": "^1.5.8"
+    "clipboard": "^1.5.8",
+    "bugsnag": "git+https://github.com/bugsnag/bugsnag-js.git#b1e0d31"
   },
   "devDependencies": {
     "babelify": "^6.1.3",
