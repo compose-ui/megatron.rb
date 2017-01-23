@@ -24,9 +24,16 @@ require('./utils/progress-bar')
 
 require('./shims/classlist')
 
+window.Bugsnag = require('bugsnag')
+
 event.ready(function() {
   var rangeTouch = require('rangetouch')          // mobile accessiblity on sliders
   rangeTouch.set("thumbWidth", 19); 
+
+  // Simplify bugsnag integration
+  var bugsnagTag = document.querySelector('meta[data-api-key]')
+  if ( bugsnagTag ) Bugsnag.apiKey = bugsnagTag.dataset.apiKey;
+
 })
 
 event.change(function(){
