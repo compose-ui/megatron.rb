@@ -24,7 +24,7 @@ require('./utils/progress-bar')
 
 require('./shims/classlist')
 
-window.Bugsnag = require('bugsnag')
+window.Bugsnag = require('bugsnag-js')
 
 event.ready(function() {
   var rangeTouch = require('rangetouch')          // mobile accessiblity on sliders
