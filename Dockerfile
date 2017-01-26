@@ -1,6 +1,6 @@
 FROM mhart/alpine-node:5.0
 
-ENV BUILD_PACKAGES bash curl-dev ruby-dev build-base
+ENV BUILD_PACKAGES bash curl-dev ruby-dev build-base git
 ENV RUBY_PACKAGES ruby ruby-bundler ruby-nokogiri
 
 # Update and install all of the required packages.
