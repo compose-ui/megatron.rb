@@ -2,10 +2,12 @@ doctype html
 
 html lang="en"
 
-  - stylesheets do
+  - content_for :head do
     = stylesheet_tag "megatron"
-  - javascripts do
+    = yield :stylesheets
+
     = javascript_tag "megatron"
+    = yield :javascripts
 
   = render "megatron/shared/head"
 
