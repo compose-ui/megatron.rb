@@ -1,4 +1,4 @@
-FROM mhart/alpine-node:5.0
+FROM ubuntu:14.04
 
 ENV BUILD_PACKAGES bash curl-dev ruby-dev build-base git
 ENV RUBY_PACKAGES ruby ruby-bundler ruby-nokogiri
