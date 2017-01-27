@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM registry.dblayer.com/rails:latest
 
 ENV BUILD_PACKAGES bash curl-dev ruby-dev build-base git
 ENV RUBY_PACKAGES ruby ruby-bundler ruby-nokogiri
