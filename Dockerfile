@@ -1,4 +1,4 @@
-FROM registry.dblayer.com/rails:latest
+FROM mhart/alpine-node:5.0
 
 ENV BUILD_PACKAGES bash curl-dev ruby-dev build-base git
 ENV RUBY_PACKAGES ruby ruby-bundler ruby-nokogiri
@@ -9,6 +9,7 @@ RUN apk update && \
     apk upgrade && \
     apk add $BUILD_PACKAGES && \
     apk add $RUBY_PACKAGES && \
+    apk add --update build-base libffi-dev && \
     rm -rf /var/cache/apk/*
 
 RUN mkdir /app
@@ -22,7 +23,8 @@ RUN npm install
 WORKDIR /app
 
 ENV RAILS_ENV production
-RUN cd server && bundle exec rake tmp:cache:clear
-RUN cd server && bundle exec rake assets:precompile
+RUN bundle exec cyborg build -P
+RUN cd site && bundle exec rake tmp:cache:clear
+RUN cd site && bundle exec rake assets:precompile
 
-CMD cd server && bundle exec rails s -p $PORT -b 0.0.0.0
+CMD cd site && bundle exec rails s -p $PORT -b 0.0.0.0
