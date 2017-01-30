@@ -22,7 +22,6 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'block_helpers', '~> 0.3.3'
   spec.add_runtime_dependency 'to_words', '~> 1.1.0'
   spec.add_dependency 'slim-rails', "~> 3.1"
-  spec.add_dependency 'slim-rails', "~> 3.1"
 
   spec.add_dependency "rails", ">= 4", "< 5.1"
   spec.add_dependency "esvg", "~> 2.8"
