@@ -20,8 +20,7 @@
     "nprogress": "^0.2.0",
     "superagent": "^1.2.0",
     "rangetouch": "^0.0.9",
-    "clipboard": "^1.5.8",
-    "bugsnag": "git+https://github.com/bugsnag/bugsnag-js.git#b1e0d31"
+    "clipboard": "^1.5.8"
   },
   "devDependencies": {
     "babelify": "^6.4.0",
