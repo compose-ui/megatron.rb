@@ -1,11 +1,11 @@
-<!DOCTYPE html>
-html.error-layout
-  head
-    title Error #{@status_code}: #{@rescue_response.to_s.humanize} - Compose
-    meta name="viewport" content="width=device-width,initial-scale=1"
-    meta charset="utf-8"
-    = favicon_link_tag(megatron_asset_path('favicon.ico'))
-    = megatron_error_asset_tag
+doctype html
+html.error-layout lang='en'
+  - @title = "Error #{@status_code}: #{@rescue_response.to_s.humanize} - Compose"
+
+  - content_for :head do
+    = stylesheet_tag "megatron-error-pages"
+
+  = render "megatron/shared/head"
 
   body
     .error-page class="error-#{@status_code} #{('reverse-stack' if @status_code == 404)}"

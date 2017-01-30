@@ -1,0 +1,6 @@
+- if flash[:notice]
+  .form-flash.hidden data-type="action"= flash[:notice]
+- if flash[:success]
+  .form-flash.hidden data-type="success"= flash[:success]
+- if flash[:error]
+  .form-flash.hidden data-type="error"= flash[:error]

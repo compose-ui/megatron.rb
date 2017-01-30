@@ -1,8 +1,0 @@
-path: app/assets/esvg/megatron
-js_path: app/assets/javascripts/megatron/esvg.js
-optimize: true
-cli: true
-alias:
-  account-circle-fill: account, kittens
-  deployment-beta-line: deployment-beta
-  cluster: deployment-cluster

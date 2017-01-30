@@ -9,6 +9,7 @@ RUN apk update && \
     apk upgrade && \
     apk add $BUILD_PACKAGES && \
     apk add $RUBY_PACKAGES && \
+    apk add --update build-base libffi-dev && \
     rm -rf /var/cache/apk/*
 
 RUN mkdir /app
@@ -22,7 +23,9 @@ RUN npm install
 WORKDIR /app
 
 ENV RAILS_ENV production
-RUN cd server && bundle exec rake tmp:cache:clear
-RUN cd server && bundle exec rake assets:precompile
+ENV MEGATRON_FORCE_LOCAL_ASSETS production
+RUN bundle exec cyborg build -P
+RUN cd site && bundle exec rake tmp:cache:clear
+RUN cd site && bundle exec rake assets:precompile
 
-CMD cd server && bundle exec rails s -p $PORT -b 0.0.0.0
+CMD bundle exec cyborg s -p $PORT -b 0.0.0.0
