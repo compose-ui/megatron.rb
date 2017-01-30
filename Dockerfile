@@ -9,6 +9,7 @@ RUN apk update && \
     apk upgrade && \
     apk add $BUILD_PACKAGES && \
     apk add $RUBY_PACKAGES && \
+    apk add --update build-base libffi-dev && \
     rm -rf /var/cache/apk/*
 
 RUN mkdir /app
