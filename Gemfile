@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 gemspec
 
 gem 'kramdown'
+gem 'tzinfo-data'
 
 group :test do
   gem 'rspec-core', '~> 3.3.2'

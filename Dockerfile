@@ -1,6 +1,6 @@
 FROM mhart/alpine-node:5.0
 
-ENV BUILD_PACKAGES bash curl-dev ruby-dev build-base git
+ENV BUILD_PACKAGES bash curl-dev ruby-dev build-base
 ENV RUBY_PACKAGES ruby ruby-bundler ruby-nokogiri
 
 # Update and install all of the required packages.
@@ -9,7 +9,6 @@ RUN apk update && \
     apk upgrade && \
     apk add $BUILD_PACKAGES && \
     apk add $RUBY_PACKAGES && \
-    apk add --update build-base libffi-dev && \
     rm -rf /var/cache/apk/*
 
 RUN mkdir /app
