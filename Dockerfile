@@ -23,8 +23,9 @@ RUN npm install
 WORKDIR /app
 
 ENV RAILS_ENV production
+ENV MEGATRON_FORCE_LOCAL_ASSETS production
 RUN bundle exec cyborg build -P
 RUN cd site && bundle exec rake tmp:cache:clear
 RUN cd site && bundle exec rake assets:precompile
 
-CMD cd site && bundle exec rails s -p $PORT -b 0.0.0.0
+CMD bundle exec cyborg s -p $PORT -b 0.0.0.0
