@@ -14,7 +14,7 @@ Gem::Specification.new do |spec|
   spec.description = 'Megatron is a design framework for Rails.'
   spec.license     = 'MIT'
 
-  spec.files = Dir['{app,lib,public}/**/*', 'LICENSE.txt', 'README.md']
+  spec.files = Dir['{app,lib,public,config}/**/*', 'LICENSE.txt', 'README.md', 'esvg.yml']
 
   spec.require_paths = ['lib']
 
@@ -23,7 +23,5 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'to_words', '~> 1.1.0'
   spec.add_dependency 'slim-rails', '~> 3.1'
 
-  spec.add_dependency 'rails', '>= 4', '< 5.1'
-  spec.add_dependency 'esvg', '~> 2.8'
   spec.add_dependency 'gaffe', '~> 1'
 end

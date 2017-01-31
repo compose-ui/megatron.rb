@@ -1,12 +1,10 @@
 PATH
   remote: .
   specs:
-    megatron (0.3.1)
+    megatron (0.3.2)
       block_helpers (~> 0.3.3)
       cyborg
-      esvg (~> 2.8)
       gaffe (~> 1)
-      rails (>= 4, < 5.1)
       slim-rails (~> 3.1)
       to_words (~> 1.1.0)
 
@@ -60,7 +58,7 @@ GEM
       railties (>= 3.0.0)
       thor (>= 0.14.6)
     concurrent-ruby (1.0.4)
-    cyborg (0.5.10)
+    cyborg (0.5.11)
       autoprefixer-rails (~> 6.4)
       block_helpers (~> 0.3)
       bundler (~> 1.10)
