@@ -1,5 +1,5 @@
 var request = require('superagent')
-var Event = require('compose-event')
+var Event = require('compose-toolbox').event
 
 // Look for messages at /messages.json
 // (an internal json document which we use to publish site-wide messages)

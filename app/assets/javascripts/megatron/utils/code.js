@@ -1,4 +1,5 @@
 var highlighter = require( 'compose-code-highlighter' )
+var toolbox     = require( 'compose-toolbox' )
 
 // CodeMirror Settings
 var CodeMirror = require('codemirror')
@@ -31,7 +32,7 @@ function getOptions ( el ) {
 
 function newEditor ( el, options ) {
   options = options || {}
-  options = Object.assign( {}, editorDefaults, getOptions( el ))
+  options = toolbox.merge( editorDefaults, getOptions( el ))
 
   CodeMirror.fromTextArea( el, options )
 }

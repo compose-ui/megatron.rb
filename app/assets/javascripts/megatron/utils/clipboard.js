@@ -1,4 +1,4 @@
-var Event = require('compose-event')
+var Event = require('compose-toolbox').event
 var clipboard = require('clipboard')
 
 // This handles the process of adding to clipboard,

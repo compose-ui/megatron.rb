@@ -1,4 +1,4 @@
-var Event = require('compose-event')
+var Event = require('compose-toolbox').event
 
 // Minor text behaviors
 

@@ -1,4 +1,4 @@
-var Event = require('compose-event')
+var Event = require('compose-toolbox').event
 
 // This module helps show which navigation elements match the current page.
 // It assigns 'here' classes to all elements which match the current url.

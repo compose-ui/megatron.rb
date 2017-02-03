@@ -1,7 +1,7 @@
 var Form = require('compose-remote-form')
 var Notify = require('compose-notification')
 var Dialog = require('compose-dialog')
-var Event = require('compose-event')
+var Event = require('compose-toolbox').event
 
 // Notify user of actions on ajax forms.
 // Default messages are:

@@ -1,4 +1,4 @@
-var event = require('compose-event')
+var toolbox = require('compose-toolbox')
 var notify = require('compose-notification')
 var request = require('superagent')
 var dialog = require('compose-dialog')
@@ -28,7 +28,7 @@ require('./shims/classlist')
 
 require('./vendor/bugsnag')
 
-event.ready(function() {
+toolbox.event.ready(function() {
   var rangeTouch = require('rangetouch')          // mobile accessiblity on sliders
   rangeTouch.set("thumbWidth", 19); 
 
@@ -38,14 +38,13 @@ event.ready(function() {
 
 })
 
-event.change(function(){
+toolbox.event.change(function(){
   code.setup()
 })
 
-window.Megatron = module.exports = {
+var Megatron = toolbox.merge( {
   dialog: dialog,
   notify: notify,
-  event: event,
   form: form,
   request: request,
   esvg: esvg,
@@ -53,4 +52,6 @@ window.Megatron = module.exports = {
   toggler: toggler,
   timeToggle: timeToggle,
   popMessage: popMessage
-}
+}, toolbox )
+
+window.Megatron = module.exports = Megatron

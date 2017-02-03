@@ -8,7 +8,7 @@
     "remote-form": "compose-remote-form"
   },
   "dependencies": {
-    "compose-event": "^1.7.2",
+    "compose-toolbox": "^1.2.1",
     "codemirror": "^5.5.0",
     "compose-dialog": "^2.0.4",
     "compose-notification": "^3.0.5",

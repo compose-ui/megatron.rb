@@ -1,4 +1,4 @@
-var Event = require('compose-event')
+var Event = require('compose-toolbox').event
 var Notify = require('compose-notification')
 
 // If a page has an element .form-flash, trigger a notification
