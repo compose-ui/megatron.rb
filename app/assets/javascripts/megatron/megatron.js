@@ -28,9 +28,6 @@ var popMessage = require('./utils/messages')
 require('./utils/text-helpers')
 require('./utils/progress-bar')
 
-require('./shims/classlist')
-
-
 require('./vendor/bugsnag')
 
 toolbox.event.ready(function() {
