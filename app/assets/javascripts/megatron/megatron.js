@@ -1,15 +1,20 @@
-var toolbox = require('compose-toolbox')
-var notify = require('compose-notification')
-var request = require('superagent')
-var dialog = require('compose-dialog')
-var code = require('./utils/code')
-var toggler = require('compose-toggler')
-var form = require('compose-remote-form') // Our UJS implementation
-var esvg = require('./_svg')
+var toolbox     = require('compose-toolbox')
+var notify      = require('compose-notification')
+var request     = require('superagent')
+var dialog      = require('compose-dialog')
+var code        = require('./utils/code')
+var toggler     = require('compose-toggler')
+var form        = require('compose-remote-form') // Our UJS implementation
+var esvg        = require('./_svg')
 var highlighter = require('compose-code-highlighter')
 
 // Use Dialog for remote-form confirmation dialogs
-form.confirm = dialog.show
+form.confirm   = dialog.show
+
+// formUP has our validator and progressive form utlitity
+var formUp     = require('compose-form-up')
+form.next      = formUp.next
+form.validate  = formUp.validate
 
 var timeToggle = require('compose-time-toggle') // Switch time elements between local and UTC
 require('compose-slider')      // Our slider (range input) component

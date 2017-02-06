@@ -1,4 +1,4 @@
-var Event = require('compose-event')
+var Event = require('compose-toolbox').event
 
 // Allow clicking an element with .auto-navigate transfers the 
 // click to the link (a child element) with the class navigate

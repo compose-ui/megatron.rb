@@ -13,6 +13,7 @@
     "compose-dialog": "^2.0.4",
     "compose-notification": "^3.0.5",
     "compose-remote-form": "^3.0.4",
+    "compose-form-up": "^1.3.1",
     "compose-slider": "^1.1.4",
     "compose-code-highlighter": "^1.0.1",
     "compose-time-toggle": "^1.0.1",
