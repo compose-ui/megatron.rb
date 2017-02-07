@@ -1,0 +1,62 @@
+fieldset.form-step {
+  left: 0;
+  right: 0;
+
+  &[disabled] {
+    display: none;
+  }
+
+
+  // Transition to form step
+  &.arrived { animation: fade-in-right .5s forwards; }
+  
+  // Revisit form step
+  &.revisted, &.step-visited.arrived { animation: .5s fade-in-left forwards; }
+
+  // Transition away from form step
+  &.departed { animation: fade-out-left .5s forwards; }
+}
+
+// Transition to form step
+@keyframes fade-in-right {
+  0% {
+    opacity: 0;
+    transform: perspective(1px) translate3d(200px, 0, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: perspective(1px) translate3d(0, 0, 0);
+  }
+}
+
+// Transition away from form step
+@keyframes fade-out-left {
+  0% {
+    opacity: 1;
+    transform: perspective(1px) translate3d(0, 0, 0);
+  }
+
+  99% {
+    opacity: 0;
+    transform: perspective(1px) translate3d(-200px, 0, 0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: perspective(1px) translate3d(-9999px, 0, 0);
+  }
+}
+
+// Return to previous form step
+@keyframes fade-in-left {
+  0% {
+    opacity: 0;
+    transform: perspective(1px) translate3d(-200px, 0, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: perspective(1px) translate3d(0, 0, 0);
+  }
+}

@@ -14,6 +14,11 @@ head
   - else
     title Compose
 
+  / front end bugsnag integration
+  - if ENV['BUGSNAG_JS_API_KEY']
+    meta name="bugsnag" data-api-key="#{ENV['BUGSNAG_JS_API_KEY']}"
+
+
   = favicon_tag 'favicon.ico'
   = pin_tab_icon_tag "logo.svg"
 

@@ -21,7 +21,8 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'cyborg', '~> 0.5.11'
   spec.add_runtime_dependency 'block_helpers', '~> 0.3.3'
   spec.add_runtime_dependency 'to_words', '~> 1.1.0'
-  spec.add_dependency 'slim-rails', '~> 3.1'
+  spec.add_runtime_dependency 'country_select', "~> 2.5"
 
+  spec.add_dependency 'slim-rails', '~> 3.1'
   spec.add_dependency 'gaffe', '~> 1'
 end

@@ -36,7 +36,9 @@ toolbox.event.ready(function() {
 
   // Simplify bugsnag integration
   var bugsnagTag = document.querySelector('meta[data-api-key]')
-  if ( bugsnagTag ) Bugsnag.apiKey = bugsnagTag.dataset.apiKey;
+  if ( bugsnagTag ) { 
+    Bugsnag.apiKey = bugsnagTag.dataset.apiKey
+  }
 
 })
 

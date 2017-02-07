@@ -1,5 +1,75 @@
 module Megatron
   module FormHelper
+    INPUT_OPTIONS = {
+      email: {
+        type: "email",
+        placeholder: "Email address",
+        pattern: "[^@]+@[^@]+\\.[a-zA-Z]{2,}",
+        data: { message: "Please enter a valid email address." }
+      },
+
+      password: {
+        type: "password",
+        placeholder: "Password"
+      },
+
+      text: {
+        type: "text"
+      },
+
+      card_number: {
+        type: "text",
+        required: true,
+        pattern: "[0-9 -]{13,20}",
+        placeholder: "Credit Card Number",
+        data: {
+          stripe: "number",
+          message: "Please enter a valid credit card number."
+        }
+      },
+
+      card_month: {
+        type: "text",
+        required: true,
+        pattern: "0[1-9]|1[012]",
+        placeholder: "MM",
+        data: {
+          stripe: "exp_month",
+          message: "Please enter a valid expiration month."
+        }
+      },
+
+      card_year: {
+        type: "text",
+        required: true,
+        pattern: "[0-9]{4}",
+        placeholder: "YYYY",
+        data: {
+          stripe: "exp_year",
+          message: "Please enter a valid expiration year."
+        }
+      },
+
+      card_cvc: {
+        type: "text",
+        required: true,
+        pattern: "[0-9]{3,4}",
+        data: {
+          stripe: "cvc",
+          message: "Please enter a valid security code."
+        }
+      },
+
+      select_country: {
+        country_options: {
+          include_blank: "Select a country",
+          priority_countries: ["US", "GB", "CA"],
+        },
+
+        html_options: {}
+      }
+    }
+
     def table_form_for(record, options = {}, &block)
       form_for record, options do |f|
         table_form_tag f, &block
@@ -109,5 +179,70 @@ module Megatron
     end
     alias :range_input_tag :slider_input_tag
 
+    # Country select
+    def select_country_tag(name, options = {}, country_options = {})
+      country_options.reverse_merge! INPUT_OPTIONS[:select_country][:country_options]
+
+      options = INPUT_OPTIONS[:select_country][:html_options].deep_merge options
+
+      content_tag(:label) do
+        country_select :user, :country, country_options, options
+      end
+    end
+
+    # Email inputs
+    def email_input_tag(name, value = nil, options = {})
+      base_input_tag(name, value, options, :email)
+    end
+
+    # Passowrd inputs
+    def password_input_tag(name, value = nil, options = {})
+      base_input_tag(name, value, options, :password)
+    end
+
+    def text_input_tag(name, value = nil, options = {})
+      base_input_tag(name, value, options, :text)
+    end
+
+    def card_number_tag(name, value=nil, options={})
+      base_input_tag(name, value, options, :card_number)
+    end
+
+    def card_month_tag(name, value=nil, options={})
+      base_input_tag(name, value, options, :card_month)
+    end
+
+    def card_year_tag(name, value=nil, options={})
+      base_input_tag(name, value, options, :card_year)
+    end
+
+    def card_cvc_tag(name, value=nil, options={})
+      base_input_tag(name, value, options, :card_cvc)
+    end
+
+    private
+
+    def base_input_tag(name, value, options, type)
+      if value.is_a? Hash
+        options = value
+        value = nil
+      end
+
+      options = (INPUT_OPTIONS[type]||{}).deep_merge options
+
+      label = options.delete(:label)
+      tag = text_field_tag(name, value, options)
+
+      if label
+        options[:placeholder] = label
+
+        content_tag(:label, class: 'label-wrapper') do
+          tag + content_tag(:span, class: 'label-placeholder') { label }
+        end
+      else
+        tag
+      end
+
+    end
   end
 end
