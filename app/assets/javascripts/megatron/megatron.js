@@ -20,6 +20,7 @@ var timeToggle = require('compose-time-toggle') // Switch time elements between 
 require('compose-slider')      // Our slider (range input) component
 
 require('./utils/activate-nav-items')
+require('./utils/sync-input-value')
 require('./utils/auto-navigate')
 require('./utils/clipboard')
 require('./utils/form-flash')

@@ -1,7 +1,32 @@
 - main_header "Forms"
 
 - main
-  p The form helpers are being reworked, this page will be updated as they are developed.
+  = heading 'Form inputs'
+
+  = demo_box "A simple slider"
+    fieldset
+      = text_input_tag :text, label: 'Text', placeholder: 'Text', required: true
+      = password_input_tag :password, label: 'Password', required: true
+      = url_input_tag :website, label: 'Web address', required: true
+      = email_input_tag :email, label: 'Email address', required: true
+      = tel_input_tag :phone, label: 'Phone number', required: true
+      = search_input_tag :query, label: 'Search'
+      = number_input_tag :number, label: 'Number'
+      = textarea_tag :textarea, label: 'Textarea'
+
+      = select_input_tag :select1
+        optgroup label="Option Group"
+          option Option one
+          option Option two
+          option Option three
+          option Option four
+          option Option five
+          
+      = select_input_tag :select_required, "<option>Option One</option>", required: true, include_blank: "Select one"
+
+      = select_input_tag :select_disabled, disabled: true
+        option Option one
+
 
   = heading 'Check switch'
 

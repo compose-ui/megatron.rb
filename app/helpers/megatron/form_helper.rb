@@ -17,6 +17,17 @@ module Megatron
         type: "text"
       },
 
+      tel: {
+        type: "tel",
+        placeholder: "Phone number"
+      },
+
+      url: {
+        type: "url",
+        placeholder: "Web address",
+        pattern: ".\\.[a-zA-Z]{2,}"
+      },
+
       card_number: {
         type: "text",
         required: true,
@@ -204,6 +215,26 @@ module Megatron
       base_input_tag(name, value, options, :text)
     end
 
+    def url_input_tag(name, value = nil, options = {})
+      base_input_tag(name, value, options, :url)
+    end
+
+    def tel_input_tag(name, value = nil, options = {})
+      base_input_tag(name, value, options, :tel)
+    end
+
+    def textarea_tag(name, value = nil, options = {})
+      base_input_tag(name, value, options, :textarea)
+    end
+
+    def number_input_tag(name, value = nil, options = {})
+      base_input_tag(name, value, options, :number)
+    end
+
+    def search_input_tag(name, value = nil, options = {})
+      base_input_tag(name, value, options, :search)
+    end
+
     def card_number_tag(name, value=nil, options={})
       base_input_tag(name, value, options, :card_number)
     end
@@ -220,7 +251,34 @@ module Megatron
       base_input_tag(name, value, options, :card_cvc)
     end
 
+    def select_input_tag(name, option_tags=nil, options={}, &block)
+      if option_tags.is_a? Hash
+        options = option_tags
+        option_tags = nil
+      end
+
+      option_tags ||= extract_block(&block) if block_given?
+
+      base_input_tag(name, option_tags, options, :select)
+    end
+
     private
+
+    def extract_block(&block)
+      content_tag(:foo, &block).gsub(/<\/?foo>/m, '')
+    end
+
+    def base_tag(name, value, options, type)
+      case type
+      when :select
+        value = value.html_safe if value
+        select_tag(name, value, options)
+      when :textarea
+        text_area_tag(name, value, options)
+      else
+        text_field_tag(name, value, options)
+      end
+    end
 
     def base_input_tag(name, value, options, type)
       if value.is_a? Hash
@@ -229,19 +287,18 @@ module Megatron
       end
 
       options = (INPUT_OPTIONS[type]||{}).deep_merge options
+      options[:type] ||= type
 
       label = options.delete(:label)
-      tag = text_field_tag(name, value, options)
+      options[:placeholder] = label if label
+
+      tag = base_tag(name, value, options, type)
 
       if label
-        options[:placeholder] = label
-
-        content_tag(:label, class: 'label-wrapper') do
-          tag + content_tag(:span, class: 'label-placeholder') { label }
-        end
-      else
-        tag
+        tag = tag + content_tag(:span, class: 'label-placeholder') { label }
       end
+
+      content_tag(:label, class: 'label-wrapper') { tag }
 
     end
   end
