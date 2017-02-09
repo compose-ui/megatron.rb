@@ -256,7 +256,28 @@ a {
 
 .auto-width { width: auto; }
 
-.hidden {
-  visibility: hidden;
-  display: none !important;
+// Visually hidden mixin
+@mixin hidden() {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
 }
+
+// Visually hidden placeholder
+%hidden {
+  @include hidden;
+}
+
+// Visually shown mixin
+@mixin shown() {
+  position: initial;
+  top: initial;
+  left: initial;
+}
+
+// Visually shown placeholder
+%shown {
+  @include shown;
+}
+
+.hidden { @extend %hidden; }

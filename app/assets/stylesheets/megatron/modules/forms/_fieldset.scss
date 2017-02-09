@@ -1,0 +1,20 @@
+// Remove default fieldset styles
+fieldset {
+  border: 0;
+  padding: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+// Fieldset legends
+legend {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: .02em;
+  font-weight: 700;
+  padding-top: 11px;
+  box-shadow: 0 1px $alabaster;
+  width: 100%;
+  margin-bottom: 19px;
+}
+

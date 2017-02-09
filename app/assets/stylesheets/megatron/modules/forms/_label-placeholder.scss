@@ -1,0 +1,103 @@
+// Input labels
+.inset-label {
+  // Scoped variables
+  $font-size:  16px;
+  $padding-y:   9px;
+  $padding-x:  12px;
+  $margin:     25px;
+  $distance-y:  -($padding-x + $font-size);
+  $distance-x:  -($padding-x + 1);
+  $scale:      .925;
+  $height:     50px;
+
+  padding: 0;
+  clear: both;
+  flex: 1 0 auto;
+  background: $white;
+  font-size: $font-size;
+  margin-bottom: $margin;
+
+  .inline-form & {
+    margin-bottom: 0;
+  }
+  
+  // Nested text-based inputs
+  > input,
+  > select,
+  > textarea {
+    margin-top: 5px;
+  }
+
+  // Nested range inputs
+  > input[type=range] {
+    margin-top: 12px;
+    margin-bottom: 5px;
+  }
+ 
+  // Hide input placeholder text
+  ::placeholder {
+    opacity: 0;
+    color: transparent;
+  }
+
+  // Default active color
+  :not(.valid):not(.invalid) > {
+    textarea, #{$text-inputs} {
+      &:focus + span,
+      &:active + span {
+        color: $steel;
+      }
+    }
+  }
+  // Select-specific styles
+  select {
+    margin: 0;
+    font-size: $font-size;
+    line-height: inherit;
+    height: $height;
+    padding: $padding-y $padding-x;
+  }
+
+  // Inputs
+  textarea, #{$text-inputs} {
+    z-index: 1;
+    margin: 0;
+    font-size: $font-size;
+    line-height: inherit;
+    background: transparent;
+    padding: $padding-y $padding-x;
+
+    // Move labels out of the way on focus and empty
+    &:focus + .label-placeholder,
+    &:active + .label-placeholder,
+    &:not([value=""]) + .label-placeholder, {
+      z-index: 2;
+      transform: translate3d($distance-x, $distance-y, 0) scale($scale);
+      color: inherit;
+    }
+  }
+
+  // Faux-placeholder labels
+  .label-placeholder {
+    font-size: inherit;
+    height: vr(2); // 30px
+    position: absolute;
+    top: $padding-y;
+    left: $padding-x;
+    padding: 1px 0 0 1px;
+    transform-origin: left top 0;
+    will-change: transform;
+    -webkit-filter: blur(0);
+    backface-visibility: hidden;
+    -webkit-font-smoothing: subpixel-antialiased;
+    z-index: 0;
+    color: $alabaster;
+    transform: translate3d(0, 0, 0) scale(1);
+    transition:
+      z-index $duration,
+      color $duration,
+      transform $duration;
+  }
+}
+
+

@@ -1,0 +1,22 @@
+label {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  font-size: 15px;
+  padding-top: 10px;
+  margin-bottom: 10px;
+
+  // Checkbox- & radio-specific labels
+  &.tick-label {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+
+  // Bare text-based inputs
+  + input,
+  + select,
+  + textarea {
+    margin-top: -5px;
+  }
+}

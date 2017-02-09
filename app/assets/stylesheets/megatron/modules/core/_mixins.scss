@@ -1,3 +1,9 @@
+
+// Vertical rhythm factor function
+@function vr($factor) {
+  @return $vr-base-unit * $factor;
+}
+
 @mixin until($size) {
   $size: $size - 1;
   @media all and (max-width: $size) { @content; }

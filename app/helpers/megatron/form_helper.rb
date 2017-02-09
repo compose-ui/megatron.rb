@@ -23,9 +23,9 @@ module Megatron
       },
 
       url: {
-        type: "url",
+        type: "text",
         placeholder: "Web address",
-        pattern: ".\\.[a-zA-Z]{2,}"
+        pattern: ".+\\.[a-zA-Z]{2,}"
       },
 
       card_number: {
@@ -286,19 +286,26 @@ module Megatron
         value = nil
       end
 
+      label_options = {}
+
       options = (INPUT_OPTIONS[type]||{}).deep_merge options
       options[:type] ||= type
 
-      label = options.delete(:label)
-      options[:placeholder] = label if label
-
-      tag = base_tag(name, value, options, type)
-
-      if label
-        tag = tag + content_tag(:span, class: 'label-placeholder') { label }
+      if label_placeholder = options.delete(:label_placeholder)
+        options[:placeholder] = label_placeholder
+        label_placeholder = content_tag(:span, class: 'label-placeholder') { label_placeholder }
+        label_options[:class] = 'inset-label'
       end
 
-      content_tag(:label, class: 'label-wrapper') { tag }
+      if !label_placeholder && label = options.delete(:label)
+        label = content_tag(:span, class: 'label-text') { label }
+      end
+
+      content_tag(:label, label_options) { 
+        concat label
+        concat base_tag(name, value, options, type)
+        concat label_placeholder
+      }
 
     end
   end

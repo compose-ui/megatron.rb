@@ -5,8 +5,9 @@
 
   = demo_box "A simple slider"
     fieldset
-      = text_input_tag :text, label: 'Text', placeholder: 'Text', required: true
+      = text_input_tag :text, label_placeholder: 'Text', placeholder: 'Text'
       = password_input_tag :password, label: 'Password', required: true
+      = password_input_tag :password, label_placeholder: 'Password'
       = url_input_tag :website, label: 'Web address', required: true
       = email_input_tag :email, label: 'Email address', required: true
       = tel_input_tag :phone, label: 'Phone number', required: true

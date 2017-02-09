@@ -1,4 +1,4 @@
-$text-inputs: 'textarea, input[type=url], input[type=tel], input[type=text], input[type=email], input[type=number], input[type=password]';
+$text-inputs: 'textarea, input[type=url], input[type=tel], input[type=text], input[type=email], input[type=number], input[type=password], input[type=search]';
 
 $steel:     #58728a; // Blue-Gray
 $caribbean: #25c894; // Mint
@@ -72,5 +72,34 @@ form, .form-width {
     cursor: default;
   }
 }
+
 #{$text-inputs}, select, textarea { @extend %input-base; }
 
+// Override default search styling
+input[type=search] {
+  &,
+  &::-webkit-search-decoration,
+  &::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+  }
+}
+
+select {
+  height: 50px;
+  cursor: pointer;
+  background: $white url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 7 14'%3E%3Cpolygon fill='%237A7B7C' points='3.5,0 0,6 7,6'/%3E%3Cpolygon fill='%237A7B7C' points='3.5,14 0,8 7,8'/%3E%3C/svg%3E") calc(100% - 14px) 50% / 7px 14px no-repeat;
+}
+
+// Bare inputs
+:not(label) > {
+  input,
+  select,
+  textarea {
+    margin-bottom: 10px;
+  }
+}
+
+::placeholder {
+  opacity: 1;
+  color: $alabaster;
+}
