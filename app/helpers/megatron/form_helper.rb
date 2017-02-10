@@ -301,7 +301,7 @@ module Megatron
         label = content_tag(:span, class: 'label-text') { label }
       end
 
-      content_tag(:label, label_options) { 
+      content_tag(:label, label_options) {
         concat label
         concat base_tag(name, value, options, type)
         concat label_placeholder

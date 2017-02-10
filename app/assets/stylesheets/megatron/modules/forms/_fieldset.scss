@@ -8,13 +8,26 @@ fieldset {
 
 // Fieldset legends
 legend {
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: .02em;
-  font-weight: 700;
+  font-size: 24px;
+  font-weight: 300;
+  //text-transform: uppercase;
+  //letter-spacing: .02em;
   padding-top: 11px;
   box-shadow: 0 1px $alabaster;
   width: 100%;
   margin-bottom: 19px;
 }
 
+
+legend.header {
+  text-transform: none;
+  letter-spacing: normal;
+  box-shadow: none;
+  font-weight: 300;
+  width: 100%;
+  float: left;
+  font-size: 24px;
+  padding-top: vr(2); // 30px
+  margin-bottom: vr(3); // 30px
+  text-align: center;
+}

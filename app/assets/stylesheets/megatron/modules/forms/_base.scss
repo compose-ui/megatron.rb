@@ -1,12 +1,12 @@
 $text-inputs: 'textarea, input[type=url], input[type=tel], input[type=text], input[type=email], input[type=number], input[type=password], input[type=search]';
 
 $steel:     #58728a; // Blue-Gray
-$caribbean: #25c894; // Mint
+$caribbean: #65BA52; // Mint
 $rusty:     #dd2f41; // Red
-$alabaster: #c3d4e4; // Light Blue
+$alabaster: hsl(0, 0%, 79%); // Light Blue
 $isabella:  #dde8eb; // Off-Cream
 $duration: .2s;
-$radius: 0px;
+$radius: 4px;
 
 form {
   width: 100%;
@@ -48,6 +48,7 @@ form, .form-width {
   border-radius: $radius;
   transition: border-color $duration;
   appearance: none;
+  box-shadow: transparent 0 0 0 2px inset;
 
   // Keep Chrome’s autofilled fields white
   &:-webkit-autofill {
@@ -85,9 +86,16 @@ input[type=search] {
 }
 
 select {
-  height: 50px;
+  min-height: 50px;
   cursor: pointer;
   background: $white url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 7 14'%3E%3Cpolygon fill='%237A7B7C' points='3.5,0 0,6 7,6'/%3E%3Cpolygon fill='%237A7B7C' points='3.5,14 0,8 7,8'/%3E%3C/svg%3E") calc(100% - 14px) 50% / 7px 14px no-repeat;
+}
+
+// Confine resizing of textareas
+textarea {
+  display: block;
+  resize: vertical;
+  min-height: vr(8) + 5px;  // 125px;
 }
 
 // Bare inputs
@@ -102,4 +110,10 @@ select {
 ::placeholder {
   opacity: 1;
   color: $alabaster;
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
