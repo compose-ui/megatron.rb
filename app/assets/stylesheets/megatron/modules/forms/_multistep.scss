@@ -23,9 +23,9 @@ fieldset.form-step {
 fieldset.form-step {
   max-width: 100%;
   padding: 0 vr(2); // 30px
-  background: $white;
+  /*background: $white;*/
   border-radius: $radius;
-  box-shadow: 0 0 25px rgba(0, 0, 0, .05), 0 0 1px rgba(0,0,0,.8);
+  /*box-shadow: 0 0 25px rgba(0, 0, 0, .05), 0 0 1px rgba(0,0,0,.8);*/
   will-change: transform;
   -webkit-filter: blur(0);
   backface-visibility: hidden;

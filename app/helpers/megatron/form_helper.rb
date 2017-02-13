@@ -203,52 +203,56 @@ module Megatron
 
     # Email inputs
     def email_input_tag(name, value = nil, options = {})
-      base_input_tag(name, value, options, :email)
+      input_tag(name, value, options, :email)
     end
 
     # Passowrd inputs
     def password_input_tag(name, value = nil, options = {})
-      base_input_tag(name, value, options, :password)
+      input_tag(name, value, options, :password)
     end
 
     def text_input_tag(name, value = nil, options = {})
-      base_input_tag(name, value, options, :text)
+      input_tag(name, value, options, :text)
     end
 
     def url_input_tag(name, value = nil, options = {})
-      base_input_tag(name, value, options, :url)
+      input_tag(name, value, options, :url)
     end
 
     def tel_input_tag(name, value = nil, options = {})
-      base_input_tag(name, value, options, :tel)
+      input_tag(name, value, options, :tel)
     end
 
     def textarea_tag(name, value = nil, options = {})
-      base_input_tag(name, value, options, :textarea)
+      input_tag(name, value, options, :textarea)
     end
 
     def number_input_tag(name, value = nil, options = {})
-      base_input_tag(name, value, options, :number)
+      input_tag(name, value, options, :number)
     end
 
     def search_input_tag(name, value = nil, options = {})
-      base_input_tag(name, value, options, :search)
+      input_tag(name, value, options, :search)
     end
 
     def card_number_tag(name, value=nil, options={})
-      base_input_tag(name, value, options, :card_number)
+      input_tag(name, value, options, :card_number)
     end
 
     def card_month_tag(name, value=nil, options={})
-      base_input_tag(name, value, options, :card_month)
+      input_tag(name, value, options, :card_month)
     end
 
     def card_year_tag(name, value=nil, options={})
-      base_input_tag(name, value, options, :card_year)
+      input_tag(name, value, options, :card_year)
     end
 
     def card_cvc_tag(name, value=nil, options={})
-      base_input_tag(name, value, options, :card_cvc)
+      input_tag(name, value, options, :card_cvc)
+    end
+
+    def check_input_tag(name, value=nil, options={})
+      input_tag(name, value, options, :checkbox)
     end
 
     def select_input_tag(name, option_tags=nil, options={}, &block)
@@ -257,9 +261,11 @@ module Megatron
         option_tags = nil
       end
 
+      options[:label] ||= options.delete(:label_placeholder)
+
       option_tags ||= extract_block(&block) if block_given?
 
-      base_input_tag(name, option_tags, options, :select)
+      input_tag(name, option_tags, options, :select)
     end
 
     private
@@ -280,7 +286,7 @@ module Megatron
       end
     end
 
-    def base_input_tag(name, value, options, type)
+    def input_tag(name, value, options, type)
       if value.is_a? Hash
         options = value
         value = nil

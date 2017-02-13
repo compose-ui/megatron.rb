@@ -30,4 +30,5 @@ legend.header {
   padding-top: vr(2); // 30px
   margin-bottom: vr(3); // 30px
   text-align: center;
+  + * { clear: both; }
 }
