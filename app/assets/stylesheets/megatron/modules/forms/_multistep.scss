@@ -1,35 +1,80 @@
-fieldset.form-step {
-  left: 0;
-  right: 0;
-
-  &[disabled], &.completed {
-    position: absolute !important;
-    top: -9999px !important;
-    left: -9999px !important;
-  }
-
-
-  // Transition to form step
-  &.arrived { animation: fade-in-right .5s forwards; }
-  
-  // Revisit form step
-  &.revisted, &.step-visited.arrived { animation: .5s fade-in-left forwards; }
-
-  // Transition away from form step
-  &.departed { animation: fade-out-left .5s forwards; }
+form.progressive {
+  margin: 0 auto;
 }
 
-// All form fieldsets
+$fade-distance: 40px;
 fieldset.form-step {
-  max-width: 100%;
-  padding: 0 vr(2); // 30px
-  /*background: $white;*/
-  border-radius: $radius;
-  /*box-shadow: 0 0 25px rgba(0, 0, 0, .05), 0 0 1px rgba(0,0,0,.8);*/
+
+  // Transition to form step
+  &.enter[data-direction=forward] { animation: fade-in-right .2s forwards; }
+  &.enter[data-direction=reverse] { animation: fade-in-left .2s forwards; }
+
+  // Transition away from form step
+  &.exit[data-direction=forward] { animation: fade-out-left .2s forwards; }
+  &.exit[data-direction=reverse] { animation: fade-out-right .2s forwards; }
+  
+}
+
+.form-step {
   will-change: transform;
   -webkit-filter: blur(0);
   backface-visibility: hidden;
   -webkit-font-smoothing: subpixel-antialiased;
+}
+
+// All form fieldsets
+.form-panel {
+  width: 400px;
+  margin: 0 auto;
+  max-width: 100%;
+  padding: 1px vr(2); // 30px
+  border-radius: $radius;
+  background: $white;
+  box-shadow: 0 0 25px rgba(0, 0, 0, .05), 0 0 1px rgba(0,0,0,.8);
+}
+
+.progressive-form-nav {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 1em;
+  line-height: 2em;
+}
+
+.progressive-form-nav-item {
+  margin: 5px 10px;
+  opacity: .4;
+  cursor: default;
+  text-decoration: none;
+
+  background: transparent linear-gradient(rgba($link-color, .6), rgba($link-color, .6)) 50% 90%/0px 1px no-repeat;
+  transition: background .1s ease, color .15s ease, opacity .15 ease;
+
+  &,
+  &:visited,
+  &:hover,
+  &:focus,
+  &:active {
+    color: $link-color;
+  }
+
+  &.previous { opacity: .8; }
+  &.next     { cursor: default; }
+
+  &.previous, &.completed, .completed + & {
+    cursor: pointer;
+    &:hover { opacity: 1; }
+  }
+
+  &.here {
+    opacity: 1;
+    background: transparent linear-gradient(rgba($link-color, .6), rgba($link-color, .6)) 50% 90%/100% 1px no-repeat;
+  }
+
+  &:active {
+    transform: scale(.97, .97);
+  }
 }
 
 
@@ -37,7 +82,7 @@ fieldset.form-step {
 @keyframes fade-in-right {
   0% {
     opacity: 0;
-    transform: perspective(1px) translate3d(200px, 0, 0);
+    transform: perspective(1px) translate3d($fade-distance, 0, 0);
   }
 
   100% {
@@ -55,7 +100,7 @@ fieldset.form-step {
 
   99% {
     opacity: 0;
-    transform: perspective(1px) translate3d(-200px, 0, 0);
+    transform: perspective(1px) translate3d(-$fade-distance, 0, 0);
   }
 
   100% {
@@ -64,11 +109,28 @@ fieldset.form-step {
   }
 }
 
+// Transition away from form step
+@keyframes fade-out-right {
+  0% {
+    opacity: 1;
+    transform: perspective(1px) translate3d(0, 0, 0);
+  }
+
+  99% {
+    opacity: 0;
+    transform: perspective(1px) translate3d($fade-distance, 0, 0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: perspective(1px) translate3d(9999px, 0, 0);
+  }
+}
 // Return to previous form step
 @keyframes fade-in-left {
   0% {
     opacity: 0;
-    transform: perspective(1px) translate3d(-200px, 0, 0);
+    transform: perspective(1px) translate3d(-$fade-distance, 0, 0);
   }
 
   100% {

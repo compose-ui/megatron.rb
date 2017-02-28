@@ -1,27 +1,31 @@
 // Apply validation styles to inputs & textareas
-textarea, #{$text-inputs}, select {
+label.valid {
+  color: $caribbean;
 
-  // Strip default styling
-  &:invalid {
-    outline: 0;
-    box-shadow: none;
-  }
+  input, select, textarea {
+    color: currentColor;
+    -webkit-text-fill-color: currentColor;
+    box-shadow: input-shadow( $caribbean );
 
-  &.valid, .valid &, .valid & + .label-placeholder {
-    color: $caribbean;
-    border-color: $caribbean;
-    -webkit-text-fill-color: $caribbean;
-  }
-
-  // Apply invalid state color to required fields & adjacent labels
-  &.invalid, .invalid &, .invalid & + .label-placeholder {
-    color: $rusty;
-    border-color: $rusty;
-    -webkit-text-fill-color: $rusty;
+    @include input-active {
+      box-shadow: input-focus-shadow( $caribbean )
+    }
   }
 }
 
+label.invalid {
+  color: $rusty;
 
+  input, select, textarea {
+    color: currentColor;
+    -webkit-text-fill-color: currentColor;
+    box-shadow: input-shadow( $rusty );
+
+    @include input-active {
+      box-shadow: input-focus-shadow( $rusty )
+    }
+  }
+}
 
 // Validation message animation declaration
 @keyframes scale-fade-in {

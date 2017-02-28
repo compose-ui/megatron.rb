@@ -65,6 +65,7 @@ module Megatron
         type: "text",
         required: true,
         pattern: "[0-9]{3,4}",
+        placeholder: "CVC",
         data: {
           stripe: "cvc",
           message: "Please enter a valid security code."
@@ -203,56 +204,83 @@ module Megatron
 
     # Email inputs
     def email_input_tag(name, value = nil, options = {})
-      input_tag(name, value, options, :email)
+      input_tag(:email, name, value, options)
     end
 
     # Passowrd inputs
     def password_input_tag(name, value = nil, options = {})
-      input_tag(name, value, options, :password)
+      input_tag(:password, name, value, options)
     end
 
     def text_input_tag(name, value = nil, options = {})
-      input_tag(name, value, options, :text)
+      input_tag(:text, name, value, options)
     end
 
     def url_input_tag(name, value = nil, options = {})
-      input_tag(name, value, options, :url)
+      input_tag(:url, name, value, options)
     end
 
     def tel_input_tag(name, value = nil, options = {})
-      input_tag(name, value, options, :tel)
+      input_tag(:tel, name, value, options)
     end
 
     def textarea_tag(name, value = nil, options = {})
-      input_tag(name, value, options, :textarea)
+      input_tag(:textarea, name, value, options)
     end
 
     def number_input_tag(name, value = nil, options = {})
-      input_tag(name, value, options, :number)
+      input_tag(:number, name, value, options)
     end
 
     def search_input_tag(name, value = nil, options = {})
-      input_tag(name, value, options, :search)
+      input_tag(:search, name, value, options)
     end
 
     def card_number_tag(name, value=nil, options={})
-      input_tag(name, value, options, :card_number)
+      input_tag(:card_number, name, value, options)
     end
 
     def card_month_tag(name, value=nil, options={})
-      input_tag(name, value, options, :card_month)
+      input_tag(:card_month, name, value, options)
     end
 
     def card_year_tag(name, value=nil, options={})
-      input_tag(name, value, options, :card_year)
+      input_tag(:card_year, name, value, options)
     end
 
     def card_cvc_tag(name, value=nil, options={})
-      input_tag(name, value, options, :card_cvc)
+      input_tag(:card_cvc, name, value, options)
     end
 
-    def check_input_tag(name, value=nil, options={})
-      input_tag(name, value, options, :checkbox)
+    def radio_button_input_tag(name, value, checked = false, options = {})
+
+      if checked.is_a? Hash
+        options = checked
+        checked = false
+      end
+
+      tick_wrapper( name, options ) do
+        radio_button_tag(name, value, checked, options)
+      end
+
+    end
+
+    def checkbox_input_tag(name, value = true, checked = false, options = {})
+
+      if value.is_a? Hash
+        options = value
+        value = true
+        checked = false
+      end
+
+      if checked.is_a? Hash
+        options = checked
+        checked = false
+      end
+
+      tick_wrapper( name, options ) do
+        check_box_tag(name, value, checked, options)
+      end
     end
 
     def select_input_tag(name, option_tags=nil, options={}, &block)
@@ -265,7 +293,7 @@ module Megatron
 
       option_tags ||= extract_block(&block) if block_given?
 
-      input_tag(name, option_tags, options, :select)
+      input_tag(:select, name, option_tags, options)
     end
 
     private
@@ -286,7 +314,9 @@ module Megatron
       end
     end
 
-    def input_tag(name, value, options, type)
+    def input_tag(type, name, value, options=nil)
+      type.to_sym! if type.is_a?( String ) 
+
       if value.is_a? Hash
         options = value
         value = nil
@@ -299,8 +329,8 @@ module Megatron
 
       if label_placeholder = options.delete(:label_placeholder)
         options[:placeholder] = label_placeholder
-        label_placeholder = content_tag(:span, class: 'label-placeholder') { label_placeholder }
-        label_options[:class] = 'inset-label'
+        label_placeholder = content_tag(:span, class: 'placeholder-label-text') { label_placeholder }
+        label_options[:class] = 'placeholder-label'
       end
 
       if !label_placeholder && label = options.delete(:label)
@@ -314,5 +344,22 @@ module Megatron
       }
 
     end
+
+    private
+    
+    def tick_wrapper( name, options, &block )
+
+      tag = extract_block(&block).html_safe
+
+      tick = content_tag(:span, class: 'tick') {''}
+      label = content_tag(:span, class: 'label-text') { options.delete(:label) || name }
+
+      content_tag(:label, class: 'tick-label') {
+        concat tag
+        concat tick
+        concat content_tag(:span, class: 'label-text-wrapper') { label }
+      }
+    end
+
   end
 end

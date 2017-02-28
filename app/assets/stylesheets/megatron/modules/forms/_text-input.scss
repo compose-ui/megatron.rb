@@ -6,7 +6,7 @@
   margin: 0;
   line-height: 1.65em;
   box-shadow: transparent 0 0 0 2px inset;
-  transition: background-color .3s ease-out, box-shadow .15s ease, border-color .15s ease;
+  transition-property: background-color, box-shadow, border-color;
   color: #666;
   font-size: 14px;
 

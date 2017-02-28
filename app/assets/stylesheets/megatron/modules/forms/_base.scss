@@ -1,12 +1,40 @@
 $text-inputs: 'textarea, input[type=url], input[type=tel], input[type=text], input[type=email], input[type=number], input[type=password], input[type=search]';
 
-$steel:     #58728a; // Blue-Gray
+$formBlue: $boyblue;//#4392f9;
+$steel:     darken($page-border, 25); // Blue-Gray
 $caribbean: #65BA52; // Mint
 $rusty:     #dd2f41; // Red
 $alabaster: hsl(0, 0%, 79%); // Light Blue
 $isabella:  #dde8eb; // Off-Cream
 $duration: .2s;
-$radius: 4px;
+$radius: 3px;
+
+@mixin input-active {
+  &:focus,
+  &:hover:not([disabled]),
+  &:active {
+    @content;
+  }
+}
+
+$input-weight-shadow: 0 2px 5px 0 rgba(#000, .2);
+$empty-shadow: 0 0 0 transparent;
+
+@function input-shadow($color: $alabaster) {
+  @return 0 0 0 1px $color inset, $empty-shadow;
+}
+
+@function input-focus-shadow($color: $steel) {
+  @return 0 0 0 1px $color inset, $input-weight-shadow
+}
+
+$focus-shadow: input-focus-shadow();
+$input-shadow: input-shadow();
+
+*, *:before, *:after { 
+  transition-duration: .2s;
+  transition-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1); 
+}
 
 form {
   width: 100%;
@@ -15,17 +43,27 @@ form {
     max-width: 100%;
   }
 
-  fieldset {
-    padding: 0;
-    border: 0;
-  }
 }
 
 label {
+  display: flex;
+  flex: 1 0 auto;
+  flex-direction: column;
+  position: relative;
   font-size: 15px;
+  padding-top: 10px;
+  margin-bottom: 10px;
+
+  // Bare text-based inputs
+  + input,
+  + select,
+  + textarea {
+    margin-top: -5px;
+  }
+
 }
 
-form, .form-width {
+.form-width {
   max-width: 700px;
 }
 
@@ -39,34 +77,81 @@ form, .form-width {
   }
 }
 
-%input-base {
+fieldset {
+  border: 0;
+  padding: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+// Fieldset legends
+legend {
+  font-size: 24px;
+  font-weight: 300;
+  //text-transform: uppercase;
+  //letter-spacing: .02em;
+  padding-top: 11px;
+  box-shadow: 0 1px $alabaster;
+  width: 100%;
+  margin-bottom: 19px;
+}
+
+legend.header {
+  text-transform: none;
+  letter-spacing: normal;
+  box-shadow: none;
+  font-weight: 300;
+  width: 100%;
+  float: left;
+  font-size: 24px;
+  padding-top: vr(2); // 30px
+  margin-bottom: vr(3); // 30px
+  text-align: center;
+  + * { clear: both; }
+}
+
+.inline-fields {
+  display: flex;
+  flex: 0 1 auto;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
+
+  // Remove top spacing from submit button
+  > [type=submit] {
+    margin-top: 0;
+    align-self: stretch;
+  }
+
+  .label-text-wrapper {
+    &:before           { top: vr(2/15); }
+    .label-text:before { top: vr(3/5); }
+  }
+
+  > label { margin-bottom: 0; padding-top: 0; }
+
+  // Leave right margin off last element
+  > :not(:last-child) {
+    margin-right: 10px;
+  }
+}
+
+@mixin input-base {
   width: 100%;
   font-size: 16px;
+  border: none;
   line-height: vr(2); // 30px
   padding: 9px 12px;
-  border: 1px solid $alabaster;
   border-radius: $radius;
-  transition: border-color $duration;
+  transition-property: box-shadow, border-color;
   appearance: none;
-  box-shadow: transparent 0 0 0 2px inset;
+  box-shadow: $input-shadow;
 
   // Keep Chrome’s autofilled fields white
   &:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 1000px $white inset;
   }
-
-  &:hover,
-  &:focus:not(select),
-  &:focus:not(input[type=range]),
-  &:active {
-    border: 1px solid $steel;
-    outline: 0;
-  }
-
-  // // Required styling
-  // &:required + span:after {
-  //   @extend %required-input;
-  // }
 
   &:disabled:not([type="submit"]) {
     color: $isabella;
@@ -74,7 +159,15 @@ form, .form-width {
   }
 }
 
-#{$text-inputs}, select, textarea { @extend %input-base; }
+#{$text-inputs}, select, textarea { 
+  @include input-base;
+  border: none;
+  outline: 0;
+
+  @include input-active {
+    box-shadow: $focus-shadow;
+  }
+}
 
 // Override default search styling
 input[type=search] {

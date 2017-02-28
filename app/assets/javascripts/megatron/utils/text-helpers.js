@@ -49,14 +49,14 @@ var TextHelpers = {
   autoSizeTextarea: function autoSizeTextarea() {
 
     var wrapTextarea = function(node) {
-      if (!node.classList.contains('fixed')) {
+      if (!node.classList.contains('fixed') && node.parentElement.tagName.match(/label/i)) {
         if (!node.parentElement.classList.contains('textarea-size-wrapper')) {
-          node.outerHTML = "<div class='textarea-size-wrapper'>"+node.outerHTML+"</div>"
+          node.parentElement.classList.add('textarea-size-wrapper')
         }
       }
     }
     var autoHeight = function(node) {
-      if (!node.classList.contains('fixed')) {
+      if (!node.classList.contains('fixed') && node.parentElement.classList.contains('textarea-size-wrapper')) {
         node.parentElement.style.height = node.style.height
 
         var offset = node.offsetHeight - node.clientHeight

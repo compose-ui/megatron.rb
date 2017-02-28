@@ -1,0 +1,25 @@
+.input-panel {
+  display: inline-block;
+  span {
+    @include input-base;
+    cursor: pointer;
+  }
+
+  input {
+    position: absolute;
+    border: none;
+    cursor: pointer;
+    opacity: 0;
+  }
+
+  input:focus + span, 
+  input:hover + span {
+    box-shadow: $focus-shadow;
+  }
+
+  input:checked + span {
+    border-color: $boyblue;
+    box-shadow: 0 0 0 1px $boyblue, 0 0 0 2px $boyblue inset;
+  }
+
+}

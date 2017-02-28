@@ -1,30 +1,21 @@
 var toolbox = require( 'compose-toolbox' )
 var Event = toolbox.event
-var textSelectors = 'textarea, input[type=url], input[type=tel], input[type=text], input[type=email], input[type=number], input[type=password]'
-
-Event.bubbleFormEvents()
-
-function textInputs() {
-  return document.querySelectorAll( textSelectors )
-}
+var textSelectors = 'textarea, input:not([type=radio]):not([type=checkbox]):not([type=range]):not([type=hidden]):not([type=submit]):not([type=image]):not([type=reset])'
 
 function syncValue( input ) {
 
   // Allow calling from event handler
-  if ( input.target ) { input = input.target }
+  input = ( input.target || input )
 
-  // If element only contains whitespace, strip value
-  if ( !input.value.replace( /\s/g, '' ).length ) { input.value = ''; }
-
-  input.setAttribute( 'value', input.value )
-
+  // If element is empty (or contains only whitespace)
+  // Add empty class
+  input.classList.toggle( 'empty', !input.value.trim().length )
 }
 
+// Initialize input state
 Event.change( function() {
-
-  // Ensure that all inputs have a value
-  toolbox.each( textInputs(), syncValue )
-
+  toolbox.each( document.querySelectorAll( textSelectors ), syncValue )
 })
 
-Event.on( document, 'blur', 'input', syncValue )
+// Set input state on keyup (debounced)
+Event.on( document, 'keyup', textSelectors, Event.debounce( syncValue, 100 ) )

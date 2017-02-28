@@ -5,7 +5,7 @@
 
   = demo_box "A simple slider"
     fieldset
-      = text_input_tag :text, label_placeholder: 'Text', placeholder: 'Text'
+      = input_tag :text, :text, label_placeholder: 'Text', placeholder: 'Text'
       = password_input_tag :password, label: 'Password', required: true
       = password_input_tag :password, label_placeholder: 'Password'
       = url_input_tag :website, label: 'Web address', required: true
@@ -13,7 +13,7 @@
       = tel_input_tag :phone, label: 'Phone number', required: true
       = search_input_tag :query, label: 'Search'
       = number_input_tag :number, label: 'Number'
-      = textarea_tag :textarea, label: 'Textarea'
+      = textarea_tag :textarea, label_placeholder: 'Textarea'
 
       = select_input_tag :select1
         optgroup label="Option Group"
@@ -28,6 +28,30 @@
       = select_input_tag :select_disabled, disabled: true
         option Option one
 
+      .inline-fields
+        = input_tag :text, :text, label_placeholder: 'Text', placeholder: 'Text'
+        = checkbox_input_tag 'food', 'food', true, label: "Test tag"
+
+      .inline-fields
+        = input_tag :text, :text, label: 'Text', placeholder: 'Text'
+        = checkbox_input_tag 'food', 'food', true, label: "Test tag"
+
+  = demo_box "Credit card entry"
+    .inline-fields
+      = card_number_tag :card_number
+
+    - grid gutters: :small do |g|
+      = g.cell 2, 3
+        label Expiration
+        .inline-fields
+          = card_month_tag :card_month
+          = card_year_tag :card_year
+      = g.cell 1,3
+        label Security
+        .inline-fields
+          = card_cvc_tag :card_cvc
+
+      
 
   = heading 'Check switch'
 

@@ -47,6 +47,10 @@ toolbox.event.change(function(){
   code.setup()
 })
 
+toolbox.event.scroll.disablePointer()      // disable pointer events on scroll for performance (to avoid extra repaints)
+toolbox.event.resize.disableAnimation()    // disable animation on resize for performance (to avoid extra repaints)
+toolbox.event.bubbleFormEvents()
+
 var Megatron = toolbox.merge( {
   dialog: dialog,
   notify: notify,

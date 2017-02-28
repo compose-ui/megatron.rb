@@ -1,0 +1,139 @@
+
+.tick-label {
+  display: flex;
+  position: relative;
+  font-size: 15px;
+  padding-top: 10px;
+
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 5px;
+
+  // Radios & checkboxes
+  input[type=radio],
+  input[type=checkbox] {
+    position: absolute;
+    border: none;
+    cursor: pointer;
+    opacity: 0;
+
+
+    + .tick {
+      width: 20px;
+      height: 20px;
+      margin: 0 8px 0 0;
+      background: $white;
+      transition-property: box-shadow;
+      box-shadow: input-shadow(), $empty-shadow inset;
+    }
+
+    @include input-active {
+      border: none;
+
+      + .tick {
+        box-shadow: input-focus-shadow(), $empty-shadow inset;
+      }
+    }
+
+    &:checked + .tick {
+      box-shadow: input-shadow( darken($formBlue, 3) ), 0 0 0 10px $formBlue inset;
+    }
+
+    @include input-active {
+      &:checked {
+        + .tick {
+          box-shadow: input-focus-shadow( darken($formBlue, 5) ), 0 0 0 10px $formBlue inset;
+        }
+      }
+    }
+
+    &:disabled {
+      pointer-events: none;
+      cursor: default;
+      color: $isabella;
+
+      + .tick {
+        box-shadow: 0 0 0 1px $alabaster inset;
+      }
+    }
+  }
+
+  // Radio button: default state
+  input[type=radio] {
+    height: vr(2);
+    padding: 0;
+
+    + .tick {
+      border-radius: 50%;
+      position: relative;
+
+      &:before {
+        content: '';
+        background: white;
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        border-radius: 50%;
+        box-shadow: 0 0 0 transparent;
+        transform: scale(.9);
+        transition-property: box-shadow, transform;
+      }
+    }
+
+    &:checked + .tick:before {
+      box-shadow: 0 1px 2px darken($formBlue, 8);
+      transform: scale(.35);
+    }
+  }
+
+  // Checkboxes
+  input[type=checkbox] {
+
+    + .tick {
+      border-radius: $radius;
+      position: relative;
+
+      &:before, &:after {
+        content: '';
+        position: absolute;
+        left: -4px;
+        top: 0px;
+        width: 140%;
+        height: 70%;
+        margin: 10% 0 0 0;
+        border: solid $white;
+        border-width: 0 0 6px 6px;
+        transition-property: transform, border-color;
+        transform: scale(0) rotate(-50deg);
+      }
+    }
+
+    @include input-active {
+      + .tick:before {
+        border-color: $alabaster;
+        transform: scale(.4) rotate(-50deg);
+      }
+
+      &:checked + .tick:before {
+        top: 1px;
+        opacity: 1;
+        transform: scale(.5) rotate(-50deg);
+        border-color: darken( $formBlue, 10 );
+      }
+    }
+
+    &:checked + .tick {
+
+      &:after, &:before {
+        transform: scale(.5) rotate(-50deg);
+      }
+      &:before {
+        top: 1px;
+        opacity: 1;
+        border-color: darken( $formBlue, 10 );
+      }
+    }
+  }
+}
