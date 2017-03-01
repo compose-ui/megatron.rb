@@ -112,6 +112,10 @@ module Megatron
       options = options.stringify_keys
       classnames = options.delete('class') || ''
 
+      if label = options.delete('label')
+        label = content_tag(:span, class: 'label-text') { label }
+      end
+
       data = options['data'] || {}
       data['input'] ||= name
 
@@ -187,7 +191,11 @@ module Megatron
       options['value'] ||= options['min'] || 0
 
       html_options = {"class" => classnames, "type" => "range", "min" => options['min'], "max" => options['max'], "value" => options['value'] }.update('data' => data)
-      tag :input, html_options
+
+      content_tag(:label) {
+        concat label if label
+        concat tag :input, html_options
+      }
     end
     alias :range_input_tag :slider_input_tag
 
@@ -265,13 +273,8 @@ module Megatron
 
     end
 
-    def checkbox_input_tag(name, value = true, checked = false, options = {})
-
-      if value.is_a? Hash
-        options = value
-        value = true
-        checked = false
-      end
+    def checkbox_input_tag(name, checked = false, options = {})
+      value = true
 
       if checked.is_a? Hash
         options = checked
@@ -279,7 +282,8 @@ module Megatron
       end
 
       tick_wrapper( name, options ) do
-        check_box_tag(name, value, checked, options)
+        concat tag :input, name: name, type: :hidden, value: false
+        concat check_box_tag(name, value, checked, options)
       end
     end
 

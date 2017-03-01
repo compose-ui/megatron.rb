@@ -3,20 +3,34 @@
   form
 
     fieldset.form-panel
-      h2 Eat Something Amazing
+      legend.header Eat Something Amazing
       p Start off with an Apetizer
 
       / User name
       = text_input_tag :name, label_placeholder: "Your Name"
-      = select_input_tag :select1, label: "Hosting provider", require: true, include_blank: "Select a Host"
+
+      = textarea_tag :description, label_placeholder: "Write a poem"
+
+      = select_input_tag :select1, label: "Where do you want to host your cluster?", require: true, include_blank: "Select a provider"
           option Zaphod
           option George
           option Sally
 
+      .inline-fields
+        = radio_button_input_tag :radio_test, :one, label: "Bananas"
+        = radio_button_input_tag :radio_test, :two, label: "Kittens"
+        = radio_button_input_tag :radio_test, :three, label: "Veganic Egg whites"
+
+      label.check-switch
+        span.label-text Dancing Elephants
+        span.check-switch-panel
+          input type='checkbox'
+          span.check-switch-tick
+        span.check-switch-label Enable
+
+      label This is a standalone label
       = checkbox_input_tag :check_test, label: "Use SSL"
+      = checkbox_input_tag :check_test, label: "Request a taco"
 
-      = radio_button_input_tag :radio_test, :one, label: "Bananas"
-      = radio_button_input_tag :radio_test, :two, label: "Kittens"
-      = radio_button_input_tag :radio_test, :three, label: "Veganic Egg whites"
+      = slider_input_tag :number, label: 'Test label'
 
-      = textarea_tag :description, label_placeholder: "Write a poem"
