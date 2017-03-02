@@ -45,7 +45,7 @@ form {
 
 }
 
-label {
+label[data-input] {
   display: flex;
   flex: 1 0 auto;
   flex-direction: column;
@@ -54,17 +54,19 @@ label {
   padding-top: 10px;
   margin-bottom: 10px;
 
-  // Bare text-based inputs
-  + input,
-  + select,
-  + textarea {
-    margin-top: -5px;
-  }
-
   .label-text {
     padding-bottom: 5px;
   }
 
+}
+
+label {
+  // Bare text-based inputs
+  /*+ input,*/
+  /*+ select,*/
+  /*+ textarea {*/
+    /*margin-top: -5px;*/
+  /*}*/
 }
 
 .form-width {

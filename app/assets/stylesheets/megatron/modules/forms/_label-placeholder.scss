@@ -1,5 +1,4 @@
-// Input labels
-.placeholder-label {
+@mixin label-placeholder {
   // Scoped variables
   $font-size:  16px;
   $padding-x:  12px;
@@ -13,57 +12,59 @@
   $height:     50px;
   $duration: .2s;
 
-  padding: 0;
-  clear: both;
-  flex: 1 0 auto;
-  line-height: vr(2);
-  background: $white;
-  font-size: $font-size;
-  margin-bottom: $margin;
+  // Input labels
+  label.placeholder-label {
 
-  // Nested text-based inputs
-  > input,
-  > textarea {
-    margin-top: 5px;
-  }
+    padding-top: 0;
+    line-height: vr(2);
+    background: $white;
+    font-size: $font-size;
+    margin-bottom: $margin;
 
-  // Hide input placeholder text
-  ::placeholder {
-    opacity: 0;
-    color: transparent;
-  }
+    // Nested text-based inputs
+    > input,
+    > textarea {
+      margin-top: 5px;
+    }
 
-  // Default active color
-  :not(.valid):not(.invalid) > {
-    textarea, #{$text-inputs} {
-      &:focus + span,
-      &:active + span {
-        color: $steel;
+    // Hide input placeholder text
+    ::placeholder {
+      opacity: 0;
+      color: transparent;
+    }
+
+    // Default active color
+    :not(.valid):not(.invalid) > {
+      textarea, #{$text-inputs} {
+        &:focus + span,
+        &:active + span {
+          color: $steel;
+        }
       }
     }
-  }
-  
-  // Inputs
-  textarea, #{$text-inputs} {
-    z-index: 1;
-    margin: 0;
-    font-size: $font-size;
-    line-height: inherit;
-    background: transparent;
-    padding: $padding-y $padding-x;
+    
+    // Inputs
+    textarea, #{$text-inputs} {
+      z-index: 1;
+      margin: 0;
+      font-size: inherit;
+      line-height: inherit;
+      background: transparent;
+      padding: $padding-y $padding-x;
 
-    // Move labels out of the way on focus and empty
-    &:focus + .placeholder-label-text,
-    &:active + .placeholder-label-text,
-    &:not(.empty) + .placeholder-label-text, {
-      z-index: 2;
-      transform: translate3d($distance-x, $distance-y, 0) scale($scale);
-      color: darken($steel, 10);
+      // Move labels out of the way on focus and empty
+      &:focus + .placeholder-label-text,
+      &:active + .placeholder-label-text,
+      &:not(.empty) + .placeholder-label-text, {
+        z-index: 2;
+        transform: translate3d($distance-x, $distance-y, 0) scale($scale);
+        color: darken($steel, 10);
+      }
     }
   }
 
   // Faux-placeholder labels
-  &-text {
+  .placeholder-label-text {
     font-size: inherit;
     height: vr(1.6); // 30px
     position: absolute;
@@ -85,3 +86,5 @@
        6px 0 $white;
   }
 }
+
+@include label-placeholder;

@@ -1,4 +1,4 @@
-.tick-label {
+label[data-input=radio], label[data-input=checkbox] {
   display: flex;
   position: relative;
   font-size: 15px;
@@ -12,6 +12,9 @@
   *, *:after, *:before {
     transition-timing-function: cubic-bezier( 0.175, 0.885, 0.320, 1.275 );
   }
+}
+
+label[data-input] {
 
   // Radios & checkboxes
   input[type=radio],
@@ -37,8 +40,7 @@
       + .tick { box-shadow: input-shadow( $steel ), $empty-shadow inset; }
     }
 
-
-    &:disabled {
+&:disabled {
       pointer-events: none;
       cursor: default;
       color: $isabella;

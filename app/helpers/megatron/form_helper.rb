@@ -267,6 +267,8 @@ module Megatron
         checked = false
       end
 
+      options[:type] = 'radio'
+
       tick_wrapper( name, options ) do
         radio_button_tag(name, value, checked, options)
       end
@@ -280,6 +282,8 @@ module Megatron
         options = checked
         checked = false
       end
+
+      options[:type] = 'checkbox'
 
       tick_wrapper( name, options ) do
         concat tag :input, name: name, type: :hidden, value: false
@@ -326,10 +330,12 @@ module Megatron
         value = nil
       end
 
-      label_options = {}
-
       options = (INPUT_OPTIONS[type]||{}).deep_merge options
       options[:type] ||= type
+
+      label_options = { 
+        data: { input: options[:type] }
+      }
 
       if label_placeholder = options.delete(:label_placeholder)
         options[:placeholder] = label_placeholder
@@ -337,29 +343,30 @@ module Megatron
         label_options[:class] = 'placeholder-label'
       end
 
-      if !label_placeholder && label = options.delete(:label)
-        label = content_tag(:span, class: 'label-text') { label }
+      if !label_placeholder && label_text = options.delete(:label)
+        label_text = content_tag(:span, class: 'label-text') { label_text }
       end
 
       content_tag(:label, label_options) {
-        concat label
-        concat base_tag(name, value, options, type)
+        concat label_text
+        concat base_tag(name, value, options, type) 
         concat label_placeholder
       }
 
     end
 
     private
-    
+
     def tick_wrapper( name, options, &block )
 
-      tag = extract_block(&block).html_safe
+      tag = extract_block(&block)
+      type = options[:type]
 
       tick = content_tag(:span, class: 'tick') {''}
       label = content_tag(:span, class: 'label-text') { options.delete(:label) || name }
 
-      content_tag(:label, class: 'tick-label') {
-        concat tag
+      content_tag(:label, data: { input: type }) {
+        concat tag.html_safe
         concat tick
         concat content_tag(:span, class: 'label-text-wrapper') { label }
       }
