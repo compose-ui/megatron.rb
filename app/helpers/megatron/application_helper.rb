@@ -24,17 +24,16 @@ module Megatron
 
     def test_current_page(criteria)
       return false unless criteria.present?
-      
+
       test_params = criteria.delete(:params) || {}
       [:controller, :action, :path].each do |k|
         test_params[k] ||= criteria[k] if criteria[k].present?
       end
 
-      fullpath = parse_url(request.fullpath)
+      fullpath = parse_url(controller.try(:fullpath) || request.fullpath)
       check_params = params.to_unsafe_hash.symbolize_keys.merge(path: fullpath)
 
       test_params.all? {|k, v| test_here_key_value(k, v, check_params) }
-
     end
 
     def parse_url(path)
