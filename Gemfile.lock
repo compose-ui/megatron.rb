@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    megatron (0.3.2)
+    megatron (0.3.4)
       block_helpers (~> 0.3.3)
       cyborg
       gaffe (~> 1)
