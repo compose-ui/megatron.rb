@@ -31,9 +31,9 @@ $empty-shadow: 0 0 0 transparent;
 $focus-shadow: input-focus-shadow();
 $input-shadow: input-shadow();
 
-*, *:before, *:after { 
+*, *:before, *:after {
   transition-duration: .25s;
-  transition-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1); 
+  transition-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
 form {
@@ -197,7 +197,7 @@ input, select, textarea {
 
 }
 
-#{$text-inputs}, select, textarea { 
+#{$text-inputs}, select, textarea {
   @include input-base;
 
   @include input-active {
