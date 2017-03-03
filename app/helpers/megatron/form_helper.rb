@@ -192,7 +192,7 @@ module Megatron
 
       html_options = {"class" => classnames, "type" => "range", "min" => options['min'], "max" => options['max'], "value" => options['value'] }.update('data' => data)
 
-      content_tag(:label) {
+      content_tag(:label, data: { input: :range }) {
         concat label if label
         concat tag :input, html_options
       }
@@ -304,6 +304,31 @@ module Megatron
       input_tag(:select, name, option_tags, options)
     end
 
+    def switch_input_tag(name, checked = false, options = {})
+
+      if checked.is_a? Hash
+        options = checked
+        checked = false
+      end
+
+      if label_text = options.delete(:label)
+        label_text = content_tag(:span, class: 'label-text') { label_text }
+      end
+
+      content_tag(:label, class: 'check-switch', data: { input: 'checkbox' }) do
+        concat tag :input, name: name, type: :hidden, value: false
+        concat label_text
+
+        concat content_tag(:span, class: 'check-switch-panel') {
+          concat check_box_tag(name, true, checked, options)
+          concat content_tag(:span, class: 'check-switch-tick') { '' }
+        }
+
+        concat content_tag(:span, class: 'check-switch-label') { 'Enable' }
+      end
+
+    end
+
     private
 
     def extract_block(&block)
@@ -365,7 +390,7 @@ module Megatron
       tick = content_tag(:span, class: 'tick') {''}
       label = content_tag(:span, class: 'label-text') { options.delete(:label) || name }
 
-      content_tag(:label, data: { input: type }) {
+      content_tag(:label, class: 'tick-box', data: { input: type }) {
         concat tag.html_safe
         concat tick
         concat content_tag(:span, class: 'label-text-wrapper') { label }

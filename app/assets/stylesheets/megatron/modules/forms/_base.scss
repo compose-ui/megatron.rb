@@ -45,28 +45,31 @@ form {
 
 }
 
-label[data-input] {
+label {
   display: flex;
-  flex: 1 0 auto;
+  margin: 15px 0;
+  font-size: 15px;
   flex-direction: column;
   position: relative;
-  font-size: 15px;
-  padding-top: 10px;
-  margin-bottom: 10px;
+  flex: 1 0 auto;
 
   .label-text {
-    padding-bottom: 5px;
+    padding-bottom: 7px;
   }
+}
 
+label[data-input] {
+  pointer-events: none;
+  * { pointer-events: all; }
 }
 
 label {
   // Bare text-based inputs
-  /*+ input,*/
-  /*+ select,*/
-  /*+ textarea {*/
-    /*margin-top: -5px;*/
-  /*}*/
+  + input,
+  + select,
+  + textarea {
+    margin-top: -5px;
+  }
 }
 
 .form-width {
@@ -121,6 +124,7 @@ legend {
 fieldset h2, legend.header {
   text-transform: none;
   letter-spacing: normal;
+  justify-content: space-between;
   box-shadow: none;
   font-weight: 300;
   width: 100%;
@@ -138,8 +142,6 @@ fieldset h2, legend.header {
   flex-wrap: wrap;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 10px;
-  padding-top: 10px;
 
   // Remove top spacing from submit button
   > [type=submit] {
@@ -148,7 +150,6 @@ fieldset h2, legend.header {
   }
 
   label + & {
-    padding-top: 0;
     margin-top: -5px;
   }
 
@@ -159,10 +160,10 @@ fieldset h2, legend.header {
 
   > label { margin-bottom: 0; padding-top: 0; }
 
-  // Leave right margin off last element
-  > :not(:last-child) {
-    margin-right: 10px;
-  }
+   //Leave right margin off last element
+  //> :not(:last-child) {
+    //margin-right: 10px;
+  //}
 }
 
 @mixin input-base {
