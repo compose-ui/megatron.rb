@@ -4,9 +4,8 @@ task :default do
   system 'bundle exec cyborg server -w -C'
 end
 
-task :watch do
-  system 'rm -rf public'
-  system 'bundle exec cyborg watch -C'
+task :start do
+  system "foreman start"
 end
 
 task :upload do
