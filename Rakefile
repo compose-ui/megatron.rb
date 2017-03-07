@@ -5,7 +5,7 @@ task :default do
 end
 
 task :start do
-  system "foreman start"
+  system "bundle exec cyborg server -wC -p 1337"
 end
 
 task :upload do
