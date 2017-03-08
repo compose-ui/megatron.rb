@@ -73,6 +73,7 @@ module Megatron
       },
 
       select_country: {
+        type: "select",
         country_options: {
           include_blank: "Select a country",
           priority_countries: ["US", "GB", "CA"],
@@ -192,7 +193,7 @@ module Megatron
 
       html_options = {"class" => classnames, "type" => "range", "min" => options['min'], "max" => options['max'], "value" => options['value'] }.update('data' => data)
 
-      content_tag(:label, data: { input: :range }) {
+      content_tag(:label, class: 'range-label') {
         concat label if label
         concat tag :input, html_options
       }
@@ -204,8 +205,10 @@ module Megatron
       country_options.reverse_merge! INPUT_OPTIONS[:select_country][:country_options]
 
       options = INPUT_OPTIONS[:select_country][:html_options].deep_merge options
+      options[:class] ||= ' '
+      options[:class] += " #{label_class(:select)}"
 
-      content_tag(:label) do
+      content_tag(:label, class: options.delete(:class) ) do
         country_select :user, :country, country_options, options
       end
     end
@@ -267,7 +270,7 @@ module Megatron
         checked = false
       end
 
-      options[:type] = 'radio'
+      options[:type] = :radio
 
       tick_wrapper( name, options ) do
         radio_button_tag(name, value, checked, options)
@@ -283,9 +286,10 @@ module Megatron
         checked = false
       end
 
-      options[:type] = 'checkbox'
+      options[:type] = :checkbox
 
       tick_wrapper( name, options ) do
+        options.delete(:class)
         concat tag :input, name: name, type: :hidden, value: false
         concat check_box_tag(name, value, checked, options)
       end
@@ -315,12 +319,12 @@ module Megatron
         label_text = content_tag(:span, class: 'label-text') { label_text }
       end
 
-      content_tag(:label, class: 'check-switch', data: { input: 'checkbox' }) do
+      content_tag(:label, class: 'check-switch switch-label', data: { input: 'checkbox' }) do
         concat tag :input, name: name, type: :hidden, value: false
         concat label_text
+        concat check_box_tag(name, true, checked, options)
 
         concat content_tag(:span, class: 'check-switch-panel') {
-          concat check_box_tag(name, true, checked, options)
           concat content_tag(:span, class: 'check-switch-tick') { '' }
         }
 
@@ -358,14 +362,15 @@ module Megatron
       options = (INPUT_OPTIONS[type]||{}).deep_merge options
       options[:type] ||= type
 
+
       label_options = { 
-        data: { input: options[:type] }
+        class: "#{label_class(options[:type])} #{options.delete(:class)}"
       }
 
       if label_placeholder = options.delete(:label_placeholder)
         options[:placeholder] = label_placeholder
         label_placeholder = content_tag(:span, class: 'placeholder-label-text') { label_placeholder }
-        label_options[:class] = 'placeholder-label'
+        label_options[:class] += ' placeholder-label'
       end
 
       if !label_placeholder && label_text = options.delete(:label)
@@ -382,15 +387,30 @@ module Megatron
 
     private
 
+    def label_class( type )
+      type = case type
+      when :tel, :password, :number, :url, :email, :search
+        "text"
+      when :checkbox, :radio
+        "tick"
+      else
+        type.to_s
+      end
+
+      "#{type}-label"
+    end
+
     def tick_wrapper( name, options, &block )
 
       tag = extract_block(&block)
-      type = options[:type]
 
       tick = content_tag(:span, class: 'tick') {''}
       label = content_tag(:span, class: 'label-text') { options.delete(:label) || name }
 
-      content_tag(:label, class: 'tick-box', data: { input: type }) {
+      options[:class] ||= ' '
+      options[:class] << "#{label_class( options.delete(:type) )} tick-box"
+
+      content_tag(:label, options ) {
         concat tag.html_safe
         concat tick
         concat content_tag(:span, class: 'label-text-wrapper') { label }

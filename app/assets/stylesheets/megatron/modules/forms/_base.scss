@@ -58,7 +58,7 @@ label {
   }
 }
 
-label[data-input] {
+.switch-label, .tick-label {
   pointer-events: none;
   * { pointer-events: all; }
 }
@@ -70,8 +70,7 @@ label {
   + textarea {
     margin-top: -5px;
   }
-}
-
+} 
 .form-width {
   max-width: 700px;
 }
@@ -157,6 +156,10 @@ fieldset h2, legend.header {
     &:before           { top: vr(2/15); }
     .label-text:before { top: vr(3/5); }
   }
+
+  /*> :not(:last-child) {*/
+    /*padding-right: 15px;*/
+  /*}*/
 }
 
 @mixin input-base {

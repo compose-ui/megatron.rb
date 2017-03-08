@@ -66,6 +66,7 @@
 
   // Faux-placeholder labels
   .placeholder-label-text {
+    pointer-events: none;
     font-size: inherit;
     height: vr(1.6); // 30px
     position: absolute;

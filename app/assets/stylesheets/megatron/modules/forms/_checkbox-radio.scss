@@ -1,4 +1,4 @@
-label[data-input].tick-box {
+label.tick-box {
   flex-direction: row;
   align-items: center;
 
@@ -8,8 +8,7 @@ label[data-input].tick-box {
   }
 
   // Radios & checkboxes
-  input[type=radio],
-  input[type=checkbox] {
+  input {
     position: absolute;
     border: none;
     cursor: pointer;
