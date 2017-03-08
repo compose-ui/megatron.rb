@@ -21,6 +21,10 @@
         = radio_button_input_tag :radio_test, :two, label: "Kittens"
         = radio_button_input_tag :radio_test, :three, label: "Veganic Egg whites"
 
+      .inline-fields
+        = text_input_tag :name, label_placeholder: "First Name"
+        = text_input_tag :name, label_placeholder: "Last Name"
+
       = switch_input_tag :switch_test, label: "Dancing Elephants?"
 
       label This is a standalone label

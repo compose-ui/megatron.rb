@@ -157,13 +157,6 @@ fieldset h2, legend.header {
     &:before           { top: vr(2/15); }
     .label-text:before { top: vr(3/5); }
   }
-
-  > label { margin-bottom: 0; padding-top: 0; }
-
-   //Leave right margin off last element
-  //> :not(:last-child) {
-    //margin-right: 10px;
-  //}
 }
 
 @mixin input-base {
