@@ -1,0 +1,79 @@
+.toggle-row {
+  $radius: 4px;
+
+  display: flex;
+
+  &-label-text {
+    font-size: 15px;
+    margin-right: 10px;
+  }
+
+  .toggle-row-panel {
+    display: flex;
+    box-shadow: input-shadow();
+    background: $alabaster;
+    border-radius: $radius;
+    padding: 1px;
+  }
+
+  .toggle-nav-label {
+    margin: 0;
+    pointer-events: none;
+    * { pointer-events: all; }
+
+    &:first-child .label-text {
+      border-top-left-radius: $radius - 1;
+      border-bottom-left-radius: $radius - 1;
+      margin-left: 0;
+    }
+    &:last-child .label-text {
+      border-top-right-radius: $radius - 1;
+      border-bottom-right-radius: $radius - 1;
+    }
+  }
+
+  .label-text {
+    margin-left: 1px;
+    font-size: 14px;
+    padding: 3px 6px;
+    background-color: #fff;
+    box-shadow: $empty-shadow, $empty-shadow;
+  }
+
+  input:checked + .label-text {
+    background-color: $formBlue;
+    box-shadow: 0 0 0 1px darken($formBlue, 10);
+    color: #fff;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 1px darken($formBlue, 10);
+  }
+
+  input { @include input-active { + .label-text {
+    color: darken($formBlue, 10);
+    box-shadow: 0 0 0 1px rgba($formBlue, .5);
+    background-color: mix($formBlue, white, 10%);
+  }}}
+  input:checked { @include input-active { + .label-text {
+    color: #fff;
+    box-shadow: 0 0 0 1px darken($formBlue, 10);
+    background-color: lighten($formBlue, 5);
+  }}}
+}
+
+.toggle-well {
+  box-shadow: input-shadow();
+  border-radius: $radius;
+  position: relative;
+  padding: vr(2);
+  margin: 15px 0;
+  background: #fff;
+
+  .toggle-row:first-child {
+    justify-content: space-around;
+    position: absolute;
+    width: 100%;
+    top: -12px;
+    left: 0;
+  }
+}

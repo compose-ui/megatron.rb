@@ -56,6 +56,9 @@ label {
   .label-text {
     padding-bottom: 7px;
   }
+  textarea {
+    margin: 2px 0;
+  }
 }
 
 .switch-label, .tick-label {
@@ -69,6 +72,14 @@ label {
   + select,
   + textarea {
     margin-top: -5px;
+  }
+
+  [type=checkbox], [type=radio] {
+    position: absolute;
+    border: none;
+    cursor: pointer;
+    opacity: 0;
+    z-index: -1;
   }
 } 
 .form-width {

@@ -335,10 +335,6 @@ module Megatron
 
     private
 
-    def extract_block(&block)
-      content_tag(:foo, &block).gsub(/<\/?foo>/m, '')
-    end
-
     def base_tag(name, value, options, type)
       case type
       when :select

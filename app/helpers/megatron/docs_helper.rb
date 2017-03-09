@@ -31,7 +31,7 @@ module Megatron
         }
 
         concat code(options[:type], id: "source-#{rand}", class: 'hidden') {
-          lines = extract_code(block, 'demo_box')
+          extract_code(block, 'demo_box')
         }
         concat content_tag(:div, id: "demo-#{rand}", &block)
       end

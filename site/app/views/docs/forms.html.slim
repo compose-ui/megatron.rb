@@ -3,7 +3,22 @@
 - main
   = heading 'Form inputs'
 
-  = demo_box "A simple slider"
+  = demo_box "Toggle row example"
+    fieldset.toggle-well
+      - toggle_row do |s|
+        = s.option "SSH", checked: true, show: '.panel-1'
+        = s.option "HTTPS", show: '.panel-2'
+        = s.option "Magic Beans", show: '.panel-3'
+
+      .panel-1
+        = text_input_tag :name, label: "SSH connection", placeholder: "user@domain:food/bears"
+      .panel-2
+        = text_input_tag :name, label: "HTTPS URL", placeholder: "https://example.kittens.food"
+      .panel-3
+        = textarea_tag :name, label: "Magic Beans? Wtf!?", placeholder: "Magic Bean chili recipe"
+          
+
+  = demo_box "Text style inputs"
     fieldset
       = input_tag :text, :text, label_placeholder: 'Text', placeholder: 'Text'
       = password_input_tag :password, label: 'Password', required: true

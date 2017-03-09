@@ -61,5 +61,22 @@ module Megatron
     def get_root_url
       ENV["ROOT_URL"] || '/'
     end
+
+    def extract_block(&block)
+      content_tag(:foo, &block).gsub(/<\/?foo>/m, '')
+    end
+
+    def set_toggle_options( options )
+      options[:data] ||= {}
+      options[:data] = options[:data].merge({
+        show: options.delete(:show),
+        hide: options.delete(:hide),
+        add_class: options.delete(:add_class),
+        remove_class: options.delete(:remove_class)
+      })
+
+      options
+    end
+
   end
 end

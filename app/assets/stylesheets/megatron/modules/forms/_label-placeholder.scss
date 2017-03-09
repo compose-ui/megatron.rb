@@ -4,9 +4,7 @@
   $padding-x:  12px;
   $padding-y:   9px;
   $margin:     10px;
-  //$distance-y:  -($font-size * 2 + 1);
-  //$distance-x:  -($padding-x + 1);
-  $distance-y: -($font-size + 2);
+  $distance-y: -23px;
   $distance-x: 0;
   $scale:      .875;
   $height:     50px;
@@ -44,7 +42,7 @@
     }
     
     // Inputs
-    textarea, #{$text-inputs} {
+    textarea, input {
       z-index: 1;
       margin: 0;
       font-size: inherit;
@@ -59,7 +57,6 @@
         z-index: 2;
         transform: translate3d($distance-x, $distance-y, 0) scale($scale);
         color: darken($steel, 10);
-        line-height: vr(1.2);
       }
     }
   }
@@ -68,9 +65,9 @@
   .placeholder-label-text {
     pointer-events: none;
     font-size: inherit;
-    height: vr(1.6); // 30px
+    line-height: 1.2em;
     position: absolute;
-    top: $padding-y;
+    top: $padding-y + 5px;
     z-index: 1;
     left: $padding-x;
     padding: 1px 0 0 1px;
@@ -82,7 +79,7 @@
     z-index: 0;
     color: $alabaster;
     transform: translate3d(0, 0, 0) scale(1);
-    transition-property: z-index, color, transform, line-height;
+    transition-property: z-index, color, transform;
     background: $white;
     box-shadow: -6px 0 $white, 6px 0 $white;
   }

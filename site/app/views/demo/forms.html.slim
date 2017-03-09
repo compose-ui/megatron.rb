@@ -12,9 +12,9 @@
       = textarea_tag :description, label_placeholder: "Write a poem"
 
       = select_input_tag :select1, label: "Where do you want to host your cluster?", require: true, include_blank: "Select a provider"
-          option Zaphod
-          option George
-          option Sally
+        option Zaphod
+        option George
+        option Sally
 
       .inline-fields
         = radio_button_input_tag :radio_test, :one, label: "Bananas"
@@ -28,8 +28,22 @@
       = switch_input_tag :switch_test, label: "Dancing Elephants?"
 
       label This is a standalone label
+
       = checkbox_input_tag :check_test, label: "Use SSL"
       = checkbox_input_tag :check_test, label: "Request a taco"
 
       = slider_input_tag :number, label: 'Test label'
 
+      fieldset.toggle-well
+        - toggle_row class: 'kittens' do |s|
+          = s.option "SSH", checked: true, show: '.panel-1'
+          = s.option "HTTPS", show: '.panel-2'
+          = s.option "Magic Beans", show: '.panel-3'
+
+        .panel-1
+          = text_input_tag :name, label: "SSH connection", placeholder: "user@domain:food/bears"
+        .panel-2
+          = text_input_tag :name, label: "HTTPS URL", placeholder: "https://example.kittens.food"
+        .panel-3
+          = textarea_tag :name, label: "Magic Beans? Wtf!?", placeholder: "Magic Bean chili recipe"
+        

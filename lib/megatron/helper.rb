@@ -15,6 +15,7 @@ module Megatron
         klass.parent.class_eval %(
           def #{method_name}(*args, &block)
             # Get the current helper object which has all the normal helper methods
+            
             if self.is_a?(BlockHelpers::Base) 
               top_level_helper = self.helper
               parent_block_helper = self
@@ -25,19 +26,26 @@ module Megatron
             
             # We need to save the current helper and parent block helper in the class so that
             # it's visible to the renderer's 'initialize' method...
+            
             #{klass.name}.current_helper = top_level_helper
             #{klass.name}.current_parent_block_helper = parent_block_helper
             renderer = #{klass.name}.new(*args)
+
             # ...then set them anyway on the renderer so that renderer methods can use it
+            
             renderer.send(:helper=, top_level_helper)
             renderer.send(:parent=, parent_block_helper)
             body = block ? capture(renderer, &block) : nil
             processed_body = renderer.display(body)
             if processed_body
+
               # If concat is the old rails/merb version with 2 args...
+              
               if top_level_helper.method(:concat).arity == 2
                 concat processed_body, binding
+
               # ...otherwise call with one arg
+
               else
                 concat processed_body
               end

@@ -9,10 +9,6 @@ label.tick-box {
 
   // Radios & checkboxes
   input {
-    position: absolute;
-    border: none;
-    cursor: pointer;
-    opacity: 0;
 
     // Element styled to replace checkbox or radio button
     + .tick {

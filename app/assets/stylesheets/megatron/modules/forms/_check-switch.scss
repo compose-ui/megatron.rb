@@ -81,8 +81,8 @@
 
   input:checked + &-panel &-tick {
     background-color: $formBlue;
-    transform: translate3d( $tick-width , 0, 0 );
     box-shadow: input-shadow( darken($formBlue, 10) );
+    transform: translate3d( $tick-width , 0, 0 );
 
     &:before,
     &:after {
