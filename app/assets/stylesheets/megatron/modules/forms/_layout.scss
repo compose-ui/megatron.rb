@@ -1,0 +1,98 @@
+.form-row {
+  margin: 15px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin: 0 -5px;
+
+  > * {
+    padding: 0 5px;
+  }
+}
+
+.cell-wide {
+  flex: 1 0 auto;
+}
+
+
+.form-width {
+  max-width: 700px;
+}
+
+/*.form-row {*/
+  /*margin: .8em 0;*/
+  /*&.split {*/
+    /*margin-top: 1.3em;*/
+    /*padding-top: .5em;*/
+    /*border-top: 1px solid $page-border;*/
+    /*box-shadow: #fff 0 1px inset;*/
+  /*}*/
+/*}*/
+
+// All form fieldsets
+.form-panel {
+  margin: vr(2) auto;
+  max-width: 100%;
+  padding: vr(2);
+  border-radius: $radius;
+  background: $white;
+  box-shadow: 0 0 25px rgba(0, 0, 0, .05), 0 0 0 1px $alabaster inset;
+
+  > :first-child {
+    padding-top: 0;
+    margin-top: 0;
+  }
+}
+
+.form-well {
+  box-shadow: input-shadow();
+  border-radius: $radius;
+  position: relative;
+  padding: vr(2);
+  margin: 15px 0;
+  background: rgba(#000, .02);
+
+  .toggle-row:first-child {
+    justify-content: space-around;
+    margin: 0;
+    position: absolute;
+    width: 100%;
+    top: -12px;
+    left: 0;
+  }
+}
+.form-footer {
+  display: flex;
+  flex-direction: row-reverse;
+  margin: 1.3em 0 $block-margin;
+  padding-top: 1.3em;
+  border-top: 1px solid $page-border;
+  box-shadow: #fff 0 1px inset;
+}
+
+.inline-fields {
+  display: flex;
+  flex: 0 1 auto;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+
+  // Remove top spacing from submit button
+  > [type=submit] {
+    margin-top: 0;
+    align-self: stretch;
+  }
+
+  label + & {
+    margin-top: -5px;
+  }
+
+  .label-text-wrapper {
+    &:before           { top: vr(2/15); }
+    .label-text:before { top: vr(3/5); }
+  }
+
+  /*> :not(:last-child) {*/
+    /*padding-right: 15px;*/
+  /*}*/
+}

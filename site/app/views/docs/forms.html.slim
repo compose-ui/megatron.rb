@@ -3,8 +3,8 @@
 - main
   = heading 'Form inputs'
 
-  = demo_box "Toggle row example"
-    fieldset.toggle-well
+  = demo_box "A form well with a toggle row"
+    fieldset.form-well
       - toggle_row do |s|
         = s.option "SSH", checked: true, show: '.panel-1'
         = s.option "HTTPS", show: '.panel-2'

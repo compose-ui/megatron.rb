@@ -56,8 +56,8 @@ label {
   .label-text {
     padding-bottom: 7px;
   }
-  textarea {
-    margin: 2px 0;
+  input, textarea {
+    margin: 0px;
   }
 }
 
@@ -82,41 +82,12 @@ label {
     z-index: -1;
   }
 } 
-.form-width {
-  max-width: 700px;
-}
-
-.form-row {
-  margin: .8em 0;
-  &.split {
-    margin-top: 1.3em;
-    padding-top: .5em;
-    border-top: 1px solid $page-border;
-    box-shadow: #fff 0 1px inset;
-  }
-}
 
 fieldset {
   border: 0;
   padding: 0;
   margin-left: 0;
   margin-right: 0;
-}
-
-// All form fieldsets
-.form-panel {
-  width: 450px;
-  margin: vr(2) auto;
-  max-width: 100%;
-  padding: vr(2);
-  border-radius: $radius;
-  background: $white;
-  box-shadow: 0 0 25px rgba(0, 0, 0, .05), 0 0 0 1px $alabaster inset;
-
-  > :first-child {
-    padding-top: 0;
-    margin-top: 0;
-  }
 }
 
 // Fieldset legends
@@ -146,32 +117,6 @@ fieldset h2, legend.header {
   + * { clear: both; }
 }
 
-.inline-fields {
-  display: flex;
-  flex: 0 1 auto;
-  flex-wrap: wrap;
-  flex-direction: row;
-  align-items: center;
-
-  // Remove top spacing from submit button
-  > [type=submit] {
-    margin-top: 0;
-    align-self: stretch;
-  }
-
-  label + & {
-    margin-top: -5px;
-  }
-
-  .label-text-wrapper {
-    &:before           { top: vr(2/15); }
-    .label-text:before { top: vr(3/5); }
-  }
-
-  /*> :not(:last-child) {*/
-    /*padding-right: 15px;*/
-  /*}*/
-}
 
 @mixin input-base {
   width: 100%;
@@ -243,7 +188,7 @@ textarea {
   input,
   select,
   textarea {
-    margin-bottom: 10px;
+    margin: 15px 0;
   }
 }
 

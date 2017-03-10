@@ -1,0 +1,56 @@
+%button {
+  font-size: 16px;
+  line-height: vr(2); // 30px
+  padding: 9px 15px;
+  margin-top: 15px;
+  margin: 15px 0;
+  * + & {
+    margin: 15px 5px;
+  }
+  cursor: pointer;
+  text-align: center;
+  border-radius: 3px;
+  border: none;
+  font-weight: 700;
+
+  @include smooth-text;
+
+  &:active, &:hover   { outline: none }
+  &:focus             { outline: none; }
+  &::-moz-focus-inner { border: none; padding: 0; }
+
+  // Remove any hover decorations for links
+  &, &:hover, &:focus { text-decoration: none; }
+
+  &:not(.primary) {
+    color: $text-color;
+    background-color: #fff;
+    text-shadow: light-text-shadow( #fff ) 0 1px 1px;
+    box-shadow: $input-shadow;
+
+    @include input-active {
+      background-color: mix($formBlue, #fff, 15%);
+      text-shadow: light-text-shadow( mix($formBlue, #fff, 15%) ) 0 1px 1px;
+      box-shadow: input-shadow( rgba($formBlue, .5) );
+      color: darken($formBlue, 20);
+    }
+  }
+
+  &.primary {
+    background-color: $formBlue;
+    box-shadow: input-shadow( darken($formBlue, 10) );
+    text-shadow: dark-text-shadow($formBlue) 0 1px 1px;
+    color: #fff;
+
+    @include input-active {
+      background-color: darken($formBlue, 10);
+      box-shadow: input-shadow( darken($formBlue, 20) );
+      text-shadow: dark-text-shadow( darken($formBlue, 10) ) 0 1px 1px;
+      color: #fff;
+    }
+  }
+}
+
+button, a.button {
+  @extend %button;
+}

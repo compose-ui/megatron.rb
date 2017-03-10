@@ -3,7 +3,6 @@
   $font-size:  16px;
   $padding-x:  12px;
   $padding-y:   9px;
-  $margin:     10px;
   $distance-y: -23px;
   $distance-x: 0;
   $scale:      .875;
@@ -17,7 +16,6 @@
     line-height: vr(2);
     background: $white;
     font-size: $font-size;
-    margin-bottom: $margin;
 
     // Nested text-based inputs
     > input,

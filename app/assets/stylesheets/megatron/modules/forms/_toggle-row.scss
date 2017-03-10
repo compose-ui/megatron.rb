@@ -2,6 +2,8 @@
   $radius: 4px;
 
   display: flex;
+  align-items: baseline;
+  margin: 15px 0;
 
   &-label-text {
     font-size: 15px;
@@ -61,19 +63,3 @@
   }}}
 }
 
-.toggle-well {
-  box-shadow: input-shadow();
-  border-radius: $radius;
-  position: relative;
-  padding: vr(2);
-  margin: 15px 0;
-  background: #fff;
-
-  .toggle-row:first-child {
-    justify-content: space-around;
-    position: absolute;
-    width: 100%;
-    top: -12px;
-    left: 0;
-  }
-}
