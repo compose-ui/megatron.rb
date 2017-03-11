@@ -1,17 +1,24 @@
+@keyframes blue-pulse {
+  0%, 100% {
+    background-color: $button-blue;
+  }
+  50% {
+    background-color: darken($button-blue, 12);
+  }
+}
+
 %button {
-  font-size: 16px;
+  font-size: 15px;
   line-height: vr(2); // 30px
   padding: 9px 15px;
-  margin-top: 15px;
   margin: 15px 0;
-  * + & {
-    margin: 15px 5px;
-  }
   cursor: pointer;
   text-align: center;
   border-radius: 3px;
   border: none;
   font-weight: 700;
+
+  transition-property: color, background-color, box-shadow;
 
   @include smooth-text;
 
@@ -22,30 +29,46 @@
   // Remove any hover decorations for links
   &, &:hover, &:focus { text-decoration: none; }
 
-  &:not(.primary) {
+  &:not(.primary):not(.destroy) {
     color: $text-color;
     background-color: #fff;
-    text-shadow: light-text-shadow( #fff ) 0 1px 1px;
+    @include light-text-shadow( #fff );
     box-shadow: $input-shadow;
 
-    @include input-active {
-      background-color: mix($formBlue, #fff, 15%);
-      text-shadow: light-text-shadow( mix($formBlue, #fff, 15%) ) 0 1px 1px;
-      box-shadow: input-shadow( rgba($formBlue, .5) );
+    &:focus, &:hover:not([disabled]) {
+      $bg: scale-color( $formBlue, $lightness: 95% );
+      background-color: $bg;
+      @include light-text-shadow( $bg );
+      box-shadow: input-focus-shadow( rgba($formBlue, .5) );
       color: darken($formBlue, 20);
     }
   }
 
   &.primary {
     background-color: $formBlue;
-    box-shadow: input-shadow( darken($formBlue, 10) );
-    text-shadow: dark-text-shadow($formBlue) 0 1px 1px;
+    box-shadow: input-shadow( darken($formBlue, 15) );
+    @include dark-text-shadow( $formBlue );
     color: #fff;
 
-    @include input-active {
-      background-color: darken($formBlue, 10);
-      box-shadow: input-shadow( darken($formBlue, 20) );
-      text-shadow: dark-text-shadow( darken($formBlue, 10) ) 0 1px 1px;
+    &:focus, &:hover:not([disabled]) {
+      $bg: scale-color($formBlue, $lightness: 15%);
+      background-color: $bg;
+      box-shadow: input-focus-shadow( darken($formBlue, 25) );
+      color: #fff;
+    }
+  }
+
+  &.destroy {
+    $destroy-bright: #fdfdfd;
+
+    background: $destroy-bright;
+    color: $red;
+    box-shadow: input-shadow($red);
+
+    &:focus, &:hover:not([disabled]) {
+      background-color: darken($red, 10);
+      box-shadow: input-focus-shadow( darken($red, 20) );
+      text-shadow: dark-text-shadow( darken($red, 10) ) 0 1px 1px;
       color: #fff;
     }
   }
@@ -53,4 +76,8 @@
 
 button, a.button {
   @extend %button;
+
+  .form-footer & {
+    margin: { left: 5px; right: 5px; }
+  }
 }

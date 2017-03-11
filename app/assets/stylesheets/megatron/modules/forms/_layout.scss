@@ -61,13 +61,20 @@
     left: 0;
   }
 }
+
 .form-footer {
   display: flex;
   flex-direction: row-reverse;
-  margin: 1.3em 0 $block-margin;
-  padding-top: 1.3em;
-  border-top: 1px solid $page-border;
-  box-shadow: #fff 0 1px inset;
+  margin: 15px -5px $block-margin;
+  position: relative;
+
+  &:before {
+    content: "";
+    position: absolute;
+    left: 5px; right: 5px;
+    top: 0;
+    border-top: 1px solid $page-border;
+  }
 }
 
 .inline-fields {
