@@ -12,7 +12,7 @@
       dd us-east-1 on AWS
 
     = s.card
-      = s.section
+      = s.content
         dt Status
         dd.green-text Healty <a href="#topology"><svg class="svg-icon icon-arrow-right-circle-fill  text-icon" viewBox="0 0 32 32" width="32" height="32"><use xlink:href="#icon-arrow-right-circle-fill"></use></svg></a>
 
@@ -25,9 +25,9 @@
         dt Notes
         dd Used to power "Article Search". <a title="Click to edit notes." href="/mongohq/deployments/blog-search/settings"><svg class="svg-icon icon-arrow-right-circle-fill  text-icon" viewBox="0 0 32 32" width="32" height="32"><use xlink:href="#icon-arrow-right-circle-fill"></use></svg></a>
       
-    = s.card
+      hr
       = s.title "Current Usage"
-      = s.section
+      = s.content
         dt Used Disk
         dd 2GB of 12GB
         dt Allocated RAM
@@ -38,25 +38,25 @@
         p Usage is measured hourly and billing is based on disk usage (minimum 2GB). For more information, <a href="https://help.compose.io/docs/billing-faq#how-are-compose-databases-billed">see our billing docs</a>
      
   - section do |s|
-    = s.heading "Connect to this deployment"
+    = s.heading "Deployment Connection"
 
     = s.card
-      = s.title "HTTP connection"
-      = s.section
-        <label><textarea class="tiny dark" readonly="true" spellcheck="false" style="height: 62px;">https://[username]:[password]@portal916-6.blog-search.mongohq.composedb.com:10916/ https://[username]:[password]@portal981-5.blog-search.mongohq.composedb.com:10981/</textarea></label>
-
-      = s.title "Example - Cluster health call"
-      = s.section
+      = s.content
+        = s.title "HTTP connection"
+        <label><textarea readonly="true" spellcheck="false">https://[username]:[password]@portal916-6.blog-search.mongohq.composedb.com:10916/ https://[username]:[password]@portal981-5.blog-search.mongohq.composedb.com:10981/</textarea></label>
+      hr
+      = s.content
+        = s.title "Example - Cluster health call"
         <label><textarea class="tiny dark" readonly="true" spellcheck="false" style="height: 62px;">curl -u username:password 'https://portal916-6.blog-search.mongohq.composedb.com:10916/_cluster/health?pretty' curl -u username:password 'https://portal981-5.blog-search.mongohq.composedb.com:10981/_cluster/health?pretty'</textarea></label>
+
   
-  - section do |s|
-    = s.heading "Deployment Topology"
+  - section "Deployment Topology" do |s|
     = s.description 
       p Each deployment runs within its own vlan. Only members with a public hostname/port listed below are accessible from the internet.
 
     = s.card
       = s.title "Elasticsearch members"
-      = s.section
+      = s.content
         table.border-table
           thead
             tr
@@ -77,8 +77,9 @@
               td 10.0.26.99
               td elastic_search105
 
+      hr
       = s.title "Proxies"
-      = s.section
+      = s.content
         table.border-table
           thead
             tr

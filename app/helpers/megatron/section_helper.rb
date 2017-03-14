@@ -2,12 +2,15 @@ module Megatron
   module SectionHelper
     class Section < Megatron::Helper
 
-      def initialize
+      def initialize( title=nil )
+        @title = title
         @children = { cards: [] }
+
+        heading( title ) if title
       end
 
-      def display(body)
-        content_tag(:section, class: 'section') { 
+      def display( body )
+        content_tag( :section, class: 'section' ) { 
           concat info
           concat content_tag(:div, class: 'section-content') { body }
         }
@@ -27,22 +30,25 @@ module Megatron
         nil
       end
 
-      def card( &block )
-        content_tag(:section, { class: 'section-card' }, &block)
+      def card( text = nil, &block )
+        content_tag(:section, class: 'section-card') {
+          concat title( text ) if text
+          concat extract_block &block
+        }
       end
 
-      def title( text )
-        content_tag(:header, class: 'card-title') { 
+      def title( text, options={} )
+        content_tag(:header, class: "card-title #{options[:class]}") { 
           content_tag(:h2) { text }
         }
       end
 
-      def section( &block )
-        content_tag(:section, class: 'card-section', &block)
+      def content(options={}, &block )
+        content_tag(:section, class: "card-section #{options[:class]}", &block)
       end
 
-      def footer( &block )
-        content_tag(:footer, class: 'card-footer', &block)
+      def footer( options={}, &block )
+        content_tag(:footer, class: "card-footer #{options[:class]}", &block)
       end
 
       private
@@ -55,16 +61,6 @@ module Megatron
         end
 
         content_tag(tag, options ) { text }
-      end
-
-      def content
-        if !@children[:cards].empty?
-          content_tag(:div, class: 'section-content') {
-            @children[:cards].each do |card|
-              concat card
-            end
-          }
-        end
       end
 
       def info

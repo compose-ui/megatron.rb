@@ -17,7 +17,7 @@ $radius: 3px;
   }
 }
 
-$input-weight-shadow: 0 2px 5px 0 rgba(#000, .2);
+$input-weight-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 $empty-shadow: 0 0 0 transparent;
 
 @function input-shadow($color: $alabaster, $size: 1px) {
@@ -139,6 +139,10 @@ input, select, textarea {
   @include input-active {
     box-shadow: $focus-shadow;
   }
+}
+
+textarea {
+  line-height: vr(1.5);
 }
 
 // Override default search styling

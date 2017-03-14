@@ -44,7 +44,6 @@
       z-index: 1;
       margin: 0;
       font-size: inherit;
-      line-height: inherit;
       background: transparent;
       padding: $padding-y $padding-x;
 
@@ -56,6 +55,13 @@
         transform: translate3d($distance-x, $distance-y, 0) scale($scale);
         color: darken($steel, 10);
       }
+    }
+
+    input {
+      line-height: inherit;
+    }
+    textarea {
+      padding-top: $padding-y + 4;
     }
   }
 

@@ -8,7 +8,7 @@
 }
 
 %button {
-  @include form-margin;
+  margin: 15px 0;
   font-size: 15px;
   line-height: vr(2); // 30px
   padding: 9px 15px;
