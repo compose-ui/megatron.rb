@@ -8,10 +8,10 @@
 }
 
 %button {
+  @include form-margin;
   font-size: 15px;
   line-height: vr(2); // 30px
   padding: 9px 15px;
-  margin: 15px 0;
   cursor: pointer;
   text-align: center;
   border-radius: 3px;
@@ -76,6 +76,7 @@
 
 button, a.button {
   @extend %button;
+  white-space: nowrap;
 
   .form-footer & {
     margin: { left: 5px; right: 5px; }

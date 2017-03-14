@@ -147,14 +147,7 @@ a {
 }
 
 @include at-least($max) {
-  .site {
-    width: $max;
-  }
   .login-layout .site { width: auto; }
-
-  .page, .page-header, .page-content {
-    border-top-right-radius: 5px;
-  }
 }
 
 .site.small-card {

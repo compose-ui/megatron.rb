@@ -112,9 +112,3 @@ $header-pad: 15px;
     }
   }
 }
-
-@include at-least($max + 20) {
-  .primary_nav-top {
-    right: 0;
-  }
-}

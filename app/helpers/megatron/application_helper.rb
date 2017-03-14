@@ -63,7 +63,7 @@ module Megatron
     end
 
     def extract_block(&block)
-      content_tag(:foo, &block).gsub(/<\/?foo>/m, '')
+      content_tag(:foo, &block).gsub(/<\/?foo>/m, '').html_safe
     end
 
     def set_toggle_options( options )

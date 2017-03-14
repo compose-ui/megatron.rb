@@ -50,7 +50,7 @@ module Megatron
 
         content_tag(:label, class: label_class, id: label_id ) {
           concat radio_button_tag(name, true, checked, options)
-          concat extract_block(&block).html_safe if block_given?
+          concat extract_block(&block) if block_given?
           concat label_text
         }
       end

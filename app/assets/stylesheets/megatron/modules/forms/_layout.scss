@@ -1,8 +1,104 @@
+@mixin form-margin {
+  margin: 10px 0;
+}
+
+
+.section {
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+  max-width: 1200px;
+  margin: vr(1.5) auto vr(1.5);
+
+  @include at-least($medium) {
+    display: flex;
+  }
+
+  + .section {
+    margin-top: 0;
+    padding-top: vr(1.5);
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      border-top: 1px solid $page-border;
+      box-shadow: 0 1px 0 #fff;
+    }
+  }
+
+  h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  &-info, &-content {
+    @include at-least($medium) {
+      padding: 0 vr(1.5);
+    }
+  }
+  
+  footer {
+    padding-top: 0;
+  }
+
+  &-info {
+    flex: 1 0 100px;
+  }
+
+  &-heading { 
+    padding: vr(1.5);
+  }
+  &-description {
+    padding: 0 vr(1.5) vr(1.5);
+  }
+  
+  &-content {
+    flex: 2 1 120px;
+  }
+
+  &-card {
+    max-width: 100%;
+    padding: 0;
+    background: $white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.1);
+    
+    @include at-least($medium) {
+      border-radius: $radius;
+    }
+
+    > * {
+      padding: vr(1.5);
+      > :first-child { margin-top: 0; }
+      > :last-child { margin-bottom: 0; }
+    }
+  }
+
+  .card-title {
+    padding-bottom: 0;
+  }
+
+  &-card + &-card {
+    margin-top: vr(1.5);
+  }
+
+  &-description {
+    padding: vr(1.5);
+    > :first-child {
+      margin-top: 0;
+    }
+  }
+}
+
+
+
+
 .form-row {
-  margin: 15px 0;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  flex-wrap: wrap;
   margin: 0 -5px;
 
   > * {
@@ -10,8 +106,42 @@
   }
 }
 
-.cell-wide {
+.wide-cell {
   flex: 1 0 auto;
+  @include until($small) {
+    width: 100%;
+  }
+}
+
+.button-cell {
+  display: flex;
+  flex-direction: row-reverse;
+
+  @include until($medium) {
+    width: 100%;
+  }
+
+  @include until($small) {
+    a.button, button {
+      width: 100%;
+    }
+  }
+}
+
+label {
+  display: flex;
+  font-size: 15px;
+  flex-direction: column;
+  position: relative;
+  flex: 1 0 auto;
+  margin: 10px 0;
+
+  .label-text {
+    padding-bottom: 7px;
+  }
+  select, input, textarea {
+    margin: 0px;
+  }
 }
 
 
@@ -28,21 +158,6 @@
     /*box-shadow: #fff 0 1px inset;*/
   /*}*/
 /*}*/
-
-// All form fieldsets
-.form-panel {
-  margin: vr(2) auto;
-  max-width: 100%;
-  padding: vr(2);
-  border-radius: $radius;
-  background: $white;
-  box-shadow: 0 0 25px rgba(0, 0, 0, .05), 0 0 0 1px $alabaster inset;
-
-  > :first-child {
-    padding-top: 0;
-    margin-top: 0;
-  }
-}
 
 .form-well {
   box-shadow: input-shadow();

@@ -305,7 +305,7 @@ module Megatron
 
       option_tags ||= extract_block(&block) if block_given?
 
-      input_tag(:select, name, option_tags, options)
+      input_tag(:select, name, option_tags.html_safe, options)
     end
 
     def switch_input_tag(name, checked = false, options = {})

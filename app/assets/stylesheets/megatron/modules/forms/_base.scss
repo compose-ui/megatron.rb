@@ -45,22 +45,6 @@ form {
 
 }
 
-label {
-  display: flex;
-  margin: 15px 0;
-  font-size: 15px;
-  flex-direction: column;
-  position: relative;
-  flex: 1 0 auto;
-
-  .label-text {
-    padding-bottom: 7px;
-  }
-  select, input, textarea {
-    margin: 0px;
-  }
-}
-
 .switch-label, .tick-label {
   pointer-events: none;
   * { pointer-events: all; }
