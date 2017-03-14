@@ -1,17 +1,12 @@
 - page_header "blog-search"
 - main
 
-  - section do |s|
-    = s.heading "Deployment Overview"
+  - section "Deployment Overview" do |s|
     = s.description
-      dt Name
-      dd blog-search
-      dt Version
-      dd Elasticsearch v1.7.3
-      dt Location
-      dd us-east-1 on AWS
+      p Food
 
     = s.card
+      = s.title "Overview"
       = s.content
         dt Status
         dd.green-text Healty <a href="#topology"><svg class="svg-icon icon-arrow-right-circle-fill  text-icon" viewBox="0 0 32 32" width="32" height="32"><use xlink:href="#icon-arrow-right-circle-fill"></use></svg></a>

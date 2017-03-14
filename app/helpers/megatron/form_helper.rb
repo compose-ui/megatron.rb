@@ -235,8 +235,8 @@ module Megatron
       input_tag(:tel, name, value, options)
     end
 
-    def textarea_tag(name, value = nil, options = {})
-      input_tag(:textarea, name, value, options)
+    def textarea_tag(name, value = nil, options = {}, &block)
+      input_tag(:textarea, name, value, options, &block)
     end
 
     def number_input_tag(name, value = nil, options = {})
@@ -335,19 +335,20 @@ module Megatron
 
     private
 
-    def base_tag(name, value, options, type)
+    def base_tag(name, value, options, type, &block)
       case type
       when :select
         value = value.html_safe if value
         select_tag(name, value, options)
       when :textarea
+        value ||= extract_block(&block)
         text_area_tag(name, value, options)
       else
         text_field_tag(name, value, options)
       end
     end
 
-    def input_tag(type, name, value, options=nil)
+    def input_tag(type, name, value, options=nil, &block)
       type.to_sym! if type.is_a?( String ) 
 
       if value.is_a? Hash
@@ -375,7 +376,7 @@ module Megatron
 
       content_tag(:label, label_options) {
         concat label_text
-        concat base_tag(name, value, options, type) 
+        concat base_tag(name, value, options, type, &block)
         concat label_placeholder
       }
 
