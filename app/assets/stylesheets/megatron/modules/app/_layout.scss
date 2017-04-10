@@ -75,8 +75,10 @@ a {
 
 // Style .secondary_nav and .main as columns
 @include at-least($small) {
-  .page-content {
+  header + .page-content {
     margin-top: -$page-header-height;
+  }
+  .page-content {
     padding-top: $page-header-height;
     height: 100%;
     display: table;

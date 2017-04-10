@@ -46,8 +46,9 @@ html lang="en"
 
             - if content_for?(:main)
 
-              header.page-header
-                = yield :page_header
+              - if content_for?(:header)
+                header.page-header
+                  = yield :page_header
 
               .page-content
 
