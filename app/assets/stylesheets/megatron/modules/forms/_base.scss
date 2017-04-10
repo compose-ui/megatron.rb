@@ -3,6 +3,7 @@ $text-inputs: 'textarea, input[type=url], input[type=tel], input[type=text], inp
 $formBlue:  $boyblue;//#4392f9;
 $steel:     darken($page-border, 25); // Blue-Gray
 $caribbean: #65BA52; // Mint
+$apple:     #3FBE3E; // Very Green
 $rusty:     #dd2f41; // Red
 $alabaster: hsl(0, 0%, 79%); // Light Blue
 $isabella:  #dde8eb; // Off-Cream
@@ -81,6 +82,9 @@ legend {
   padding-top: 11px;
   width: 100%;
   margin-bottom: 19px;
+  + * {
+    clear: both;
+  }
 }
 
 fieldset h2, legend.header {
@@ -106,7 +110,7 @@ fieldset h2, legend.header {
   line-height: vr(2); // 30px
   padding: 9px 12px;
   border-radius: $radius;
-  transition-property: box-shadow, border-color;
+  transition-property: box-shadow, color;
   appearance: none;
   box-shadow: $input-shadow;
 
@@ -187,3 +191,77 @@ input[type=number]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+.inline-fields {
+  display: flex;
+  flex: 0 1 auto;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+
+  // Remove top spacing from submit button
+  > [type=submit] {
+    margin-top: 0;
+    align-self: stretch;
+  }
+
+  label + & {
+    margin-top: -5px;
+  }
+
+  .label-text-wrapper {
+    &:before           { top: vr(2/15); }
+    .label-text:before { top: vr(3/5); }
+  }
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  margin: 0 -5px;
+
+  > * {
+    padding: 0 5px;
+  }
+}
+
+.wide-cell {
+  flex: 1 0 auto;
+  @include until(400px) {
+    width: 100%;
+  }
+}
+
+.button-cell {
+  display: flex;
+  flex-direction: row-reverse;
+
+  @include until(550px) {
+    width: 100%;
+  }
+
+  @include until(400px) {
+    a.button, button {
+      width: 100%;
+    }
+  }
+}
+
+label {
+  display: flex;
+  font-size: 15px;
+  flex-direction: column;
+  position: relative;
+  flex: 1 0 auto;
+  margin: 18px 0;
+
+  &.label-text {
+    transition-property: box-shadow, color;
+  }
+  select, input, textarea {
+    margin: 0px;
+  }
+}
+

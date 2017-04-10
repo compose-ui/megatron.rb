@@ -31,7 +31,7 @@
 
     // Default active color
     :not(.valid):not(.invalid) > {
-      textarea, #{$text-inputs} {
+      textarea, input {
         &:focus + span,
         &:active + span {
           color: $steel;
@@ -48,12 +48,19 @@
       padding: $padding-y $padding-x;
 
       // Move labels out of the way on focus and empty
-      &:focus + .placeholder-label-text,
-      &:active + .placeholder-label-text,
+      &:focus + .placeholder-label-text, 
       &:not(.empty) + .placeholder-label-text, {
         z-index: 2;
         transform: translate3d($distance-x, $distance-y, 0) scale($scale);
         color: darken($steel, 10);
+      }
+    }
+
+    &.valid, &.invalid {
+      textarea, input {
+        + .placeholder-label-text {
+          color: inherit;
+        }
       }
     }
 
@@ -72,7 +79,6 @@
     line-height: 1.2em;
     position: absolute;
     top: $padding-y + 5px;
-    z-index: 1;
     left: $padding-x;
     padding: 1px 0 0 1px;
     transform-origin: left top 0;
@@ -80,10 +86,9 @@
     -webkit-filter: blur(0);
     backface-visibility: hidden;
     -webkit-font-smoothing: subpixel-antialiased;
-    z-index: 0;
     color: $alabaster;
     transform: translate3d(0, 0, 0) scale(1);
-    transition-property: z-index, color, transform;
+    transition-property: color, transform;
     background: $white;
     box-shadow: -6px 0 $white, 6px 0 $white;
   }
