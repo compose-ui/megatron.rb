@@ -21,7 +21,7 @@
                 option value='' 1.2.7
                 option value='' 1.3.0.alpha
             .button-cell
-              button Change Version
+              = button "Change Version"
 
   - section do |s|
     = s.heading "Redis as a Cache"
@@ -36,7 +36,7 @@
             .wide-cell
               = switch_input_tag :switch_test, label: "Enable Redis cache mode"
             .button-cell
-              button Save changes
+              = primary_button "Save changes"
 
   section.section
     .section-content
@@ -44,24 +44,46 @@
         .wide-cell= text_input_tag :name, label: "First name"
         .wide-cell= text_input_tag :name, label: "Last name"
         .button-cell 
-          button Save changes
+          = button "Save changes"
 
       .form-row
         .wide-cell = text_input_tag :name, label_placeholder: "First name"
         .button-cell
-          button Save changes
+          = button "Save changes"
       .form-row
         .wide-cell = text_input_tag :name, label_placeholder: "First name"
         .wide-cell = text_input_tag :name, label_placeholder: "Last name"
         .button-cell
-          button.primary Save changes
+          = primary_button "Save changes"
       .form-row
         h2 Food
         .cell
-          button Add Food
+          = button "Add Food"
 
       .form-footer
-        button.primary Save Changes
-        button.destroy Cancel
-        a.button href='#' Cancel
+        = primary_button "Save Changes"
+        = destroy_button "Delete"
+        = button "Cancel", href: '#'
+
+
+  .box.form-width
+    .box-header
+      h4 Test Box Form stuff
+    .box-content
+      = text_input_tag :name, label_placeholder: "Full Name"
+      = email_input_tag :email, label_placeholder: "Email Address"
+      = tel_input_tag :tel, label_placeholder: "Phone Number"
+      .button-cell
+        = button "Update user"
+
+
+  .box.form-width
+    .box-header
+      h4 Test Box Form stuff
+    .box-content
+      = text_input_tag :name, label: "Full Name"
+      = email_input_tag :email, label: "Email Address"
+      = tel_input_tag :tel, label: "Phone Number"
+      .button-cell
+        = button "Update user"
 

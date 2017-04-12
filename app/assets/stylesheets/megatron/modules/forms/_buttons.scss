@@ -8,7 +8,7 @@
 }
 
 %button {
-  margin: 15px 0;
+  margin: 18px 0;
   font-size: 15px;
   line-height: vr(2); // 30px
   padding: 9px 15px;
@@ -17,6 +17,7 @@
   border-radius: 3px;
   border: none;
   font-weight: 700;
+  white-space: nowrap;
 
   transition-property: color, background-color, box-shadow;
 
@@ -29,56 +30,54 @@
   // Remove any hover decorations for links
   &, &:hover, &:focus { text-decoration: none; }
 
-  &:not(.primary):not(.destroy) {
-    color: $text-color;
-    background-color: #fff;
-    @include light-text-shadow( #fff );
-    box-shadow: $input-shadow;
-
-    &:focus, &:hover:not([disabled]) {
-      $bg: scale-color( $formBlue, $lightness: 95% );
-      background-color: $bg;
-      @include light-text-shadow( $bg );
-      box-shadow: input-focus-shadow( rgba($formBlue, .5) );
-      color: darken($formBlue, 20);
-    }
-  }
-
-  &.primary {
-    background-color: $formBlue;
-    box-shadow: input-shadow( darken($formBlue, 15) );
-    @include dark-text-shadow( $formBlue );
-    color: #fff;
-
-    &:focus, &:hover:not([disabled]) {
-      $bg: scale-color($formBlue, $lightness: 15%);
-      background-color: $bg;
-      box-shadow: input-focus-shadow( darken($formBlue, 25) );
-      color: #fff;
-    }
-  }
-
-  &.destroy {
-    $destroy-bright: #fdfdfd;
-
-    background: $destroy-bright;
-    color: $red;
-    box-shadow: input-shadow($red);
-
-    &:focus, &:hover:not([disabled]) {
-      background-color: darken($red, 10);
-      box-shadow: input-focus-shadow( darken($red, 20) );
-      text-shadow: dark-text-shadow( darken($red, 10) ) 0 1px 1px;
-      color: #fff;
-    }
+  .form-footer & {
+    margin: { left: 5px; right: 5px; }
   }
 }
 
-button, a.button {
+.button {
   @extend %button;
-  white-space: nowrap;
+  color: $text-color;
+  background-color: #fff;
+  @include light-text-shadow( #fff );
+  box-shadow: $input-shadow;
 
-  .form-footer & {
-    margin: { left: 5px; right: 5px; }
+  &:focus, &:hover:not([disabled]) {
+    $bg: scale-color( $formBlue, $lightness: 95% );
+    background-color: $bg;
+    @include light-text-shadow( $bg );
+    box-shadow: input-focus-shadow( rgba($formBlue, .5) );
+    color: darken($formBlue, 20);
+  }
+}
+
+.primary-button {
+  @extend %button;
+  background-color: $formBlue;
+  box-shadow: input-shadow( darken($formBlue, 15) );
+  @include dark-text-shadow( $formBlue );
+  color: #fff;
+
+  &:focus, &:hover:not([disabled]) {
+    $bg: scale-color($formBlue, $lightness: 15%);
+    background-color: $bg;
+    box-shadow: input-focus-shadow( darken($formBlue, 25) );
+    color: #fff;
+  }
+}
+
+.destructive-button {
+  @extend %button;
+  $destroy-bright: #fdfdfd;
+
+  background: $destroy-bright;
+  color: $red;
+  box-shadow: input-shadow($red);
+
+  &:focus, &:hover:not([disabled]) {
+    background-color: darken($red, 10);
+    box-shadow: input-focus-shadow( darken($red, 20) );
+    text-shadow: dark-text-shadow( darken($red, 10) ) 0 1px 1px;
+    color: #fff;
   }
 }

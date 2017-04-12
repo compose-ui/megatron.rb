@@ -46,11 +46,11 @@ module Megatron
     end
 
     def destroy_button(text, options = {})
-      button(text, options.merge(type: :destroy))
+      button(text, options.merge(type: :destructive))
     end
 
     def primary_destroy_button(text, options={})
-      button(text, options.merge(type: :primary_destroy))
+      button(text, options.merge(type: :primary_destructive))
     end
 
     def text_button(text, options = {})
@@ -59,7 +59,7 @@ module Megatron
 
     def button_classes(options)
       button_type = options[:type] || options[:color]
-      classes = button_type.present? ? ["#{button_type.to_s.gsub('_','-')}-btn"] : ["btn"]
+      classes = button_type.present? ? ["#{button_type.to_s.gsub('_','-')}-button"] : ["button"]
       classes << options[:flavor] if options[:flavor]
       classes << options[:class] if options[:class]
       classes << options[:size].to_s.gsub(/xlarge/, 'x-large') if options[:size]

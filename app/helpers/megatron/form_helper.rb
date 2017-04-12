@@ -359,6 +359,10 @@ module Megatron
       options = (INPUT_OPTIONS[type]||{}).deep_merge options
       options[:type] ||= type
 
+      # If label and placeholder match, remove the placeholder
+      if options[:placeholder] && options[:label] && options[:placeholder].to_s.downcase.strip == options[:label].to_s.downcase.strip
+        options.delete(:placeholder)
+      end
 
       label_options = { 
         class: "#{label_class(options[:type])} #{options.delete(:class)}"

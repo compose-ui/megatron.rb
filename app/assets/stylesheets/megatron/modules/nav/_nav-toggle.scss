@@ -1,14 +1,16 @@
 $header-pad: 15px; 
 
 // Nav button for toggling mobile nav
-.nav_toggle {
+.nav-toggle {
   
   float: left;
   cursor: pointer;
   font-size: 12px;
+  margin: 0;
   padding: 8px 2px;
   border: 0px;
-  background: none;
+  background-color: transparent;
+  box-shadow: none;
   position: absolute;
   right: $header-pad;
   

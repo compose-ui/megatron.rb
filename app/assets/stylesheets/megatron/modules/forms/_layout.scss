@@ -103,7 +103,7 @@
   justify-content: space-between;
   align-items: flex-end;
   flex-wrap: wrap;
-  margin: 0 -5px;
+  margin: -18px -5px;
 
   > * {
     padding: 0 5px;
@@ -138,10 +138,11 @@ label {
   flex-direction: column;
   position: relative;
   flex: 1 0 auto;
-  margin: 15px 0;
+  margin: 18px 0;
 
   .label-text {
     padding-bottom: 7px;
+    transition-property: box-shadow, color;
   }
   select, input, textarea {
     margin: 0px;
