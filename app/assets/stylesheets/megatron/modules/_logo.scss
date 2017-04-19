@@ -3,7 +3,6 @@ $cube-animation-style: 1.5s ease-out infinite;
 @include tetromino-graphics(small, 14px, 17px, fff, 262B30);
 
 .header_logo {
-  position: relative;
   &:before, &:after {
     @extend %small-tetromino;
   }
