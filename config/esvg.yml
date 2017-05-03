@@ -2,5 +2,3 @@ alias:
   account-circle-fill: account, kittens
   deployment-beta-line: deployment-beta
   cluster: deployment-cluster
-flatten:
-  - _icons

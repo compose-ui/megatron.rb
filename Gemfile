@@ -7,6 +7,8 @@ gem 'kramdown'
 gem 'tzinfo-data'
 gem 's3'
 
+gem 'cyborg', path: "../cyborg"
+
 group :test do
   gem 'rspec-core', '~> 3.3.2'
   gem 'rspec-rails', '~> 3.3.0'
