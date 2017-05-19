@@ -1,11 +1,11 @@
 module Megatron
   module IconHelper
     def iconset
-      Esvg.svgs
+      Cyborg.plugin.svgs.esvg.svgs
     end
 
     def icon(name, options={}, &block)
-      i = iconset.svg_icon(name, options).html_safe
+      i = use_svg(name, options).html_safe
 
       if options[:wrapper]
         i = content_tag(:span, class: options[:wrapper].strip) do

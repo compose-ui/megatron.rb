@@ -31,7 +31,8 @@
   = heading "Icon library"
   markdown:
     The following icons come with Megatron, if you need an icon which is not here, [create a ticket](https://git.compose.io/compose/hq/issues) and tag it "icon-request".
-  - iconset.svgs['.'].keys.sort.each do |k|
-    .test-icon data-name="#{k}" 
-      span.test-icon-wrapper=icon k
-      .test-icon-name.click-select contenteditable=true data-icon="#{k}" =k
+  - iconset.values.each do |svg|
+    - name = svg[:name]
+    .test-icon data-name="#{name}" 
+      span.test-icon-wrapper=icon name
+      .test-icon-name.click-select contenteditable=true data-icon="#{name}" =name

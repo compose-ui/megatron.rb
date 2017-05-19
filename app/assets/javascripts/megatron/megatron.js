@@ -5,7 +5,7 @@ var dialog = require('compose-dialog')
 var code = require('./utils/code')
 var toggler = require('compose-toggler')
 var form = require('compose-remote-form') // Our UJS implementation
-var esvg = require('./_esvg-core')
+var esvg = require('./_esvg')
 require('./_icons.js')
 var highlighter = require('compose-code-highlighter')
 
