@@ -58,7 +58,7 @@ $influxdb-color: #E68E00;
 $etcd-color: #2482BC;
 $rabbitmq-color: #FE6502;
 $scylladb-color: #392C54;
-$graph-color: #2891FA;
+$janusgraph-color: #2891FA;
 
 $base-bg: $space;
 
@@ -140,8 +140,8 @@ $full-palette: (
 'influxdb': $influxdb-color,
 'etcd': $etcd-color,
 'rabbitmq': $rabbitmq-color,
-'scylladb-color': $scylladb-color,
-'graph': $graph-color
+'scylladb': $scylladb-color,
+'janusgraph': $janusgraph-color
 );
 
 

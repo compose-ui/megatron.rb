@@ -9,4 +9,6 @@ error_pages.zip
 site/log/*.log
 site/tmp/
 /public/
-_svg.js
+_icons.js
+_esvg.js
+
