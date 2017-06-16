@@ -62,7 +62,7 @@ module Megatron
       ENV["ROOT_URL"] || '/'
     end
 
-    def embed_svg(filename, options = {})
+    def inject_svg(filename, options = {})
       group = 0
       file = File.read(Megatron::Engine.root.join('app', 'assets', 'images', 'megatron', filename))
         .gsub(/<!--.+-->/, '')
