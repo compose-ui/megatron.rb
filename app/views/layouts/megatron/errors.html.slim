@@ -9,7 +9,7 @@ html.error-layout lang='en'
 
   body
     .error-page class="error-#{@status_code} #{('reverse-stack' if @status_code == 404)}"
-      = embed_svg("#{@status_code}.svg")
+      = inject_svg("#{@status_code}.svg")
       .error-message
         = yield
       footer.support-links
