@@ -14,13 +14,41 @@ var Messages = {
     request.get('/messages.json').end(this.end.bind(this));
   },
 
-  dismiss: function messagesDismiss(event){
-    self = this
+  link: function messagesDismiss(event){
+    var url = event.currentTarget.getAttribute('href'),
+      tokenMeta = document.querySelector('meta[name="csrf-token"]'),
+      token = tokenMeta && tokenMeta.getAttribute('content'),
+      self = this;
+
     event.preventDefault()
     event.stopPropagation()
 
-    // Track dismissal
-    request.get(event.currentTarget.getAttribute('href')).end(function(error, response){
+    request
+      .patch(url)
+      .set('X-CSRF-Token', token)
+      .end(function(error, response){
+        if (error || response.serverError) {
+          return
+        }
+        if (response.body) {
+          window.location = response.body.url
+        }
+      })
+  },
+
+  dismiss: function messagesLink(event){
+    var url = event.currentTarget.getAttribute('href'),
+      tokenMeta = document.querySelector('meta[name="csrf-token"]'),
+      token = tokenMeta && tokenMeta.getAttribute('content'),
+      self = this;
+
+    event.preventDefault()
+    event.stopPropagation()
+
+    request
+      .patch(url)
+      .set('X-CSRF-Token', token)
+      .end(function(error, response){
       // Ask for any new messages
       self.fetch()
     })
@@ -35,35 +63,36 @@ var Messages = {
     if (error || response.serverError) {
       return
     } else {
-      var options = JSON.parse(response.text)[0]
-      if(options) {
-        var html = this.messageHTML(options)
+      var message = JSON.parse(response.text)['_embedded']['messages'][0]
+      if(message) {
+        var html = this.messageHTML(message)
         this.saveMessage(html)
         this.showMessage(html)
         Event.on(this.el(), 'click', '.dismiss', this.dismiss.bind(this))
+        Event.on(this.el(), 'click', '.link', this.link.bind(this))
       }
     }
   },
 
-  messageHTML: function messagesMessageHTML(options){
-    options.style = options.style || ''
+  messageHTML: function messagesMessageHTML(message){
+    message.style = message.style || ''
     var classnames = "message-content "
-    if (options.style) 
-      classnames += options.style
-    if (options.url)
+    if (message.style)
+      classnames += message.style
+    if (message.url)
       classnames += " with-url"
-    if (options.dismissable)
+    if (message.is_dismissable)
       classnames += " dismissable"
 
     var html = "<div class='"+classnames+"'>"
-    if (options.dismissable)
-      html += "<a href='/messages/"+options.id+"/dismiss' class='dismiss' data-no-turbolink><span class='dismiss-icon'></span><span class='hidden_label'>dismiss message</span></a>"
+    if (message.is_dismissable)
+      html += "<a href='/messages/"+message.id+"' class='dismiss' data-no-turbolink><span class='dismiss-icon'></span><span class='hidden_label'>dismiss message</span></a>"
 
     html += "<p>"
-    if (options.url)
-      html += "<a href='/messages/"+options.id+"/link'>"+options.body+"</a>"
+    if (message.url)
+      html += "<a href='/messages/"+message.id+"' class='link'>"+message.body+"</a>"
     else
-      html += options.body
+      html += message.body
     html += "</p></div>"
 
     return html
