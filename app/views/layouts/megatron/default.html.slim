@@ -75,3 +75,7 @@ html lang="en"
 
                   .main
                     = render 'megatron/shared/main_content'
+
+  - if params[:debug] == 'true' && !Rails.env.production?
+    = Rails.application.class.parent_name rescue nil
+    = debug(params.except :debug)
