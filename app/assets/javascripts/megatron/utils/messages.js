@@ -116,7 +116,7 @@ var Messages = {
   },
 
   load: function messagesLoad(){
-    if(window.location.hostname.match(/app\.compose/)){
+    if(window.location.hostname.match(/app(.*)\.compose/)){
       var message = window.Megatron.accountMessage
       if(!message) {
         Messages.fetch()
