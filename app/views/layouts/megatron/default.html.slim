@@ -66,10 +66,6 @@ html lang="en"
                     .main-content
                       = render 'megatron/shared/main_content'
 
-                      - if params[:debug] == 'true' && !Rails.env.production?
-                        = Rails.application.class.parent_name rescue nil
-                        = debug(params.except :debug)
-
                     .main-sidebar
                       = yield :sidebar
 
@@ -79,7 +75,3 @@ html lang="en"
 
                   .main
                     = render 'megatron/shared/main_content'
-
-                    - if params[:debug] == 'true' && !Rails.env.production?
-                      = Rails.application.class.parent_name rescue nil
-                      = debug(params.except :debug)

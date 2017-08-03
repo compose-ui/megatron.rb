@@ -1,0 +1,4 @@
+- if ENV['STAGING'] == 'true' && params[:debug] == 'true'
+  - app_name = Rails.application.class.parent_name rescue 'Unspecified'
+  - app_display_name = (app_name == 'Compose' ? 'Web' : app_name).downcase
+  = debug({'application' => app_display_name}.merge params.except(:debug))
