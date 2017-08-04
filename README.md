@@ -23,7 +23,7 @@ this engineering feat:
 - Export `MEGATRON_PATH`, pointing to the checkout (`web` looks for this environment variable)
 - Within a shell session that has the `MEGATRON_PATH` variable set, in your `web` checkout, run `bundle update megatron`
 - Bundler should install a link to your local version of Megatron
-- After you make changes in Megatron, run `bundle exec cyborg build -j` (without `-j` if first time) to build assets
+- After you make changes in Megatron, run `bundle exec cyborg build -j` (without `-j` if first time) within your Megatron checkout to build assets
 - Alternatively, run `bundle exec cyborg watch -j` to watch for changes and rebuild assets automatically
 - New JS and CSS assets should load in `web` on a page refresh
 
