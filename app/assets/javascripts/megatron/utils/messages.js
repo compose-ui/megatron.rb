@@ -14,29 +14,27 @@ var Messages = {
     request.get('/messages.json').end(this.end.bind(this));
   },
 
-  link: function messagesDismiss(event){
-    var url = event.currentTarget.getAttribute('href'),
+  link: function messagesLink(event){
+    var messageUrl = event.currentTarget.getAttribute('href'),
+      messageApiUrl = event.currentTarget.getAttribute('data-api-url'),
       tokenMeta = document.querySelector('meta[name="csrf-token"]'),
-      token = tokenMeta && tokenMeta.getAttribute('content'),
-      self = this;
+      token = tokenMeta && tokenMeta.getAttribute('content');
 
     event.preventDefault()
     event.stopPropagation()
 
     request
-      .patch(url)
+      .patch(messageApiUrl)
       .set('X-CSRF-Token', token)
       .end(function(error, response){
         if (error || response.serverError) {
           return
         }
-        if (response.body) {
-          window.location = response.body.url
-        }
+        window.location = messageUrl
       })
   },
 
-  dismiss: function messagesLink(event){
+  dismiss: function messagesDismiss(event){
     var url = event.currentTarget.getAttribute('href'),
       tokenMeta = document.querySelector('meta[name="csrf-token"]'),
       token = tokenMeta && tokenMeta.getAttribute('content'),
@@ -90,7 +88,7 @@ var Messages = {
 
     html += "<p>"
     if (message.url)
-      html += "<a href='/messages/"+message.id+"' class='link'>"+message.body+"</a>"
+      html += "<a href='"+message.url+"' data-api-url='/messages/"+message.id+"' class='link'>"+message.body+"</a>"
     else
       html += message.body
     html += "</p></div>"
