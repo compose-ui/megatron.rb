@@ -6,6 +6,7 @@ gemspec
 gem 'kramdown'
 gem 'tzinfo-data'
 gem 's3'
+gem 'bump'
 
 group :test do
   gem 'rspec-core', '~> 3.3.2'

@@ -179,7 +179,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bump (~> 0.5.4)
+  bump
   combustion (~> 0.5.3)
   kramdown
   megatron!

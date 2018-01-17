@@ -25,5 +25,4 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'slim-rails', '~> 3.1'
 
   spec.add_dependency 'gaffe', '~> 1'
-  spec.add_development_dependency 'bump', '~> 0.5.4'
 end
