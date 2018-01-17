@@ -7,8 +7,8 @@ require 'megatron/version'
 Gem::Specification.new do |spec|
   spec.name        = 'megatron'
   spec.version     = Megatron::VERSION
-  spec.authors     = ['Brandon Mathis', 'Kyle Foster']
-  spec.email       = ['brandon@imathis.com', 'hkylefoster@gmail.com']
+  spec.authors     = ['Brandon Mathis']
+  spec.email       = ['brandon@imathis.com']
   spec.homepage    = 'https://www.compose.io'
   spec.summary     = 'Megatron design framework'
   spec.description = 'Megatron is a design framework for Rails.'
@@ -19,9 +19,11 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_runtime_dependency 'cyborg'
+  spec.add_runtime_dependency 'esvg', '~> 4.3'
   spec.add_runtime_dependency 'block_helpers', '~> 0.3.3'
   spec.add_runtime_dependency 'to_words', '~> 1.1.0'
   spec.add_dependency 'slim-rails', '~> 3.1'
 
   spec.add_dependency 'gaffe', '~> 1'
+  spec.add_development_dependency 'bump', '~> 0.5.4'
 end
