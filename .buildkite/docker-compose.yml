@@ -7,3 +7,4 @@ app:
     - RUBYGEMS_API_KEY
     - AWS_SECRET
     - AWS_KEY
+    - BUILDKITE_BRANCH
