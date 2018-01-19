@@ -1,13 +1,6 @@
 steps:
-  - name: ":gem: Build"
-    command: .buildkite/build.sh
-    env:
-      BUILDKITE_DOCKER_COMPOSE_CONTAINER: app
-      BUILDKITE_DOCKER_COMPOSE_FILE: .buildkite/docker-compose.yml
-  - wait
-  - name: ":rubygems: Publish"
-    branches: master
-    command: .buildkite/publish.sh
+  - name: ":gem: Build and Publish"
+    command: .buildkite/build_and_publish.sh
     env:
       BUILDKITE_DOCKER_COMPOSE_CONTAINER: app
       BUILDKITE_DOCKER_COMPOSE_FILE: .buildkite/docker-compose.yml
